@@ -1,0 +1,201 @@
+================================================================================
+  INGECART — INDUSTRIAL INTELLIGENCE HUB
+  Site Reference Document
+================================================================================
+
+REPOSITORY
+  senarzuniga/senarzuniga.github.io
+  Branch: copilot/create-ing-site-repository
+  Hosted via GitHub Pages at: https://senarzuniga.github.io/
+
+--------------------------------------------------------------------------------
+FILE STRUCTURE
+--------------------------------------------------------------------------------
+
+  senarzuniga.github.io/
+  ├── index.html              Main landing page (single-page site)
+  ├── css/
+  │   └── styles.css          All visual styling (colors, layout, responsive)
+  ├── js/
+  │   └── main.js             Documentation modal logic + contact form behavior
+  ├── assets/
+  │   └── images/
+  │       ├── logo.svg                  INGECART brand logo (SVG placeholder)
+  │       ├── favicon.svg               Browser tab icon (SVG format)
+  │       ├── favicon.ico               Browser tab icon (ICO format)
+  │       ├── industrial-network.svg    Hero section visual
+  │       ├── branch-engineering.svg    Engineering & Design branch image
+  │       ├── branch-automation.svg     Automation & Control branch image
+  │       ├── branch-operations.svg     Operations Intelligence branch image
+  │       └── branch-academy.svg        Documentation & Training branch image
+  ├── INGECART_SITE.txt       This file
+  └── README.md               Repository description
+
+--------------------------------------------------------------------------------
+PAGE SECTIONS (index.html)
+--------------------------------------------------------------------------------
+
+  1. HEADER (sticky)
+     - Brand logo + INGECART name
+     - Navigation: Evolution · Branches · Infrastructure · Contact
+
+  2. HERO
+     - Headline: "From Manufacturing to Industrial Intelligence"
+     - Sub-copy describing the INGECART holding company model
+     - CTA buttons: "Explore Branches" / "Start a Project"
+     - Key metrics: 4 branches · 1 hub · 24/7 mindset
+
+  3. EVOLUTION (#evolution)
+     - Timeline of 3 steps: Manufacturing → Engineering → Industrial Intelligence
+
+  4. SERVICE BRANCHES (#branches)
+     - 4 branch cards in a 2-column grid
+     - Each card shows: image, title, document count badge, short description
+     - "Access Documentation" button opens the modal for that branch
+
+       Branch keys and document counts:
+         engineering  →  6 documents
+         automation   →  5 documents
+         operations   →  4 documents
+         academy      →  7 documents
+
+  5. HOLDING COMPANY MODEL (#infrastructure)
+     - 3 highlight cards: Centralized Governance · Service Interconnection
+       · Scalable Repository Structure
+
+  6. CONTACT (#contact)
+     - Strategic focus card + intake form (name, email, project scope)
+     - Form submission is handled client-side only (no backend)
+
+  7. FOOTER
+     - Copyright + deployment note
+
+  8. DOCUMENTATION MODAL (overlay)
+     - Triggered by each branch "Access Documentation" button
+     - Populated dynamically from branchDocuments in js/main.js
+     - Dismiss: × button, backdrop click, or Escape key
+
+--------------------------------------------------------------------------------
+BRAND COLORS
+--------------------------------------------------------------------------------
+
+  Black Industrial   #05070B    Body background, header, footer, modal
+  Orange             #FF6A00    CTAs, links, highlights, .orange-glow
+  Grey Metal         #7E848E    Secondary text, borders, nav links
+  Grey Acero         #1A1D24    Cards, form, evolution section
+  Off-white          #F5F7FB    Primary text
+
+--------------------------------------------------------------------------------
+HOW TO ADD OR EDIT DOCUMENTS (js/main.js)
+--------------------------------------------------------------------------------
+
+  Open js/main.js and locate the `branchDocuments` object at the top.
+
+  Each branch has this shape:
+
+    branchKey: {
+      title: "Display name for the modal header",
+      description: "Short subtitle shown below the modal title",
+      documents: [
+        { name: "Document title", type: "PDF or XLSX", detail: "Short note" },
+        ...
+      ]
+    }
+
+  To add a document to an existing branch:
+    - Find the branch key (engineering / automation / operations / academy)
+    - Append a new object to its `documents` array
+    - Update the badge count in the matching <span class="badge"> in index.html
+
+  To add a new branch:
+    1. Add a new key to `branchDocuments` in js/main.js
+    2. Add a new <article class="branch-card card"> block in index.html
+       with data-open-documents="yourNewKey" on its button
+    3. Add a matching branch image SVG in assets/images/
+
+--------------------------------------------------------------------------------
+HOW TO USE THE SITE LOCALLY
+--------------------------------------------------------------------------------
+
+  This is a pure static site — no build step or server required.
+
+  Option A: Open directly in a browser
+    - Double-click index.html  (works for all content except Google Fonts,
+      which requires internet access)
+
+  Option B: Simple local server (recommended for accurate preview)
+    - Python 3:   python -m http.server 8000
+                  Then open http://localhost:8000 in your browser
+    - Node.js:    npx serve .
+                  Then open the printed local URL
+
+--------------------------------------------------------------------------------
+GITHUB PAGES DEPLOYMENT
+--------------------------------------------------------------------------------
+
+  This repository is already configured for GitHub Pages hosting.
+
+  Steps to activate (one-time, via GitHub):
+    1. Go to the repository on GitHub
+    2. Settings → Pages
+    3. Source: Deploy from a branch
+    4. Branch: main (or whichever branch you merge this work into)
+    5. Folder: / (root)
+    6. Save — the site will be live at https://senarzuniga.github.io/
+
+  After any push to the selected branch, GitHub Pages rebuilds automatically.
+  Typical deploy time: 1–3 minutes.
+
+--------------------------------------------------------------------------------
+NEXT RECOMMENDED STEPS
+--------------------------------------------------------------------------------
+
+  IMMEDIATE (before going live)
+  ──────────────────────────────
+  [ ] Merge this branch into main so GitHub Pages serves the new site
+  [ ] Enable GitHub Pages from repository Settings → Pages (see above)
+  [ ] Confirm the live URL loads correctly: https://senarzuniga.github.io/
+
+  BRAND ASSETS
+  ──────────────────────────────
+  [ ] Replace assets/images/logo.svg with the real INGECART logo
+  [ ] Replace assets/images/favicon.svg and favicon.ico with final icon
+  [ ] Replace branch SVGs with real industrial photography or polished graphics
+      (compress images to <200 KB each for performance)
+
+  DOCUMENTATION LIBRARY
+  ──────────────────────────────
+  [ ] Upload real PDF and XLSX files to a hosting location
+      (GitHub Releases, Google Drive, OneDrive, S3, etc.)
+  [ ] Add `href` links to each document entry in js/main.js so the
+      modal shows clickable download buttons
+  [ ] Update document count badges in index.html to match real counts
+
+  CONTACT FORM (functional backend)
+  ──────────────────────────────
+  [ ] Integrate a form service so submissions are actually received:
+      - Formspree (free tier): add action="https://formspree.io/f/YOURCODE"
+        to the <form> tag and remove the JS preventDefault
+      - Netlify Forms: add netlify attribute to the <form> tag if hosting on Netlify
+      - EmailJS: wire the submit handler to their SDK
+
+  FUTURE CONTENT EXPANSION
+  ──────────────────────────────
+  [ ] Add a fifth or sixth service branch card as the holding company grows
+  [ ] Create dedicated branch sub-pages (e.g. /engineering/, /automation/)
+      and link each card's "Access Documentation" button to those pages
+  [ ] Add a case-study or portfolio section below the branch grid
+  [ ] Add a language toggle (Spanish / English) for bilingual audiences
+
+  MIGRATION TO Ing_SITE.github.io (when ready)
+  ──────────────────────────────
+  [ ] Create a new GitHub account or organization named Ing_SITE
+  [ ] Create a repository named Ing_SITE.github.io
+  [ ] Copy all files from this repository into the new one
+  [ ] Enable GitHub Pages on the new repo
+  [ ] Add a redirect page in this repository (index.html) pointing to the new URL:
+        <meta http-equiv="refresh" content="0; url=https://Ing_SITE.github.io/">
+
+--------------------------------------------------------------------------------
+END OF DOCUMENT
+================================================================================
