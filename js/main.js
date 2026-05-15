@@ -66,7 +66,7 @@ function renderDocuments(branchKey) {
   modalDescription.textContent = branch.description;
   documentList.innerHTML = "";
 
-  branch.documents.forEach((document) => {
+  branch.documents.forEach((entry) => {
     const item = document.createElement("li");
     const meta = document.createElement("div");
     const name = document.createElement("span");
@@ -74,10 +74,10 @@ function renderDocuments(branchKey) {
     const type = document.createElement("span");
 
     meta.className = "document-meta";
-    name.textContent = document.name;
-    detail.textContent = document.detail;
+    name.textContent = entry.name;
+    detail.textContent = entry.detail;
     type.className = "document-type";
-    type.textContent = document.type;
+    type.textContent = entry.type;
 
     meta.append(name, detail);
     item.append(meta, type);
