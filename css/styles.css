@@ -366,7 +366,9 @@ textarea {
 }
 
 .service-card {
+  display: block;
   position: relative;
+  cursor: pointer;
 }
 
 .service-card::after {
