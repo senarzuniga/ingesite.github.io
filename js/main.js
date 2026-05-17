@@ -36,6 +36,13 @@ const branchDocuments = {
     title: "Documentation & Training",
     description: "Knowledge libraries, onboarding kits, and procedures for rapid replication.",
     documents: [
+      {
+        name: "Product Brochure May 2026",
+        type: "PDF",
+        detail: "Online preview and direct download",
+        viewHref: "/brochure/product-brochure-may-2026/",
+        downloadHref: "/assets/docs/product-brochure-may-2026.pdf"
+      },
       { name: "Branch Induction Booklet", type: "PDF", detail: "New team onboarding" },
       { name: "Operational SOP Library", type: "PDF", detail: "Core process handbook" },
       { name: "Training Attendance Tracker", type: "XLSX", detail: "Instruction records" },
@@ -71,16 +78,45 @@ function renderDocuments(branchKey) {
     const meta = document.createElement("div");
     const name = document.createElement("span");
     const detail = document.createElement("span");
+    const right = document.createElement("div");
     const type = document.createElement("span");
 
     meta.className = "document-meta";
+    right.className = "document-right";
     name.textContent = entry.name;
     detail.textContent = entry.detail;
     type.className = "document-type";
     type.textContent = entry.type;
 
     meta.append(name, detail);
-    item.append(meta, type);
+
+    if (entry.viewHref || entry.downloadHref) {
+      const actions = document.createElement("div");
+      actions.className = "document-actions";
+
+      if (entry.viewHref) {
+        const viewLink = document.createElement("a");
+        viewLink.href = entry.viewHref;
+        viewLink.target = "_blank";
+        viewLink.rel = "noreferrer";
+        viewLink.textContent = "Open";
+        actions.append(viewLink);
+      }
+
+      if (entry.downloadHref) {
+        const downloadLink = document.createElement("a");
+        downloadLink.href = entry.downloadHref;
+        downloadLink.setAttribute("download", "product-brochure-may-2026.pdf");
+        downloadLink.textContent = "Download";
+        actions.append(downloadLink);
+      }
+
+      right.append(type, actions);
+    } else {
+      right.append(type);
+    }
+
+    item.append(meta, right);
     documentList.append(item);
   });
 }
