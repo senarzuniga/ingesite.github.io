@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INGECART Video Library | Industrial Knowledge Hub</title>
+  <meta name="description" content="Watch or download INGECART industrial machine videos — folder gluers, palletizers, transport systems and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #080f14;
+      --surface:  #1a212b;
+      --border:   rgba(255,255,255,0.08);
+      --accent:   #0b3bff;
+      --orange:   #ff6a00;
+      --green:    #22c55e;
+      --text:     #edeff2;
+      --muted:    rgba(237,239,242,0.55);
+      --radius:   12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,15,20,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+    .logo-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .logo-back:hover { color: var(--text); }
+    .logo-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .header-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+    .header-title span { color: var(--orange); }
+    .divider { width: 1px; height: 28px; background: var(--border); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      padding: 64px 48px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.25);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+
+    /* ── GRID ────────────────────────────────────────────────── */
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    /* ── CARD ────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+      border-color: rgba(11,59,255,0.35);
+    }
+
+    /* video player wrapper */
+    .video-wrap {
+      position: relative;
+      background: #000;
+    }
+    .video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 220px;
+      object-fit: contain;
+    }
+
+    /* card info */
+    .card-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* actions */
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #2150ff; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      header { padding: 16px 20px; }
+      .hero { padding: 40px 20px 28px; }
+      .grid { padding: 0 20px; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo-back" href="https://senarzuniga.github.io/">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 3L5 8l5 5"/>
+      </svg>
+      Back to site
+    </a>
+    <div class="divider"></div>
+    <span class="header-title">ING_DOCLOUD &nbsp;<span>·</span>&nbsp; Video Library</span>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">ING_DOCLOUD — Digital Repository</p>
+    <h1>Industrial Machine<br>Video Library</h1>
+    <p>Watch our industrial equipment demonstrations online or download them to your device for offline viewing and sharing.</p>
+    <span class="badge">6 videos available</span>
+  </section>
+
+  <div class="grid">
+
+    <!-- ① Folder Gluer -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="none" poster="">
+          <source src="../assets/videos/folder-gluer.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Packaging · Folder Gluer</span>
+        <h2 class="card-title">Folder Gluer — Easy Pack</h2>
+        <p class="card-desc">Automated folder-gluer in action: feed, fold, glue and discharge cycle demonstration.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="../assets/videos/folder-gluer.mp4" download="INGECART-Folder-Gluer.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② INGECART SUPERCORR 2024 -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="none" poster="">
+          <source src="../assets/videos/ingecart-supercorr-2024.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Corrugated · Supercorr</span>
+        <h2 class="card-title">INGECART Supercorr 2024</h2>
+        <p class="card-desc">Full demonstration of the Supercorr corrugated board processing line — 2024 edition.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="../assets/videos/ingecart-supercorr-2024.mp4" download="INGECART-Supercorr-2024.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ INGETRANS 280 -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="none" poster="">
+          <source src="../assets/videos/ingetrans-280.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Transport · Ingetrans</span>
+        <h2 class="card-title">Ingetrans 280</h2>
+        <p class="card-desc">Ingetrans 280 conveyor and transport system performance showcase.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="../assets/videos/ingetrans-280.mp4" download="INGECART-Ingetrans-280.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Ingetrans 280 (variant) -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="none" poster="">
+          <source src="../assets/videos/ingetrans-280b.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Transport · Ingetrans</span>
+        <h2 class="card-title">Ingetrans 280 — Variant B</h2>
+        <p class="card-desc">Alternative configuration of the Ingetrans 280 transport system.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="../assets/videos/ingetrans-280b.mp4" download="INGECART-Ingetrans-280B.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ PALETIZADOR FFG -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="none" poster="">
+          <source src="../assets/videos/paletizador-ffg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Palletizer · FFG</span>
+        <h2 class="card-title">Paletizador FFG</h2>
+        <p class="card-desc">FFG palletizer cycle: automatic layer formation, pallet transfer and stack output.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="../assets/videos/paletizador-ffg.mp4" download="INGECART-Paletizador-FFG.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ SR1400 -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="none" poster="">
+          <source src="../assets/videos/sr1400.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">Machinery · SR1400</span>
+        <h2 class="card-title">SR1400</h2>
+        <p class="card-desc">SR1400 industrial machine full operation cycle and output specification demo.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="../assets/videos/sr1400.mp4" download="INGECART-SR1400.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.grid -->
+
+  <footer>
+    &copy; 2026 INGECART &nbsp;·&nbsp;
+    <a href="https://senarzuniga.github.io/">ING_DIGHUB Digital Industrial Operating Ecosystem</a>
+  </footer>
+
+</body>
+</html>
