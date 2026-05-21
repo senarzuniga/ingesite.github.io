@@ -1,0 +1,9 @@
+{
+  "name": "ingesite.github.io",
+  "description": "",
+  "type": "opensource",
+  "metadata_path": ".forge",
+  "code_path": ".",
+  "github_url": "https://github.com/owner/ingesite.github.io",
+  "github_board": "https://github.com/orgs/owner/projects/1"
+}
