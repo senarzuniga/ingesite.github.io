@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Acceso Brochure Producto (Impresión)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body { font-family: Arial, sans-serif; background: #f7f7f7; color: #222; text-align: center; padding: 40px 10px; }
+		.qr { margin: 24px auto; }
+		.btn {
+			display: inline-block; margin: 18px 0; padding: 12px 28px; background: #0b3bff; color: #fff; border-radius: 8px;
+			text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: background 0.2s;
+		}
+		.btn:hover { background: #2150ff; }
+		.desc { color: #444; margin-bottom: 18px; }
+	</style>
+</head>
+<body>
+	<h1>Acceso Brochure Producto (Impresión)</h1>
+	<div class="desc">Escanea el código QR o haz clic en el botón para ver el brochure en PDF.</div>
+	<div class="qr">
+		<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://ingsite.github.io/public/docs/PRODUCT-BROCHURE-MAY-2026.pdf" alt="QR brochure" width="220" height="220" />
+	</div>
+	<a class="btn" href="https://ingsite.github.io/public/docs/PRODUCT-BROCHURE-MAY-2026.pdf" target="_blank">Ver Brochure PDF</a>
+	<div style="margin-top:32px; color:#888; font-size:0.95em;">&copy; 2026 INGECART</div>
+</body>
+</html>
