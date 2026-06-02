@@ -34,22 +34,64 @@ const branchDocuments = {
   },
   academy: {
     title: "Documentation & Training",
-    description: "Knowledge libraries, onboarding kits, and procedures for rapid replication.",
+    description: "Centralized access to video assets and key technical documents.",
     documents: [
+      {
+        name: "ING_DOCLOUD Video Library",
+        type: "HTML",
+        detail: "Landing page with all available videos",
+        viewHref: "/public/videos/index.html"
+      },
+      {
+        name: "FOLDER GLUER - EASY PACK (ES)",
+        type: "MP4",
+        detail: "Direct video file",
+        viewHref: "/public/videos/FOLDER GLUER _ EASY PACK - ESPAÑOL(720P_HD).mp4"
+      },
+      {
+        name: "INGECART SUPERCORR 2024",
+        type: "MP4",
+        detail: "Direct video file",
+        viewHref: "/public/videos/INGECART SUPERCORR 2024(720P_HD).mp4"
+      },
+      {
+        name: "Ingetrans 280 - Automated Reel Transport System",
+        type: "MP4",
+        detail: "Direct video file",
+        viewHref: "/public/videos/Ingetrans 280_ Automated Reel Transport System(720P_HD).mp4"
+      },
+      {
+        name: "IP AMR INGECART",
+        type: "MP4",
+        detail: "Direct video file",
+        viewHref: "/public/videos/IP AMR INGECART(720P_HD).mp4"
+      },
+      {
+        name: "PALETIZADOR FFG - Robot paletizador",
+        type: "MP4",
+        detail: "Direct video file",
+        viewHref: "/public/videos/PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD).mp4"
+      },
+      {
+        name: "SR1400 - Solucion para recoger y transportar",
+        type: "MP4",
+        detail: "Direct video file",
+        viewHref: "/public/videos/SR1400 - La solución para recoger y transportar to(720P_HD).mp4"
+      },
       {
         name: "Product Brochure May 2026",
         type: "PDF",
-        detail: "Online preview and direct download",
-        viewHref: "/brochure/product-brochure-may-2026/",
-        downloadHref: "/assets/docs/product-brochure-may-2026.pdf"
+        detail: "Requested PDF document",
+        viewHref: "/public/docs/product-brochure-may-2026.pdf",
+        downloadHref: "/public/docs/product-brochure-may-2026.pdf",
+        downloadName: "product-brochure-may-2026.pdf"
       },
-      { name: "Branch Induction Booklet", type: "PDF", detail: "New team onboarding" },
-      { name: "Operational SOP Library", type: "PDF", detail: "Core process handbook" },
-      { name: "Training Attendance Tracker", type: "XLSX", detail: "Instruction records" },
-      { name: "Field Audit Checklist", type: "PDF", detail: "Site quality verification" },
-      { name: "Client Handover Pack", type: "PDF", detail: "Delivery completion template" },
-      { name: "Documentation Index", type: "XLSX", detail: "Cross-branch reference sheet" },
-      { name: "Trainer Planning Calendar", type: "XLSX", detail: "Session scheduling workbook" }
+      {
+        name: "ESTUDIO FERIAS CORRUGADO INGECART DEEP 2026-2028",
+        type: "HTML",
+        detail: "Requested strategic study document",
+        viewHref: "/public/docs/ESTUDIO_FERIAS_CORRUGADO_INGECART_DEEP_2026_2028.html"
+      }
     ]
   }
 };
@@ -96,7 +138,7 @@ function renderDocuments(branchKey) {
 
       if (entry.viewHref) {
         const viewLink = document.createElement("a");
-        viewLink.href = entry.viewHref;
+        viewLink.href = encodeURI(entry.viewHref);
         viewLink.target = "_blank";
         viewLink.rel = "noreferrer";
         viewLink.textContent = "Open";
@@ -105,8 +147,10 @@ function renderDocuments(branchKey) {
 
       if (entry.downloadHref) {
         const downloadLink = document.createElement("a");
-        downloadLink.href = entry.downloadHref;
-        downloadLink.setAttribute("download", "product-brochure-may-2026.pdf");
+        downloadLink.href = encodeURI(entry.downloadHref);
+        if (entry.downloadName) {
+          downloadLink.setAttribute("download", entry.downloadName);
+        }
         downloadLink.textContent = "Download";
         actions.append(downloadLink);
       }
