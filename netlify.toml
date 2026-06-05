@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Disposition = "inline"
