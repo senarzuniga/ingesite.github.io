@@ -1,0 +1,7 @@
+# Exclude large raw video directories from the Netlify deploy.
+# The combined size of these directories (~680 MB) exceeds Netlify's
+# free-tier deploy limit (512 MB), causing every deploy to fail.
+# These files are served via GitHub Pages; Netlify previews serve the
+# HTML/CSS/JS layer only.
+videos/
+assets/videos/
