@@ -54,6 +54,10 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
     @media (max-width: 700px) { header { padding: 16px 20px; } .hero { padding: 40px 20px 28px; } .grid { padding: 0 20px; gap: 20px; } }
+
+    /* Loading overlay for each video card */
+    .loader { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); color: #fff; font-weight: 600; transition: opacity 0.25s ease; }
+    .loader.hidden { opacity: 0; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -97,7 +101,7 @@
     <div class="card">
       <div class="video-wrap">
         <video controls preload="none" poster="">
-          <source src="INGECART SUPERCORR 2024(720P_HD).mp4" type="video/mp4" />
+          <source src="ingecart-supercorr-2024-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -106,7 +110,7 @@
         <h2 class="card-title">INGECART Supercorr 2024</h2>
         <p class="card-desc">Full demonstration of the Supercorr corrugated board processing line — 2024 edition.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="INGECART SUPERCORR 2024(720P_HD).mp4" download="INGECART-Supercorr-2024.mp4">
+          <a class="btn btn-secondary" href="ingecart-supercorr-2024-720p-hd.mp4" download="INGECART-Supercorr-2024.mp4">
             ↓ Download
           </a>
         </div>
@@ -116,7 +120,7 @@
     <div class="card">
       <div class="video-wrap">
         <video controls preload="none" poster="">
-          <source src="Ingetrans 280_ Automated Reel Transport System(720P_HD).mp4" type="video/mp4" />
+          <source src="ingetrans-280-automated-reel-transport-system-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -125,7 +129,7 @@
         <h2 class="card-title">Ingetrans 280</h2>
         <p class="card-desc">Ingetrans 280 conveyor and transport system performance showcase.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="Ingetrans 280_ Automated Reel Transport System(720P_HD).mp4" download="INGECART-Ingetrans-280.mp4">
+          <a class="btn btn-secondary" href="ingetrans-280-automated-reel-transport-system-720p-hd.mp4" download="INGECART-Ingetrans-280.mp4">
             ↓ Download
           </a>
         </div>
@@ -135,7 +139,7 @@
     <div class="card">
       <div class="video-wrap">
         <video controls preload="none" poster="">
-          <source src="IP AMR INGECART(720P_HD).mp4" type="video/mp4" />
+          <source src="ip-amr-ingecart-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -144,7 +148,7 @@
         <h2 class="card-title">IP AMR INGECART</h2>
         <p class="card-desc">Autonomous Mobile Robot (AMR) for industrial logistics and transport.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="IP AMR INGECART(720P_HD).mp4" download="INGECART-IP-AMR.mp4">
+          <a class="btn btn-secondary" href="ip-amr-ingecart-720p-hd.mp4" download="INGECART-IP-AMR.mp4">
             ↓ Download
           </a>
         </div>
@@ -154,7 +158,7 @@
     <div class="card">
       <div class="video-wrap">
         <video controls preload="none" poster="">
-          <source src="PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD).mp4" type="video/mp4" />
+          <source src="paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -163,7 +167,7 @@
         <h2 class="card-title">Paletizador FFG</h2>
         <p class="card-desc">FFG palletizer cycle: automatic layer formation, pallet transfer and stack output.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD).mp4" download="INGECART-Paletizador-FFG.mp4">
+          <a class="btn btn-secondary" href="paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4" download="INGECART-Paletizador-FFG.mp4">
             ↓ Download
           </a>
         </div>
@@ -173,7 +177,7 @@
     <div class="card">
       <div class="video-wrap">
         <video controls preload="none" poster="">
-          <source src="SR1400 - La solución para recoger y transportar to(720P_HD).mp4" type="video/mp4" />
+          <source src="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -182,7 +186,7 @@
         <h2 class="card-title">SR1400</h2>
         <p class="card-desc">SR1400 industrial machine full operation cycle and output specification demo.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="SR1400 - La solución para recoger y transportar to(720P_HD).mp4" download="INGECART-SR1400.mp4">
+          <a class="btn btn-secondary" href="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" download="INGECART-SR1400.mp4">
             ↓ Download
           </a>
         </div>
@@ -193,5 +197,24 @@
     &copy; 2026 INGECART &nbsp;·&nbsp;
     <a href="https://senarzuniga.github.io/">ING_DIGHUB Digital Industrial Operating Ecosystem</a>
   </footer>
+  <script>
+    // Attach loading overlays to all video wrappers
+    document.querySelectorAll('.video-wrap').forEach(function(wrap){
+      var video = wrap.querySelector('video');
+      if (!video) return;
+      var loader = document.createElement('div');
+      loader.className = 'loader';
+      loader.textContent = 'Loading…';
+      wrap.appendChild(loader);
+      function hideLoader(){ loader.classList.add('hidden'); }
+      function showLoader(){ loader.classList.remove('hidden'); }
+      if (video.readyState >= 2) hideLoader(); else showLoader();
+      video.addEventListener('loadeddata', hideLoader);
+      video.addEventListener('playing', hideLoader);
+      video.addEventListener('waiting', showLoader);
+      video.addEventListener('seeking', showLoader);
+      video.addEventListener('error', function(){ loader.textContent = 'Playback error'; });
+    });
+  </script>
 </body>
 </html>
