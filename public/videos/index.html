@@ -56,8 +56,9 @@
     @media (max-width: 700px) { header { padding: 16px 20px; } .hero { padding: 40px 20px 28px; } .grid { padding: 0 20px; gap: 20px; } }
 
     /* Loading overlay for each video card */
-    .loader { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); color: #fff; font-weight: 600; transition: opacity 0.25s ease; }
+    .loader { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.55); color: #fff; font-weight: 600; transition: opacity 0.25s ease; pointer-events: none; }
     .loader.hidden { opacity: 0; pointer-events: none; }
+    .loader.error { pointer-events: auto; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -81,7 +82,7 @@
     <!-- ① Folder Gluer -->
     <div class="card">
       <div class="video-wrap">
-        <video controls preload="none" poster="">
+        <video controls preload="metadata" playsinline>
           <source src="folder-gluer-easy-pack-espanol-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -100,7 +101,7 @@
     <!-- ② INGECART SUPERCORR 2024 -->
     <div class="card">
       <div class="video-wrap">
-        <video controls preload="none" poster="">
+        <video controls preload="metadata" playsinline>
           <source src="ingecart-supercorr-2024-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -119,7 +120,7 @@
     <!-- ③ INGETRANS 280 -->
     <div class="card">
       <div class="video-wrap">
-        <video controls preload="none" poster="">
+        <video controls preload="metadata" playsinline>
           <source src="ingetrans-280-automated-reel-transport-system-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -138,7 +139,7 @@
     <!-- ④ IP AMR INGECART -->
     <div class="card">
       <div class="video-wrap">
-        <video controls preload="none" poster="">
+        <video controls preload="metadata" playsinline>
           <source src="ip-amr-ingecart-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -157,7 +158,7 @@
     <!-- ⑤ PALETIZADOR FFG -->
     <div class="card">
       <div class="video-wrap">
-        <video controls preload="none" poster="">
+        <video controls preload="metadata" playsinline>
           <source src="paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -176,7 +177,7 @@
     <!-- ⑥ SR1400 -->
     <div class="card">
       <div class="video-wrap">
-        <video controls preload="none" poster="">
+        <video controls preload="metadata" playsinline>
           <source src="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -198,7 +199,8 @@
     <a href="https://senarzuniga.github.io/">ING_DIGHUB Digital Industrial Operating Ecosystem</a>
   </footer>
   <script>
-    // Attach loading overlays to all video wrappers
+    // Attach loading overlays to all video wrappers. Allow clicks to reach the video
+    // and provide a retry mechanism if playback fails.
     document.querySelectorAll('.video-wrap').forEach(function(wrap){
       var video = wrap.querySelector('video');
       if (!video) return;
@@ -206,14 +208,19 @@
       loader.className = 'loader';
       loader.textContent = 'Loading…';
       wrap.appendChild(loader);
-      function hideLoader(){ loader.classList.add('hidden'); }
+      function hideLoader(){ loader.classList.add('hidden'); loader.classList.remove('error'); }
       function showLoader(){ loader.classList.remove('hidden'); }
-      if (video.readyState >= 2) hideLoader(); else showLoader();
+      // Consider metadata loaded as enough to hide the overlay when preload=metadata
+      if (video.readyState >= 1) hideLoader(); else showLoader();
+      video.addEventListener('loadedmetadata', hideLoader);
       video.addEventListener('loadeddata', hideLoader);
+      video.addEventListener('canplay', hideLoader);
       video.addEventListener('playing', hideLoader);
       video.addEventListener('waiting', showLoader);
       video.addEventListener('seeking', showLoader);
-      video.addEventListener('error', function(){ loader.textContent = 'Playback error'; });
+      video.addEventListener('error', function(){ loader.textContent = 'Playback error — click to retry'; loader.classList.add('error'); });
+      // If error state, allow clicking the overlay to retry loading/playing
+      loader.addEventListener('click', function(){ if (loader.classList.contains('error')) { loader.textContent = 'Retrying…'; loader.classList.remove('error'); try { video.load(); video.play().catch(function(){}); } catch(e){} } });
     });
   </script>
 </body>
