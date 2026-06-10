@@ -40,57 +40,57 @@ const branchDocuments = {
         name: "ING_DOCLOUD Video Library",
         type: "HTML",
         detail: "Landing page with all available videos",
-        viewHref: "/public/videos/index.html"
+        viewHref: "public/videos/index.html"
       },
       {
         name: "FOLDER GLUER - EASY PACK (ES)",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/folder-gluer-easy-pack-espanol-720p-hd.mp4"
+        viewHref: "public/videos/folder-gluer-easy-pack-espanol-720p-hd.mp4"
       },
       {
         name: "INGECART SUPERCORR 2024",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/ingecart-supercorr-2024-720p-hd.mp4"
+        viewHref: "public/videos/ingecart-supercorr-2024-720p-hd.mp4"
       },
       {
         name: "Ingetrans 280 - Automated Reel Transport System",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/ingetrans-280-automated-reel-transport-system-720p-hd.mp4"
+        viewHref: "public/videos/ingetrans-280-automated-reel-transport-system-720p-hd.mp4"
       },
       {
         name: "IP AMR INGECART",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/ip-amr-ingecart-720p-hd.mp4"
+        viewHref: "public/videos/ip-amr-ingecart-720p-hd.mp4"
       },
       {
         name: "PALETIZADOR FFG - Robot paletizador",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4"
+        viewHref: "public/videos/paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4"
       },
       {
         name: "SR1400 - Solucion para recoger y transportar",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4"
+        viewHref: "public/videos/sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4"
       },
       {
         name: "Product Brochure May 2026",
         type: "PDF",
         detail: "Requested PDF document",
-        viewHref: "/public/docs/product-brochure-may-2026.pdf",
-        downloadHref: "/public/docs/product-brochure-may-2026.pdf",
+        viewHref: "public/docs/product-brochure-may-2026.pdf",
+        downloadHref: "public/docs/product-brochure-may-2026.pdf",
         downloadName: "product-brochure-may-2026.pdf"
       },
       {
         name: "ESTUDIO FERIAS CORRUGADO INGECART DEEP 2026-2028",
         type: "HTML",
         detail: "Requested strategic study document",
-        viewHref: "/public/docs/estudio-ferias-corrugado-ingecart-deep-2026-2028.html"
+        viewHref: "public/docs/estudio-ferias-corrugado-ingecart-deep-2026-2028.html"
       }
     ]
   }
