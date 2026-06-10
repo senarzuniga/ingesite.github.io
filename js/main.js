@@ -46,7 +46,7 @@ const branchDocuments = {
         name: "FOLDER GLUER - EASY PACK (ES)",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/FOLDER%20GLUER%20_%20EASY%20PACK%20-%20ESPAN%CC%83OL(720P_HD).mp4"
+        viewHref: "/public/videos/folder-gluer-easy-pack-espanol-720p-hd.mp4"
       },
       {
         name: "INGECART SUPERCORR 2024",
