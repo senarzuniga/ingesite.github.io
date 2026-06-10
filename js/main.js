@@ -52,31 +52,31 @@ const branchDocuments = {
         name: "INGECART SUPERCORR 2024",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/INGECART SUPERCORR 2024(720P_HD).mp4"
+        viewHref: "/public/videos/ingecart-supercorr-2024-720p-hd.mp4"
       },
       {
         name: "Ingetrans 280 - Automated Reel Transport System",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/Ingetrans 280_ Automated Reel Transport System(720P_HD).mp4"
+        viewHref: "/public/videos/ingetrans-280-automated-reel-transport-system-720p-hd.mp4"
       },
       {
         name: "IP AMR INGECART",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/IP AMR INGECART(720P_HD).mp4"
+        viewHref: "/public/videos/ip-amr-ingecart-720p-hd.mp4"
       },
       {
         name: "PALETIZADOR FFG - Robot paletizador",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD).mp4"
+        viewHref: "/public/videos/paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4"
       },
       {
         name: "SR1400 - Solucion para recoger y transportar",
         type: "MP4",
         detail: "Direct video file",
-        viewHref: "/public/videos/SR1400 - La solución para recoger y transportar to(720P_HD).mp4"
+        viewHref: "/public/videos/sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4"
       },
       {
         name: "Product Brochure May 2026",
@@ -90,7 +90,7 @@ const branchDocuments = {
         name: "ESTUDIO FERIAS CORRUGADO INGECART DEEP 2026-2028",
         type: "HTML",
         detail: "Requested strategic study document",
-        viewHref: "/public/docs/ESTUDIO_FERIAS_CORRUGADO_INGECART_DEEP_2026_2028.html"
+        viewHref: "/public/docs/estudio-ferias-corrugado-ingecart-deep-2026-2028.html"
       }
     ]
   }
