@@ -18,6 +18,7 @@ import re
 import sys
 from pathlib import Path
 import html
+import unicodedata
 
 # Default source folder (from user's request)
 DEFAULT_SOURCE = r"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\VIDEOS"
@@ -33,21 +34,35 @@ def list_videos_in_dir(d: Path):
 def copy_videos(src: Path, dst: Path, force: bool = False):
     dst.mkdir(parents=True, exist_ok=True)
     copied = []
+    def _slugify_filename(name: str) -> str:
+        base = Path(name).stem
+        ext = Path(name).suffix.lower()
+        text = unicodedata.normalize('NFKD', base)
+        text = text.encode('ascii', 'ignore').decode('ascii')
+        text = text.lower()
+        text = re.sub(r'[^a-z0-9]+', '-', text)
+        text = re.sub(r'-+', '-', text)
+        text = text.strip('-')
+        if not text:
+            text = Path(name).stem
+        return text + ext
+
     for p in sorted(src.iterdir()):
         if not p.is_file():
             continue
         if p.suffix.lower() not in ALLOWED_EXTS:
             continue
-        target = dst / p.name
+        slug_name = _slugify_filename(p.name)
+        target = dst / slug_name
         if target.exists():
             if force:
                 shutil.copy2(p, target)
-                copied.append(p.name)
+                copied.append(target.name)
             else:
-                print(f"Skipping existing file: {p.name}")
+                print(f"Skipping existing file (slug exists): {slug_name}")
         else:
             shutil.copy2(p, target)
-            copied.append(p.name)
+            copied.append(target.name)
     return copied
 
 def prettify_title(filename: str) -> str:

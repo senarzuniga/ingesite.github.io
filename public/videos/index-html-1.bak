@@ -76,40 +76,22 @@
     <p class="eyebrow">ING_DOCLOUD — Digital Repository</p>
     <h1>Industrial Machine<br>Video Library</h1>
     <p>Watch our industrial equipment demonstrations online or download them to your device for offline viewing and sharing.</p>
-    <span class="badge">10 videos available</span>
+    <span class="badge">6 videos available</span>
   </section>
   <div class="grid">
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
-          <source src="Plug&amp;Play Palletizer Short_editado.mp4" type="video/mp4" />
+          <source src="plug-play-palletizer-short-editado.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
       <div class="card-body">
         <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Plug&amp;play Palletizer Short Editado</h2>
+        <h2 class="card-title">Plug &amp; Play — Palletizer (Short)</h2>
         <p class="card-desc">Uploaded automatically.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="Plug&amp;Play Palletizer Short_editado.mp4" download="Plug&amp;Play Palletizer Short_editado.mp4">
-            ↓ Download
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="video-wrap">
-        <video controls preload="metadata" playsinline>
-          <source src="TRUCK AUTO LOADING.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Truck Auto Loading</h2>
-        <p class="card-desc">Uploaded automatically.</p>
-        <div class="card-actions">
-          <a class="btn btn-secondary" href="TRUCK AUTO LOADING.mp4" download="TRUCK AUTO LOADING.mp4">
+          <a class="btn btn-secondary" href="plug-play-palletizer-short-editado.mp4" download="plug-play-palletizer-short-editado.mp4">
             ↓ Download
           </a>
         </div>
@@ -190,42 +172,6 @@
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
-          <source src="plug-play-palletizer-short-editado-1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Plug Play Palletizer Short Editado 1</h2>
-        <p class="card-desc">Uploaded automatically.</p>
-        <div class="card-actions">
-          <a class="btn btn-secondary" href="plug-play-palletizer-short-editado-1.mp4" download="plug-play-palletizer-short-editado-1.mp4">
-            ↓ Download
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="video-wrap">
-        <video controls preload="metadata" playsinline>
-          <source src="plug-play-palletizer-short-editado.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Plug Play Palletizer Short Editado</h2>
-        <p class="card-desc">Uploaded automatically.</p>
-        <div class="card-actions">
-          <a class="btn btn-secondary" href="plug-play-palletizer-short-editado.mp4" download="plug-play-palletizer-short-editado.mp4">
-            ↓ Download
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="video-wrap">
-        <video controls preload="metadata" playsinline>
           <source src="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -236,24 +182,6 @@
         <p class="card-desc">Uploaded automatically.</p>
         <div class="card-actions">
           <a class="btn btn-secondary" href="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" download="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4">
-            ↓ Download
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="video-wrap">
-        <video controls preload="metadata" playsinline>
-          <source src="truck-auto-loading.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Truck Auto Loading</h2>
-        <p class="card-desc">Uploaded automatically.</p>
-        <div class="card-actions">
-          <a class="btn btn-secondary" href="truck-auto-loading.mp4" download="truck-auto-loading.mp4">
             ↓ Download
           </a>
         </div>
