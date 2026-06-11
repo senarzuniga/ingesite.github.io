@@ -79,24 +79,7 @@
     <span class="badge">6 videos available</span>
   </section>
   <div class="grid">
-    <div class="card">
-      <div class="video-wrap">
-        <video controls preload="metadata" playsinline>
-          <source src="Plug&amp;Play Palletizer Short_editado.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Plug&amp;play Palletizer Short Editado</h2>
-        <p class="card-desc">Uploaded automatically.</p>
-        <div class="card-actions">
-          <a class="btn btn-secondary" href="Plug&amp;Play Palletizer Short_editado.mp4" download="Plug&amp;Play Palletizer Short_editado.mp4">
-            ↓ Download
-          </a>
-        </div>
-      </div>
-    </div>
+    <!-- ① Folder Gluer -->
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
@@ -105,16 +88,17 @@
         </video>
       </div>
       <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Folder Gluer Easy Pack Espanol</h2>
-        <p class="card-desc">Uploaded automatically.</p>
+        <span class="card-tag">Packaging · Folder Gluer</span>
+        <h2 class="card-title">Folder Gluer — Easy Pack</h2>
+        <p class="card-desc">Automated folder-gluer in action: feed, fold, glue and discharge cycle demonstration.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="folder-gluer-easy-pack-espanol-720p-hd.mp4" download="folder-gluer-easy-pack-espanol-720p-hd.mp4">
+          <a class="btn btn-secondary" href="folder-gluer-easy-pack-espanol-720p-hd.mp4" download="INGECART-Folder-Gluer.mp4">
             ↓ Download
           </a>
         </div>
       </div>
     </div>
+    <!-- ② INGECART SUPERCORR 2024 -->
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
@@ -123,16 +107,17 @@
         </video>
       </div>
       <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Ingecart Supercorr 2024</h2>
-        <p class="card-desc">Uploaded automatically.</p>
+        <span class="card-tag">Corrugated · Supercorr</span>
+        <h2 class="card-title">INGECART Supercorr 2024</h2>
+        <p class="card-desc">Full demonstration of the Supercorr corrugated board processing line — 2024 edition.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="ingecart-supercorr-2024-720p-hd.mp4" download="ingecart-supercorr-2024-720p-hd.mp4">
+          <a class="btn btn-secondary" href="ingecart-supercorr-2024-720p-hd.mp4" download="INGECART-Supercorr-2024.mp4">
             ↓ Download
           </a>
         </div>
       </div>
     </div>
+    <!-- ③ INGETRANS 280 -->
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
@@ -141,16 +126,36 @@
         </video>
       </div>
       <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Ingetrans 280 Automated Reel Transport System</h2>
-        <p class="card-desc">Uploaded automatically.</p>
+        <span class="card-tag">Transport · Ingetrans</span>
+        <h2 class="card-title">Ingetrans 280</h2>
+        <p class="card-desc">Ingetrans 280 conveyor and transport system performance showcase.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="ingetrans-280-automated-reel-transport-system-720p-hd.mp4" download="ingetrans-280-automated-reel-transport-system-720p-hd.mp4">
+          <a class="btn btn-secondary" href="ingetrans-280-automated-reel-transport-system-720p-hd.mp4" download="INGECART-Ingetrans-280.mp4">
             ↓ Download
           </a>
         </div>
       </div>
     </div>
+    <!-- ④ IP AMR INGECART -->
+    <div class="card">
+      <div class="video-wrap">
+        <video controls preload="metadata" playsinline>
+          <source src="ip-amr-ingecart-720p-hd.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">AMR · IP INGECART</span>
+        <h2 class="card-title">IP AMR INGECART</h2>
+        <p class="card-desc">Autonomous Mobile Robot (AMR) for industrial logistics and transport.</p>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="ip-amr-ingecart-720p-hd.mp4" download="INGECART-IP-AMR.mp4">
+            ↓ Download
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- ⑤ PALETIZADOR FFG -->
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
@@ -159,16 +164,17 @@
         </video>
       </div>
       <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Paletizador Ffg Robot Paletizador El Mas Rapido</h2>
-        <p class="card-desc">Uploaded automatically.</p>
+        <span class="card-tag">Palletizer · FFG</span>
+        <h2 class="card-title">Paletizador FFG</h2>
+        <p class="card-desc">FFG palletizer cycle: automatic layer formation, pallet transfer and stack output.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4" download="paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4">
+          <a class="btn btn-secondary" href="paletizador-ffg-robot-paletizador-el-mas-rapido-720p-hd.mp4" download="INGECART-Paletizador-FFG.mp4">
             ↓ Download
           </a>
         </div>
       </div>
     </div>
+    <!-- ⑥ SR1400 -->
     <div class="card">
       <div class="video-wrap">
         <video controls preload="metadata" playsinline>
@@ -177,11 +183,11 @@
         </video>
       </div>
       <div class="card-body">
-        <span class="card-tag">Uploaded</span>
-        <h2 class="card-title">Sr1400 La Solucion Para Recoger Y Transportar To</h2>
-        <p class="card-desc">Uploaded automatically.</p>
+        <span class="card-tag">Machinery · SR1400</span>
+        <h2 class="card-title">SR1400</h2>
+        <p class="card-desc">SR1400 industrial machine full operation cycle and output specification demo.</p>
         <div class="card-actions">
-          <a class="btn btn-secondary" href="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" download="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4">
+          <a class="btn btn-secondary" href="sr1400-la-solucion-para-recoger-y-transportar-to-720p-hd.mp4" download="INGECART-SR1400.mp4">
             ↓ Download
           </a>
         </div>

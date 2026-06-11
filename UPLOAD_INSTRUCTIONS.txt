@@ -1,3 +1,5 @@
+NOTA: Este repositorio ya está configurado para usar Git LFS para archivos de vídeo (.mp4, .mov, .mkv, .webm, .avi). He habilitado el tracking para futuros uploads, pero NO reescribí el historial del repositorio automáticamente (evita force-push inesperado). Si quieres que migre el historial a LFS, dímelo y lo haré tras tu confirmación.
+
 INSTRUCCIONES PARA SUBIR NUEVOS VIDEOS Y DOCUMENTOS
 
 Resumen rápido:
