@@ -18,10 +18,19 @@
 <body>
 	<h1>Acceso Videos INGECART</h1>
 	<div class="desc">Escanea el código QR o haz clic en el botón para ver la videoteca industrial.</div>
-	<div class="qr">
-		<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://ingsite.github.io/public/videos/index.html" alt="QR videos" width="220" height="220" />
-	</div>
-	<a class="btn" href="https://ingsite.github.io/public/videos/index.html" target="_blank">Ver Videoteca</a>
+		<div class="qr">
+				<img id="qrimg" alt="QR videos" width="220" height="220" />
+		</div>
+		<a id="qrbtn" class="btn" href="#" target="_blank">Ver Videoteca</a>
+		<script>
+			(function(){
+				var target = new URL('../videos/index.html', location.href).href;
+				var img = document.getElementById('qrimg');
+				var btn = document.getElementById('qrbtn');
+				img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(target);
+				btn.href = target;
+			})();
+		</script>
 	<div style="margin-top:32px; color:#888; font-size:0.95em;">&copy; 2026 INGECART</div>
 </body>
 </html>
