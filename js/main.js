@@ -61,10 +61,12 @@ const branchDocuments = {
         viewHref: "public/videos/ingetrans-280-automated-reel-transport-system-720p-hd.mp4"
       },
       {
-        name: "IP AMR INGECART",
+        name: "IP AMR INGECART (Digital Twin Trials)",
         type: "MP4",
-        detail: "Direct video file",
-        viewHref: "public/videos/ip-amr-ingecart-720p-hd.mp4"
+        detail: "Direct video file (edited)",
+        viewHref: "public/videos/ip-amr-project-digital-twin-trials-2-2026-06-12-165030-editado.mp4",
+        downloadHref: "public/videos/ip-amr-project-digital-twin-trials-2-2026-06-12-165030-editado.mp4",
+        downloadName: "ip-amr-project-digital-twin-trials-2-2026-06-12-165030-editado.mp4"
       },
       {
         name: "PALETIZADOR FFG - Robot paletizador",
@@ -114,6 +116,7 @@ function renderDocuments(branchKey) {
   modalTitle.textContent = branch.title;
   modalDescription.textContent = branch.description;
   documentList.innerHTML = "";
+  const existingFiles = new Set();
 
   branch.documents.forEach((entry) => {
     const item = document.createElement("li");
@@ -162,7 +165,66 @@ function renderDocuments(branchKey) {
 
     item.append(meta, right);
     documentList.append(item);
+    // remember file basenames already listed to avoid duplicates when auto-loading
+    const candidate = (entry.viewHref || entry.downloadHref || "").split('/').pop();
+    if (candidate) existingFiles.add(decodeURIComponent(candidate));
   });
+
+  // If opening the academy branch, try to fetch the videos index and append any files
+  if (branchKey === 'academy') {
+    fetch('public/videos/index.html').then((resp) => {
+      if (!resp.ok) throw new Error('Failed to fetch video index');
+      return resp.text();
+    }).then((htmlText) => {
+      try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+        const sources = Array.from(doc.querySelectorAll('video source[src]'));
+        const anchors = Array.from(doc.querySelectorAll('a[href$=".mp4"]'));
+        const found = new Set();
+
+        sources.forEach(s => { const src = s.getAttribute('src'); if (src) found.add(src); });
+        anchors.forEach(a => { const href = a.getAttribute('href'); if (href && href.toLowerCase().endsWith('.mp4')) found.add(href); });
+
+        found.forEach((file) => {
+          const base = file.split('/').pop();
+          if (!base || existingFiles.has(decodeURIComponent(base))) return;
+
+          const item = document.createElement('li');
+          const meta = document.createElement('div');
+          const name = document.createElement('span');
+          const detail = document.createElement('span');
+          const right = document.createElement('div');
+          const type = document.createElement('span');
+
+          meta.className = 'document-meta';
+          right.className = 'document-right';
+          name.textContent = base;
+          detail.textContent = 'Video file (auto-discovered)';
+          type.className = 'document-type';
+          type.textContent = 'MP4';
+
+          meta.append(name, detail);
+
+          const actions = document.createElement('div');
+          actions.className = 'document-actions';
+          const viewLink = document.createElement('a');
+          let href = file;
+          if (!href.startsWith('/') && !href.startsWith('http')) href = 'public/videos/' + href;
+          viewLink.href = encodeURI(href);
+          viewLink.target = '_blank';
+          viewLink.rel = 'noreferrer';
+          viewLink.textContent = 'Open';
+          actions.append(viewLink);
+
+          right.append(type, actions);
+          item.append(meta, right);
+          documentList.append(item);
+          existingFiles.add(decodeURIComponent(base));
+        });
+      } catch (e) { console.error('Error parsing videos index:', e); }
+    }).catch(err => { console.error('Could not load video index:', err); });
+  }
 }
 
 function openModal(branchKey) {
@@ -201,3 +263,49 @@ contactForm?.addEventListener("submit", (event) => {
   submitButton.textContent = "Request Captured";
   submitButton.disabled = true;
 });
+
+// Populate a small preview grid on the landing page with latest videos from public/videos
+function populateLandingVideos() {
+  const container = document.getElementById('training-videos');
+  if (!container) return;
+
+  fetch('public/videos/index.html').then(r => { if (!r.ok) throw new Error('no index'); return r.text(); })
+    .then(html => {
+      try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const cards = Array.from(doc.querySelectorAll('.card'));
+        // take first 4 cards for preview
+        cards.slice(0,4).forEach(card => {
+          const src = card.querySelector('video source')?.getAttribute('src');
+          const title = card.querySelector('.card-title')?.textContent || card.querySelector('h2')?.textContent || 'Video';
+          const link = card.querySelector('a[download]')?.getAttribute('href') || src;
+          const thumb = card.querySelector('img')?.getAttribute('src') || '';
+
+          const item = document.createElement('a');
+          item.href = link || ('/public/videos/' + (src || ''));
+          item.className = 'mini-video-card';
+          item.style.cssText = 'display:block;background:#0f1720;padding:6px;border-radius:8px;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,0.04);';
+
+          const preview = document.createElement('div');
+          preview.style.cssText = 'width:100%;height:90px;background:#000;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;';
+          if (thumb) {
+            const img = document.createElement('img'); img.src = thumb; img.style.width = '100%'; img.style.height = '100%'; img.style.objectFit = 'cover'; preview.appendChild(img);
+          } else if (src) {
+            const vid = document.createElement('video'); vid.src = src; vid.preload = 'metadata'; vid.muted = true; vid.style.width = '100%'; vid.style.height = '100%'; vid.style.objectFit = 'cover'; preview.appendChild(vid);
+          } else {
+            preview.textContent = 'Video';
+          }
+
+          const t = document.createElement('div'); t.style.cssText = 'font-size:0.85rem;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+          t.textContent = title;
+          item.appendChild(preview);
+          item.appendChild(t);
+          container.appendChild(item);
+        });
+      } catch (e) { console.error(e); }
+    }).catch(() => { /* silent */ });
+}
+
+// Run on load
+document.addEventListener('DOMContentLoaded', populateLandingVideos);
