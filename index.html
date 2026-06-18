@@ -148,6 +148,40 @@
             <p>Smart warehouse coordination, route-aware material flow and infrastructure-level visibility.</p>
           </article>
         </div>
+        <div class="section-heading" style="margin-top:1.25rem;">
+          <p class="eyebrow">Media Hub</p>
+          <h2>Documentación comercial, imágenes, noticias y videos</h2>
+        </div>
+
+        <div class="card" id="media-hub" style="padding:1rem; margin-top:1rem;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div style="display:flex;gap:8px;">
+              <button class="button button-secondary media-tab active" data-tab="docs">Documentación</button>
+              <button class="button button-secondary media-tab" data-tab="images">Imágenes</button>
+              <button class="button button-secondary media-tab" data-tab="news">Noticias</button>
+              <button class="button button-secondary media-tab" data-tab="videos">Videos</button>
+            </div>
+            <div style="margin-left:auto">
+              <button id="sync-videos" class="button button-primary" title="Actualizar videos">🔄 Actualizar videos</button>
+            </div>
+          </div>
+
+          <div id="media-contents">
+            <div id="tab-docs" class="media-panel">
+              <p class="hero-text">Accede a la documentación comercial y materiales descargables.</p>
+              <ul id="media-docs-list" class="document-list" style="margin-top:8px;"></ul>
+            </div>
+            <div id="tab-images" class="media-panel" style="display:none;">
+              <div id="media-images-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;"></div>
+            </div>
+            <div id="tab-news" class="media-panel" style="display:none;">
+              <div id="media-news-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+            </div>
+            <div id="tab-videos" class="media-panel" style="display:none;">
+              <div id="video-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:8px;"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="resources" class="panel section-grid">
@@ -251,5 +285,6 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/media.js"></script>
 </body>
 </html>
