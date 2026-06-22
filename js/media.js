@@ -219,11 +219,30 @@
     });
   }
 
+  // Sync documents button
+  function setupSyncDocsButton() {
+    const btn = document.getElementById('sync-docs'); if (!btn) return;
+    btn.addEventListener('click', async () => {
+      btn.disabled = true; btn.textContent = 'Actualizando docs…';
+      try {
+        const r = await fetch('http://localhost:8600/sync_docs', { method: 'POST' });
+        if (!r.ok) throw new Error('Sync docs failed');
+        // reload docs
+        await loadDocs();
+        btn.textContent = 'Actualizado';
+      } catch (e) {
+        console.warn('Sync docs failed', e);
+        btn.textContent = 'Error — ejecutar localmente el script de sincronización';
+      } finally { setTimeout(()=>{ btn.disabled = false; btn.textContent = '📁 Actualizar docs'; }, 3000); }
+    });
+  }
+
   // Initialize tab handlers
   document.addEventListener('DOMContentLoaded', () => {
     $all(TAB_SELECTOR).forEach(b => b.addEventListener('click', () => setActiveTab(b.dataset.tab)));
     setActiveTab('docs');
     setupSyncButton();
+    setupSyncDocsButton();
   });
 
 })();

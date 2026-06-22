@@ -15,6 +15,7 @@ from email.message import EmailMessage
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_VIDEOS = ROOT / 'public' / 'videos'
+PUBLIC_DOCS = ROOT / 'public' / 'docs'
 
 app = Flask(__name__)
 CORS(app)
@@ -34,6 +35,18 @@ def sync():
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
         proc = subprocess.run([py, str(ROOT / 'scripts' / 'sync_videos.py')], capture_output=True, text=True, env=env)
+        return jsonify({'ok': True, 'stdout': proc.stdout, 'stderr': proc.stderr})
+    except Exception as e:
+        return jsonify({'ok': False, 'error': str(e)}), 500
+
+
+@app.route('/sync_docs', methods=['POST','GET'])
+def sync_docs():
+    try:
+        py = os.environ.get('PYTHON', 'python')
+        env = os.environ.copy()
+        env['PYTHONIOENCODING'] = 'utf-8'
+        proc = subprocess.run([py, str(ROOT / 'scripts' / 'sync_docs.py')], capture_output=True, text=True, env=env)
         return jsonify({'ok': True, 'stdout': proc.stdout, 'stderr': proc.stderr})
     except Exception as e:
         return jsonify({'ok': False, 'error': str(e)}), 500
@@ -76,6 +89,14 @@ def event():
     # If SMTP not configured, write to a local log file
     log_event(body)
     return jsonify({'ok': True, 'logged': True})
+
+
+@app.route('/list_docs', methods=['GET'])
+def list_docs():
+    j = PUBLIC_DOCS / 'docs.json'
+    if not j.exists():
+        return jsonify([])
+    return jsonify(json.loads(j.read_text(encoding='utf-8')))
 
 def log_event(text):
     try:
