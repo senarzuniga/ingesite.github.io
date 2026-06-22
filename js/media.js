@@ -23,6 +23,21 @@
     return paths.reduce((acc, p) => acc.catch(() => fetch(p).then(r => r.ok ? r.json() : Promise.reject(new Error('no')))), Promise.reject())
   }
 
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+
   async function loadVideos() {
     const container = $('#video-list');
     if (!container) return;
@@ -86,10 +101,25 @@
       const dl = document.createElement('a'); dl.className = 'button button-primary'; dl.textContent = '⬇ Descargar'; dl.href = encodeURI(item.url); dl.setAttribute('download', '');
       dl.addEventListener('click', (ev) => { sendEvent('download', item); });
 
+      const share = document.createElement('button'); share.className = 'button'; share.textContent = '🔗 Compartir';
+      share.addEventListener('click', async () => {
+        try {
+          const ref = prompt('Etiqueta para personalizar el enlace (opcional)');
+          let url = item.share_url || item.url || ('/public/videos/' + (item.slug || item.filename));
+          if (ref) url += (url.indexOf('?') >= 0 ? '&' : '?') + 'ref=' + encodeURIComponent(ref);
+          const full = location.origin + url;
+          await copyToClipboard(full);
+          alert('Enlace copiado al portapapeles');
+          sendEvent('share', Object.assign({}, item, { share_link: full }));
+        } catch (e) {
+          console.warn('Share failed', e);
+        }
+      });
+
       const meta = document.createElement('div'); meta.style.marginTop = '8px'; meta.style.color = 'var(--text-muted)';
       meta.textContent = (item.size ? humanFileSize(item.size) + ' · ' : '') + (item.mtime || '');
 
-      actions.appendChild(play); actions.appendChild(dl);
+      actions.appendChild(play); actions.appendChild(dl); actions.appendChild(share);
 
       card.appendChild(title); card.appendChild(preview); card.appendChild(actions); card.appendChild(meta);
       container.appendChild(card);
