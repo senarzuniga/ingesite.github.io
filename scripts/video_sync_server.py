@@ -31,7 +31,9 @@ def sync():
     # Run the sync script
     try:
         py = os.environ.get('PYTHON', 'python')
-        proc = subprocess.run([py, str(ROOT / 'scripts' / 'sync_videos.py')], capture_output=True, text=True)
+        env = os.environ.copy()
+        env['PYTHONIOENCODING'] = 'utf-8'
+        proc = subprocess.run([py, str(ROOT / 'scripts' / 'sync_videos.py')], capture_output=True, text=True, env=env)
         return jsonify({'ok': True, 'stdout': proc.stdout, 'stderr': proc.stderr})
     except Exception as e:
         return jsonify({'ok': False, 'error': str(e)}), 500
@@ -77,11 +79,14 @@ def event():
 
 def log_event(text):
     try:
-        (ROOT / 'video_events.log').write_text(text + '\n---\n', encoding='utf-8', append=False)
-    except Exception:
-        # append mode fallback
         with open(ROOT / 'video_events.log', 'a', encoding='utf-8') as fh:
             fh.write(text + '\n---\n')
+    except Exception as e:
+        # If logging fails, print to stderr (best-effort)
+        try:
+            print('log_event failed:', e)
+        except Exception:
+            pass
 
 if __name__ == '__main__':
     port = int(os.environ.get('VIDEO_SYNC_PORT', 8600))
