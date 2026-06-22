@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD)</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="site-shell" style="padding:1rem">
+        <h1>PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD)</h1>
+        <video controls preload="metadata" width="100%" style="max-height:70vh;">
+            <source src="/assets/videos/PALETIZADOR%20FFG%20-%20Robot%20paletizador.%20El%20m%C3%A1s%20r%C3%A1pido%28720P_HD%29.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p style="color:var(--text-muted);">21.2 MB · 2026-05-25T12:32:01</p>
+        <p><a class="button button-primary" href="/assets/videos/PALETIZADOR%20FFG%20-%20Robot%20paletizador.%20El%20m%C3%A1s%20r%C3%A1pido%28720P_HD%29.mp4" download>Descargar</a> <a class="button" href="/public/videos/index.html">Volver al listado</a></p>
+        <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
+    </div>
+
+    <script>
+        function copyText(t){ if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(t); } var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return Promise.resolve(); }
+        document.getElementById('copy-share').addEventListener('click', function(){
+            var label = prompt('Etiqueta para personalizar el enlace (opcional)');
+            var url = location.origin + '/public/videos/paletizador-ffg-robot-paletizador-el-mas-rapido720p_hd.html';
+            if(label){ url += (url.indexOf('?')>=0? '&':'?') + 'ref=' + encodeURIComponent(label); }
+            copyText(url).then(function(){ alert('Enlace copiado:
+'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+        });
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file':'/assets/videos/PALETIZADOR FFG - Robot paletizador. El más rápido(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+    </script>
+</body>
+</html>

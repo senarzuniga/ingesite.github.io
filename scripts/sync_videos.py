@@ -11,6 +11,9 @@ import subprocess
 import datetime
 import os
 import urllib.parse
+import unicodedata
+import re
+import html
 
 SOURCE_DEFAULT = Path(r"C:\Users\Inaki Senar\OneDrive\INGECART\VIDEOS web")
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -58,15 +61,35 @@ def sync_from_source(src_dir: Path):
                 except Exception as e:
                     print(f"Failed to remove {existing}: {e}")
 
-    # build metadata
+    # build metadata (with slug/share page)
+    def slugify(value):
+        s = str(value)
+        s = unicodedata.normalize('NFKD', s)
+        s = s.encode('ascii', 'ignore').decode('ascii')
+        s = re.sub(r"[^\w\s-]", '', s).strip().lower()
+        s = re.sub(r"[-\s]+", '-', s)
+        return s[:120]
+
     videos = []
+    seen = set()
     for p in sorted((ASSETS_VIDEOS).iterdir()):
         if p.is_file() and p.suffix.lower() in ALLOWED_EXT:
             stat = p.stat()
+            title = p.stem
+            base_slug = slugify(title) or slugify(p.name)
+            slug = base_slug
+            i = 1
+            while slug in seen:
+                slug = f"{base_slug}-{i}"
+                i += 1
+            seen.add(slug)
+            share_path = f'/public/videos/{slug}.html'
             videos.append({
                 'filename': p.name,
-                'title': p.stem,
+                'title': title,
                 'url': f'/assets/videos/{p.name}',
+                'share_url': share_path,
+                'slug': slug,
                 'size': stat.st_size,
                 'mtime': datetime.datetime.fromtimestamp(stat.st_mtime).isoformat(),
             })
@@ -89,7 +112,59 @@ def sync_from_source(src_dir: Path):
     except Exception as e:
         print(f"Failed to write index.html: {e}")
 
+    # write per-video landing pages
+    for v in videos:
+        write_video_page(v)
+
     return videos
+
+
+def write_video_page(video):
+        # write an individual landing page for a single video (using placeholder template to avoid f-string brace conflicts)
+        try:
+                title_escaped = html.escape(video.get('title', video.get('filename', '')))
+                safe_url = urllib.parse.quote(video['url'], safe='/')
+                share_url = video.get('share_url', f"/public/videos/{video.get('slug','')}.html")
+                tpl = '''<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>%%TITLE%%</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="site-shell" style="padding:1rem">
+        <h1>%%TITLE%%</h1>
+        <video controls preload="metadata" width="100%" style="max-height:70vh;">
+            <source src="%%SAFE_URL%%" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p style="color:var(--text-muted);">%%HUMAN_SIZE%% · %%MTIME%%</p>
+        <p><a class="button button-primary" href="%%SAFE_URL%%" download>Descargar</a> <a class="button" href="/public/videos/index.html">Volver al listado</a></p>
+        <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
+    </div>
+
+    <script>
+        function copyText(t){ if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(t); } var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return Promise.resolve(); }
+        document.getElementById('copy-share').addEventListener('click', function(){
+            var label = prompt('Etiqueta para personalizar el enlace (opcional)');
+            var url = location.origin + '%%SHARE_URL%%';
+            if(label){ url += (url.indexOf('?')>=0? '&':'?') + 'ref=' + encodeURIComponent(label); }
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'%%VIDEO_URL%%',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+        });
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file':'%%VIDEO_URL%%',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+    </script>
+</body>
+</html>
+'''
+                page = tpl.replace('%%TITLE%%', title_escaped).replace('%%SAFE_URL%%', safe_url).replace('%%SHARE_URL%%', share_url).replace('%%VIDEO_URL%%', video['url']).replace('%%HUMAN_SIZE%%', human_size(video.get('size',0))).replace('%%MTIME%%', video.get('mtime',''))
+                out = PUBLIC_VIDEOS / f"{video['slug']}.html"
+                with out.open('w', encoding='utf-8') as fh:
+                        fh.write(page)
+                print(f"Wrote per-video page {out}")
+        except Exception as e:
+                print(f"Failed to write per-video page for {video.get('filename')}: {e}")
 
 
 def generate_public_index(videos):
@@ -101,12 +176,24 @@ def generate_public_index(videos):
         <article class=\"card\">\n          <h2 class=\"card-title\">{v['title']}</h2>\n          <video controls preload=\"metadata\" width=\"100%\" poster=\"\">\n            <source src=\"{safe_url}\" type=\"video/mp4\">\n            Your browser does not support the video tag.\n          </video>\n          <p style=\"color:var(--text-muted);\">{human_size(v['size'])} · {v['mtime']}</p>\n          <a class=\"button button-primary\" href=\"{safe_url}\" download>Descargar</a>\n        </article>\n        """
         items.append(item_html)
 
-    html = f"""
-    <!doctype html>
-    <html>
-    <head>
-      <meta charset=\"utf-8\">\n      <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n+      <title>Video library</title>\n+      <link rel=\"stylesheet\" href=\"/css/styles.css\">\n+    </head>\n+    <body>\n+      <div class=\"site-shell\"> \n+        <h1>Video library</h1>\n+        <div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;\">{''.join(items)}</div>\n+      </div>\n+    </body>\n+    </html>\n+    """
-    return html
+        html = f"""
+        <!doctype html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>Video library</title>
+            <link rel="stylesheet" href="/css/styles.css">
+        </head>
+        <body>
+            <div class="site-shell">
+                <h1>Video library</h1>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;">{''.join(items)}</div>
+            </div>
+        </body>
+        </html>
+        """
+        return html
 
 
 def human_size(n):
