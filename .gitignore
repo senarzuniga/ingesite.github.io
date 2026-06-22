@@ -1,2 +1,5 @@
 # Ignore user uploads
 public/uploads/
+
+# Local Netlify folder
+.netlify
