@@ -10,6 +10,9 @@ import subprocess
 from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
+from threading import Thread, Event
+import time
+import importlib.util
 import smtplib
 from email.message import EmailMessage
 
@@ -19,6 +22,9 @@ PUBLIC_DOCS = ROOT / 'public' / 'docs'
 
 app = Flask(__name__)
 CORS(app)
+
+# watcher instance (started/stopped via endpoints)
+WATCHER = None
 
 @app.route('/list', methods=['GET'])
 def list_videos():
@@ -34,7 +40,13 @@ def sync():
         py = os.environ.get('PYTHON', 'python')
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
-        proc = subprocess.run([py, str(ROOT / 'scripts' / 'sync_videos.py')], capture_output=True, text=True, env=env)
+        # optional source path can be provided as JSON { "source": "C:\\path\\to\\videos" }
+        data = request.get_json(silent=True) or {}
+        src = data.get('source')
+        cmd = [py, str(ROOT / 'scripts' / 'sync_videos.py')]
+        if src:
+            cmd.append(src)
+        proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
         return jsonify({'ok': True, 'stdout': proc.stdout, 'stderr': proc.stderr})
     except Exception as e:
         return jsonify({'ok': False, 'error': str(e)}), 500
@@ -46,7 +58,12 @@ def sync_docs():
         py = os.environ.get('PYTHON', 'python')
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
-        proc = subprocess.run([py, str(ROOT / 'scripts' / 'sync_docs.py')], capture_output=True, text=True, env=env)
+        data = request.get_json(silent=True) or {}
+        src = data.get('source')
+        cmd = [py, str(ROOT / 'scripts' / 'sync_docs.py')]
+        if src:
+            cmd.append(src)
+        proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
         return jsonify({'ok': True, 'stdout': proc.stdout, 'stderr': proc.stderr})
     except Exception as e:
         return jsonify({'ok': False, 'error': str(e)}), 500
@@ -109,6 +126,123 @@ def log_event(text):
         except Exception:
             pass
 
+
+def _load_module(name, path):
+    try:
+        spec = importlib.util.spec_from_file_location(name, str(path))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+    except Exception as e:
+        print('Failed to load module', path, e)
+        return None
+
+
+class _DirWatcher:
+    def __init__(self, paths, interval=5):
+        self.paths = [Path(p) for p in (paths or [])]
+        self.interval = interval
+        self._stop = Event()
+        self._thread = None
+        self._snapshot = self._snapshot_paths()
+
+    def _snapshot_paths(self):
+        snap = {}
+        for p in self.paths:
+            try:
+                if p.exists():
+                    for f in p.iterdir():
+                        if f.is_file():
+                            snap[str(f)] = f.stat().st_mtime
+            except Exception:
+                pass
+        return snap
+
+    def start(self):
+        if self._thread and self._thread.is_alive():
+            return
+        self._stop.clear()
+        self._thread = Thread(target=self._run, daemon=True)
+        self._thread.start()
+
+    def stop(self):
+        self._stop.set()
+        if self._thread:
+            self._thread.join(timeout=2)
+
+    def _run(self):
+        py = os.environ.get('PYTHON', 'python')
+        env = os.environ.copy()
+        env['PYTHONIOENCODING'] = 'utf-8'
+        while not self._stop.is_set():
+            time.sleep(self.interval)
+            try:
+                new_snap = self._snapshot_paths()
+                if new_snap != self._snapshot:
+                    print('Change detected in watched folders — running sync')
+                    self._snapshot = new_snap
+                    try:
+                        subprocess.run([py, str(ROOT / 'scripts' / 'sync_videos.py')], capture_output=True, text=True, env=env)
+                    except Exception as e:
+                        print('Watcher sync_videos failed', e)
+                    try:
+                        subprocess.run([py, str(ROOT / 'scripts' / 'sync_docs.py')], capture_output=True, text=True, env=env)
+                    except Exception as e:
+                        print('Watcher sync_docs failed', e)
+            except Exception as e:
+                print('Watcher error', e)
+
+
+@app.route('/watch/start', methods=['POST'])
+def watch_start():
+    global WATCHER
+    if WATCHER and WATCHER._thread and WATCHER._thread.is_alive():
+        return jsonify({'ok': True, 'status': 'already running'})
+    data = request.get_json(silent=True) or {}
+    paths = data.get('paths')
+    interval = int(data.get('interval') or os.environ.get('VIDEO_SYNC_WATCH_INTERVAL') or 5)
+    if not paths:
+        paths = []
+        sv = _load_module('sync_videos', ROOT / 'scripts' / 'sync_videos.py')
+        if sv and hasattr(sv, 'SOURCE_DEFAULT'):
+            paths.append(str(sv.SOURCE_DEFAULT))
+        sd = _load_module('sync_docs', ROOT / 'scripts' / 'sync_docs.py')
+        if sd and hasattr(sd, 'SOURCE_DEFAULT'):
+            paths.append(str(sd.SOURCE_DEFAULT))
+    WATCHER = _DirWatcher(paths, interval=interval)
+    WATCHER.start()
+    return jsonify({'ok': True, 'started': True, 'paths': paths})
+
+
+@app.route('/watch/stop', methods=['POST','GET'])
+def watch_stop():
+    global WATCHER
+    if not WATCHER:
+        return jsonify({'ok': True, 'status': 'not running'})
+    WATCHER.stop()
+    WATCHER = None
+    return jsonify({'ok': True, 'stopped': True})
+
+
+@app.route('/watch/status', methods=['GET'])
+def watch_status():
+    running = WATCHER is not None and WATCHER._thread is not None and WATCHER._thread.is_alive()
+    return jsonify({'running': running})
+
 if __name__ == '__main__':
+    # Optionally start watcher automatically if environment variable is set
+    if os.environ.get('VIDEO_SYNC_WATCH'):
+        paths = []
+        sv = _load_module('sync_videos', ROOT / 'scripts' / 'sync_videos.py')
+        if sv and hasattr(sv, 'SOURCE_DEFAULT'):
+            paths.append(str(sv.SOURCE_DEFAULT))
+        sd = _load_module('sync_docs', ROOT / 'scripts' / 'sync_docs.py')
+        if sd and hasattr(sd, 'SOURCE_DEFAULT'):
+            paths.append(str(sd.SOURCE_DEFAULT))
+        if paths:
+            WATCHER = _DirWatcher(paths, interval=int(os.environ.get('VIDEO_SYNC_WATCH_INTERVAL') or 5))
+            WATCHER.start()
+
     port = int(os.environ.get('VIDEO_SYNC_PORT', 8600))
-    app.run(host='127.0.0.1', port=port)
+    host = os.environ.get('VIDEO_SYNC_HOST', '127.0.0.1')
+    app.run(host=host, port=port)
