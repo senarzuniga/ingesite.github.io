@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Documentación — INGECART</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand-lockup" href="/index.html" aria-label="Go to home">
+        <img class="brand-logo" src="/assets/images/simple-in.png" alt="ING_DIGHUB logo">
+        <div>
+          <p class="eyebrow">Documentación</p>
+          <span class="brand-name">INGECART</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/index.html#ecosystem">Ecosystem</a>
+        <a href="/index.html#services">Services</a>
+        <a href="/index.html#contact">Contact</a>
+      </nav>
+      <a class="button button-primary nav-cta" href="mailto:cgo@ingecart.es">Contact Us</a>
+    </header>
+
+    <main style="max-width:1100px;margin:1.5rem auto;padding:0 1rem;">
+      <div class="section-heading">
+        <p class="eyebrow">Documentación pública</p>
+        <h1>Materiales comerciales y técnicos</h1>
+        <p class="hero-text">Listado centralizado de documentos. Usa "Ver en línea" para visualizar o "Descarga" para obtener una copia.</p>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:1rem;">
+        <button id="sync-docs-landing" class="button button-secondary">📁 Actualizar base de datos</button>
+        <span id="sync-status" style="color:var(--text-muted);font-size:0.95rem">Última actualización: —</span>
+      </div>
+
+      <div id="docs-list" class="card" style="padding:1rem;"></div>
+
+      <div id="doc-modal" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+        <div class="modal-backdrop" id="doc-modal-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);"></div>
+        <div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:90%;max-width:1100px;height:85vh;background:#fff;padding:0;border-radius:8px;z-index:10000;overflow:hidden;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f4f6f8;border-bottom:1px solid #eee;">
+            <strong id="doc-modal-title">Documento</strong>
+            <div>
+              <a id="doc-modal-download" class="button" href="#">Descargar</a>
+              <button id="doc-modal-close" class="button button-secondary">Cerrar</button>
+            </div>
+          </div>
+          <iframe id="doc-modal-frame" src="" style="width:100%;height:calc(100% - 48px);border:0"></iframe>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 INGECART · Documentación</p>
+    </footer>
+  </div>
+
+  <script>
+    async function fetchDocs() {
+      const container = document.getElementById('docs-list');
+      container.innerHTML = '<p style="color:var(--text-muted);">Cargando documentos...</p>';
+      try {
+        const res = await fetch('/public/docs/docs.json');
+        if (!res.ok) throw new Error('No docs.json');
+        const docs = await res.json();
+        if (!Array.isArray(docs) || docs.length === 0) {
+          container.innerHTML = '<p style="color:var(--text-muted);">No hay documentos disponibles.</p>';
+          return;
+        }
+        const list = document.createElement('ul');
+        list.style.listStyle='none'; list.style.padding=0; list.style.margin=0;
+        docs.forEach(d => {
+          const li = document.createElement('li'); li.style.display='flex'; li.style.justifyContent='space-between'; li.style.alignItems='center'; li.style.padding='10px 0'; li.style.borderBottom='1px solid rgba(0,0,0,0.04)';
+          const meta = document.createElement('div'); meta.style.flex='1';
+          const title = document.createElement('div'); title.textContent = d.title || d.filename; title.style.fontWeight='600';
+          const info = document.createElement('div'); info.style.color='var(--text-muted)'; info.style.fontSize='0.95rem'; info.textContent = (d.size? (Math.round(d.size/1024)+' KB') : '') + (d.mtime? (' · '+new Date(d.mtime).toLocaleString()): '');
+          meta.appendChild(title); meta.appendChild(info);
+          const actions = document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px';
+          const download = document.createElement('a'); download.className='button'; download.textContent='Descarga'; download.href = d.url; download.setAttribute('download','');
+          const view = document.createElement('button'); view.className='button button-secondary'; view.textContent='Ver en línea'; view.addEventListener('click', ()=> openDoc(d));
+          actions.appendChild(download); actions.appendChild(view);
+          li.appendChild(meta); li.appendChild(actions); list.appendChild(li);
+        });
+        container.innerHTML = ''; container.appendChild(list);
+      } catch (e) {
+        container.innerHTML = '<p style="color:var(--text-muted);">No se pudo cargar la lista de documentos.</p>';
+        console.error(e);
+      }
+    }
+
+    function openDoc(d) {
+      const modal = document.getElementById('doc-modal');
+      const frame = document.getElementById('doc-modal-frame');
+      const title = document.getElementById('doc-modal-title');
+      const dl = document.getElementById('doc-modal-download');
+      title.textContent = d.title || d.filename;
+      dl.href = d.url;
+      try { frame.src = d.url; } catch(e) { frame.src = d.url; }
+      modal.style.display = 'block'; modal.setAttribute('aria-hidden','false');
+    }
+
+    function closeDoc() {
+      const modal = document.getElementById('doc-modal');
+      const frame = document.getElementById('doc-modal-frame');
+      frame.src = '';
+      modal.style.display = 'none'; modal.setAttribute('aria-hidden','true');
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      fetchDocs();
+      document.getElementById('doc-modal-close').addEventListener('click', closeDoc);
+      document.getElementById('doc-modal-backdrop').addEventListener('click', closeDoc);
+      document.getElementById('sync-docs-landing').addEventListener('click', async function(){
+        const btn = this; btn.disabled = true; btn.textContent = 'Actualizando…';
+        try {
+          const r = await fetch('http://localhost:8600/sync_docs', { method: 'POST' });
+          if (!r.ok) throw new Error('sync failed');
+          await fetchDocs();
+          const now = new Date(); document.getElementById('sync-status').textContent = 'Última actualización: ' + now.toLocaleString();
+          btn.textContent = 'Actualizado';
+        } catch (e) {
+          console.warn('Sync docs failed', e);
+          alert('No se pudo actualizar. Ejecuta el servidor local de sincronización.');
+          btn.textContent = 'Error';
+        } finally { setTimeout(()=>{ btn.disabled = false; btn.textContent = '📁 Actualizar base de datos'; }, 2000); }
+      });
+    });
+  </script>
+</body>
+</html>

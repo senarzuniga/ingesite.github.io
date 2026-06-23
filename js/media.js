@@ -155,23 +155,13 @@
   }
 
   async function loadDocs() {
-    const list = document.getElementById('media-docs-list'); if (!list) return; list.innerHTML = '<li style="color:var(--text-muted);">Cargando...</li>';
+    // Documents are available through the dedicated documentation landing.
+    // Redirect the user there instead of exposing the raw public/docs listing.
     try {
-      // try to load public/docs folder index
-      const r = await fetch('/public/docs/index.html');
-      if (!r.ok) throw new Error('no docs index');
-      const text = await r.text();
-      const parser = new DOMParser(); const doc = parser.parseFromString(text, 'text/html');
-      const anchors = Array.from(doc.querySelectorAll('a[href]'));
-      list.innerHTML = '';
-      anchors.forEach(a => {
-        const li = document.createElement('li'); li.style.display='flex'; li.style.justifyContent='space-between'; li.style.alignItems='center';
-        const name = document.createElement('span'); name.textContent = a.textContent || a.getAttribute('href');
-        const link = document.createElement('a'); link.href = a.getAttribute('href'); link.target = '_blank'; link.className = 'text-link'; link.textContent = 'Open';
-        li.appendChild(name); li.appendChild(link); list.appendChild(li);
-      });
-      if (anchors.length === 0) list.innerHTML = '<li style="color:var(--text-muted);">No hay documentos.</li>';
-    } catch (e) { list.innerHTML = '<li style="color:var(--text-muted);">No hay documentos.</li>'; }
+      window.location.href = '/documentation/index.html';
+    } catch (e) {
+      console.warn('Could not redirect to documentation landing', e);
+    }
   }
 
   async function loadImages() {
@@ -240,7 +230,7 @@
   // Initialize tab handlers
   document.addEventListener('DOMContentLoaded', () => {
     $all(TAB_SELECTOR).forEach(b => b.addEventListener('click', () => setActiveTab(b.dataset.tab)));
-    setActiveTab('docs');
+    setActiveTab('images');
     setupSyncButton();
     setupSyncDocsButton();
   });
