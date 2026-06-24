@@ -18,6 +18,10 @@ ASSETS_DOCS = REPO_ROOT / 'assets' / 'docs'
 PUBLIC_DOCS = REPO_ROOT / 'public' / 'docs'
 ALLOWED_EXT = {'.pdf', '.pptx', '.ppt', '.docx', '.doc', '.xlsx', '.xls', '.zip', '.txt', '.md', '.html', '.htm'}
 
+# Maximum file size to copy (bytes). Files with size >= this will be skipped
+# to avoid Git hosting pre-receive hook failures (GitHub hard limit ~100 MB).
+MAX_FILE_SIZE = 100 * 1024 * 1024  # 100 MB
+
 
 def ensure_dirs():
     ASSETS_DOCS.mkdir(parents=True, exist_ok=True)
@@ -27,7 +31,21 @@ def ensure_dirs():
 def list_source(src_dir: Path):
     if not src_dir.exists():
         return []
-    files = [p for p in src_dir.iterdir() if p.is_file() and p.suffix.lower() in ALLOWED_EXT]
+    files = []
+    for p in src_dir.iterdir():
+        try:
+            if not p.is_file():
+                continue
+            if p.suffix.lower() not in ALLOWED_EXT:
+                continue
+            size = p.stat().st_size
+            if size >= MAX_FILE_SIZE:
+                print(f"Skipping {p.name}: file too large ({size} bytes)")
+                continue
+            files.append(p)
+        except Exception as e:
+            print(f"Skipping {p}: could not stat file: {e}")
+            continue
     return sorted(files, key=lambda p: p.name)
 
 
