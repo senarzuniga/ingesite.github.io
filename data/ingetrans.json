@@ -1,0 +1,64 @@
+{
+  "title": "INGETRANS — Intralogistics Automated Reel Feeding System",
+  "eyebrow": "Automated corrugator paper reel handling, transfer and return",
+  "hero_image": "/assets/images/ingetrans-click.png",
+  "hero_alt": "INGETRANS — Click to play video",
+  "hero_video": "https://ingesitehub.netlify.app/public/videos/ingetrans-280_-automated-reel-transport-system-full-2nd-geration.html",
+  "hero_cta_text": "Ver vídeo",
+  "description": "INGETRANS is a turnkey, rail-guided intralogistics solution that automates the transport, delivery and return of paper reels between warehouse and multiple corrugator consumption points.",
+  "overview": "INGETRANS moves paper reels automatically from the warehouse exchange zone to the corrugator feed points and returns unused or partially used reels to their storage locations.",
+  "key_functions": [
+    "Automated Movement: Transport reels from exchange zone to corrugator without manual intervention.",
+    "Automated Delivery: Precise delivery to multiple consumption points via dedicated tracks.",
+    "Automated Return: Unused or partially used reels are returned automatically to assigned warehouse locations.",
+    "Dual Reel Handling: Transfer carriage can carry up to two reels simultaneously.",
+    "Process Integration: Works with production planning and MES for just‑in‑time delivery.",
+    "Continuous Supply: Production‑synchronised delivery maximises real-line capacity and minimises downtime."
+  ],
+  "technical_specifications": [
+    {"parameter":"System Type","spec":"Surface rail‑guided transfer carriage + floor tracks"},
+    {"parameter":"Typical Track Length","spec":"12 m (transfer centre to roll‑stand centre)"},
+    {"parameter":"Transfer Carriage Speed","spec":"80 m/min (≈262 ft/min)"},
+    {"parameter":"Track Speed","spec":"59 m/min"},
+    {"parameter":"Acceleration / Deceleration","spec":"4.5 s (0 → max speed)"},
+    {"parameter":"Pick‑up / Drop‑off Cycle","spec":"6.0 s each"},
+    {"parameter":"Max Reel Diameter","spec":"1,500 mm"},
+    {"parameter":"Max Reel Length","spec":"up to 2,800 mm"},
+    {"parameter":"Max Reel Weight","spec":"< 3,500 kg"},
+    {"parameter":"Typical Number of Tracks","spec":"Up to 10 (5 roll stands × 2 tracks)"},
+    {"parameter":"Possible to work with mirrored Corrugators","spec":"by duplication of tracks for feeding the 2nd corrugator"},
+    {"parameter":"Control Platform","spec":"Siemens S7 (optional)"}
+  ],
+  "how_it_works": [
+    "Warehouse exchange zone: Reels staged and positioned for transfer.",
+    "Transfer carriage pick‑up: Elevates and secures one or two reels (≈6 s cycle).",
+    "Transport: Accelerates (4.5 s ramp) to nominal speed and follows floor rails to delivery tracks.",
+    "Delivery: Positions reel at track and discharges to track conveyor (≈6 s drop‑off).",
+    "Simultaneous return (optional): Carriage can collect partially used reels on return trips.",
+    "Automatic return to warehouse: Unused/semi‑used reels are returned to assigned storage locations."
+  ],
+  "benefits": [
+    "Eliminates forklift traffic in corrugator areas to reduce the main source of accidents.",
+    "Lowers accident risk and protects personnel operating near machines.",
+    "Reduces labor for manual reel handling and frees operators for higher‑value tasks.",
+    "Minimises downtime with production‑synchronised reel delivery.",
+    "Fast ROI (typical payback < 18 months) through efficiency gains and lower accident costs.",
+    "Increases OEE by maintaining continuous line capacity."
+  ],
+  "investment_summary": [
+    {"component":"INGETRANS System (rails, carriage, tracks, control, installation)","estimate":"~ $1.32M USD"},
+    {"component":"Engineering & Integration","estimate":"Included"},
+    {"component":"Training & Handover","estimate":"Included"}
+  ],
+  "payback_period": "< 18 months",
+  "short_title": "INGETRANS",
+  "case_study_title": "McKinley Packaging — Texas, USA",
+  "case_study_text": "INGECART delivered integrated automation combining INGETRANS reel feeding with Retal 1400 scrap handling, demonstrating turnkey execution and cross‑system integration.",
+  "contact": [
+    {"label":"Company:","value":"INGECART"},
+    {"label":"Website:","value":"https://www.ingecart.eu"},
+    {"label":"Email:","value":"hablemos@ingecart.eu"},
+    {"label":"Phone:","value":"+34 938 183 316"},
+    {"label":"Location:","value":"Pol.Ind Laverno Nave 9-10, Subirats. CP: 08739, Barcelona, Spain"}
+  ]
+}
