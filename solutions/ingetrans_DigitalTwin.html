@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DIGITAL TWIN — Simulation Report</title>
+  <meta name="description" content="Benchmark Simulation – Forklift Logistics vs. INGETRANS Automated Reel Feeding">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  <style>
+    .hero-wrapper{position:relative}
+    .hero-cta{position:absolute;right:12px;top:12px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 10px;border-radius:4px;font-weight:600;cursor:pointer}
+    .report-hero{width:100%;height:auto;border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,0.12);}
+    table.results{width:100%;border-collapse:collapse;margin:0.5rem 0}
+    table.results th, table.results td{border:1px solid #e6e6e6;padding:8px;text-align:left}
+    table.results th{background:#f4f4f4}
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand-lockup" href="/index.html" aria-label="Go to home">
+        <img class="brand-logo" src="/assets/images/simple-in.png" alt="ING_DIGHUB logo">
+        <div>
+          <p class="eyebrow">Industry Solutions</p>
+          <span class="brand-name">ING_DIGHUB</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/index.html#ecosystem">Ecosystem</a>
+        <a href="/index.html#services">Services</a>
+        <a href="/index.html#solutions">Solutions</a>
+        <a href="/index.html#contact">Contact</a>
+      </nav>
+      <a class="button button-primary nav-cta" href="#contact">Contact Us</a>
+    </header>
+
+    <main>
+      <section class="panel" style="padding:2rem 1rem;max-width:1100px;margin:0 auto;">
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="max-width:1100px;margin:0 auto 0.75rem;">
+            <div class="hero-wrapper">
+              <!-- Put your header image at /assets/images/ingetrans-digital-twin.png -->
+              <img id="product-hero" class="report-hero" src="/assets/images/ingetrans-digital-twin.png" alt="INGETRANS Digital Twin" onerror="this.onerror=null;this.src='/assets/images/ingetrans-click.png'">
+              <div id="hero-cta" class="hero-cta">Ir al informe</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <div style="flex:1">
+              <h1>DIGITAL TWIN SIMULATION REPORT</h1>
+              <h2>Benchmark Simulation – Forklift Logistics vs. INGETRANS Automated Reel Feeding</h2>
+              <h3>A Typical European Corrugated Plant</h3>
+              <hr>
+
+              <h2 id="executive">Executive Summary</h2>
+              <p>To quantify the operational impact of automated reel logistics, INGECART developed a Digital Twin simulation comparing two alternative operating scenarios under identical production conditions.</p>
+              <p>Both simulations use exactly the same:</p>
+              <ul>
+                <li>Plant layout</li>
+                <li>Production schedule</li>
+                <li>Order mix</li>
+                <li>Corrugator configuration</li>
+                <li>Reel characteristics</li>
+                <li>Working calendar</li>
+              </ul>
+
+              <p><strong>Scenario A</strong><br>Conventional forklift-based reel handling.</p>
+              <p><strong>Scenario B</strong><br>INGETRANS fully automated reel transport system.</p>
+              <p>The objective is to evaluate how logistics continuity influences production performance, equipment utilization and operating costs.</p>
+
+              <hr>
+              <h2 id="reference">Reference Plant</h2>
+              <table class="results">
+                <thead><tr><th>Parameter</th><th style="text-align:right">Value</th></tr></thead>
+                <tbody>
+                  <tr><td>Corrugators</td><td style="text-align:right">1</td></tr>
+                  <tr><td>Roll Stands</td><td style="text-align:right">5</td></tr>
+                  <tr><td>Supply Tracks</td><td style="text-align:right">10</td></tr>
+                  <tr><td>Average Speed</td><td style="text-align:right">220 m/min</td></tr>
+                  <tr><td>Working Pattern</td><td style="text-align:right">2 shifts/day</td></tr>
+                  <tr><td>Operating Days</td><td style="text-align:right">330 days/year</td></tr>
+                  <tr><td>Average Reel Consumption</td><td style="text-align:right">5.5 reels/hour</td></tr>
+                  <tr><td>Average Reel Weight</td><td style="text-align:right">2,100 kg</td></tr>
+                </tbody>
+              </table>
+
+              <hr>
+              <h2>Simulation Period</h2>
+              <p>The Digital Twin was executed over three different operating periods:</p>
+              <ul>
+                <li>3 Months</li>
+                <li>6 Months</li>
+                <li>12 Months</li>
+              </ul>
+
+              <hr>
+              <h2 id="operational">Operational Performance</h2>
+              <h3>Quarterly Results</h3>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Forklift</th><th style="text-align:right">INGETRANS</th><th style="text-align:right">Improvement</th></tr></thead>
+                <tbody>
+                  <tr><td>Production</td><td style="text-align:right">14.46 M m</td><td style="text-align:right">15.51 M m</td><td style="text-align:right">+7.3%</td></tr>
+                  <tr><td>Orders Completed</td><td style="text-align:right">13,145</td><td style="text-align:right">14,100</td><td style="text-align:right">+955</td></tr>
+                  <tr><td>Reel Deliveries</td><td style="text-align:right">7,260</td><td style="text-align:right">7,790</td><td style="text-align:right">+530</td></tr>
+                  <tr><td>OEE</td><td style="text-align:right">83%</td><td style="text-align:right">89%</td><td style="text-align:right">+6 points</td></tr>
+                  <tr><td>Starvation Events</td><td style="text-align:right">264</td><td style="text-align:right">33</td><td style="text-align:right">-87%</td></tr>
+                </tbody>
+              </table>
+
+              <h3>Six-Month Results</h3>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Forklift</th><th style="text-align:right">INGETRANS</th><th style="text-align:right">Improvement</th></tr></thead>
+                <tbody>
+                  <tr><td>Production</td><td style="text-align:right">28.92 M m</td><td style="text-align:right">31.02 M m</td><td style="text-align:right">+2.10 M m</td></tr>
+                  <tr><td>Orders Completed</td><td style="text-align:right">26,290</td><td style="text-align:right">28,200</td><td style="text-align:right">+1,910</td></tr>
+                  <tr><td>Reel Deliveries</td><td style="text-align:right">14,520</td><td style="text-align:right">15,580</td><td style="text-align:right">+1,060</td></tr>
+                  <tr><td>OEE</td><td style="text-align:right">83%</td><td style="text-align:right">89%</td><td style="text-align:right">+6 points</td></tr>
+                </tbody>
+              </table>
+
+              <h3>Annual Results</h3>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Forklift</th><th style="text-align:right">INGETRANS</th><th style="text-align:right">Improvement</th></tr></thead>
+                <tbody>
+                  <tr><td>Production</td><td style="text-align:right">57.84 M m</td><td style="text-align:right">62.04 M m</td><td style="text-align:right">+4.20 M m</td></tr>
+                  <tr><td>Orders Completed</td><td style="text-align:right">52,580</td><td style="text-align:right">56,400</td><td style="text-align:right">+3,820</td></tr>
+                  <tr><td>Reel Deliveries</td><td style="text-align:right">29,040</td><td style="text-align:right">31,160</td><td style="text-align:right">+2,120</td></tr>
+                  <tr><td>Reel Returns</td><td style="text-align:right">26,400</td><td style="text-align:right">28,300</td><td style="text-align:right">+1,900</td></tr>
+                </tbody>
+              </table>
+
+              <hr>
+              <h2>Production Continuity</h2>
+              <p>The simulation demonstrates that production gains are not generated by increasing machine speed. Both scenarios operate at exactly the same corrugator speed. The improvement comes from maintaining continuous reel availability at every roll stand. By eliminating waiting times and synchronizing deliveries with production consumption, the corrugator spends significantly less time waiting for paper.</p>
+
+              <hr>
+              <h2>OEE Improvement</h2>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Forklift</th><th style="text-align:right">INGETRANS</th></tr></thead>
+                <tbody>
+                  <tr><td>Availability</td><td style="text-align:right">92%</td><td style="text-align:right">97%</td></tr>
+                  <tr><td>Performance</td><td style="text-align:right">91%</td><td style="text-align:right">94%</td></tr>
+                  <tr><td>Quality</td><td style="text-align:right">99.0%</td><td style="text-align:right">99.2%</td></tr>
+                  <tr><td><strong>Overall OEE</strong></td><td style="text-align:right"><strong>83%</strong></td><td style="text-align:right"><strong>89%</strong></td></tr>
+                </tbody>
+              </table>
+              <p>This represents an increase of approximately <strong>6 OEE points</strong>, equivalent to more than <strong>4 million additional production meters per year</strong> under the simulated operating conditions.</p>
+
+              <hr>
+              <h2>Logistics Performance</h2>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Forklift</th><th style="text-align:right">INGETRANS</th></tr></thead>
+                <tbody>
+                  <tr><td>Average Delivery Time</td><td style="text-align:right">115 s</td><td style="text-align:right">52 s</td></tr>
+                  <tr><td>Average Response Time</td><td style="text-align:right">42 s</td><td style="text-align:right">15 s</td></tr>
+                  <tr><td>Logistics Resource Utilization</td><td style="text-align:right">72%</td><td style="text-align:right">48%</td></tr>
+                  <tr><td>Track Utilization</td><td style="text-align:right">65%</td><td style="text-align:right">71%</td></tr>
+                  <tr><td>Buffer Occupancy</td><td style="text-align:right">58%</td><td style="text-align:right">63%</td></tr>
+                  <tr><td>Logistic Pressure Index</td><td style="text-align:right">58</td><td style="text-align:right">36</td></tr>
+                </tbody>
+              </table>
+
+              <hr>
+              <h2>Production Interruptions</h2>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Forklift</th><th style="text-align:right">INGETRANS</th></tr></thead>
+                <tbody>
+                  <tr><td>Starvation Events</td><td style="text-align:right">1,056/year</td><td style="text-align:right">132/year</td></tr>
+                  <tr><td>Corrugator Downtime</td><td style="text-align:right">74 h/year</td><td style="text-align:right">18 h/year</td></tr>
+                  <tr><td>Lost Production</td><td style="text-align:right">814,000 m</td><td style="text-align:right">198,000 m</td></tr>
+                </tbody>
+              </table>
+              <p>The Digital Twin predicts an <strong>87% reduction in starvation events</strong>, significantly improving production continuity.</p>
+
+              <hr>
+              <h2>Financial Impact</h2>
+              <table class="results">
+                <thead><tr><th>KPI</th><th style="text-align:right">Annual Value</th></tr></thead>
+                <tbody>
+                  <tr><td>Operating Cost Reduction</td><td style="text-align:right">€309,300</td></tr>
+                  <tr><td>Additional Production Capacity</td><td style="text-align:right">4.20 million meters/year</td></tr>
+                  <tr><td>Downtime Reduction</td><td style="text-align:right">56 hours/year</td></tr>
+                  <tr><td>Maintenance Cost Reduction</td><td style="text-align:right">67%</td></tr>
+                  <tr><td>Wrong Reel Events</td><td style="text-align:right">Reduced by approximately 80%</td></tr>
+                </tbody>
+              </table>
+
+              <hr>
+              <h2>Why INGETRANS Improves Performance</h2>
+              <ul>
+                <li>Continuous reel availability.</li>
+                <li>Automatic reel replenishment.</li>
+                <li>Automatic reel return.</li>
+                <li>Elimination of forklift traffic around the corrugator.</li>
+                <li>Reduced operator dependency.</li>
+                <li>Lower congestion.</li>
+                <li>Higher production stability.</li>
+                <li>Improved plant safety.</li>
+              </ul>
+
+              <hr>
+              <h2>Digital Twin Technology</h2>
+              <p>The simulation is powered by INGECART's Discrete Event Digital Twin engine. The model reproduces:</p>
+              <ul>
+                <li>Individual reel lifecycle.</li>
+                <li>Warehouse logistics.</li>
+                <li>Transfer carriage movements.</li>
+                <li>Forklift operations.</li>
+                <li>Production orders.</li>
+                <li>Resource allocation.</li>
+                <li>Equipment failures.</li>
+                <li>Maintenance events.</li>
+                <li>Random operational disturbances.</li>
+                <li>Financial impact.</li>
+              </ul>
+
+              <hr>
+              <h2>Conclusion</h2>
+              <p>The benchmark simulation demonstrates that automated reel logistics can significantly improve production continuity without increasing corrugator speed.</p>
+              <ul>
+                <li><strong>+7.3% annual production</strong></li>
+                <li><strong>+6 OEE points</strong></li>
+                <li><strong>87% fewer starvation events</strong></li>
+                <li><strong>76% less logistics-related downtime</strong></li>
+                <li><strong>More than four million additional production meters per year</strong></li>
+                <li><strong>Over €300,000 in annual operating savings</strong></li>
+              </ul>
+              <p>Actual project results depend on plant layout, production mix, labour costs, operating practices and existing logistics performance. For this reason, INGECART calibrates every Digital Twin using each customer's production data before preparing the final investment proposal.</p>
+            </div>
+
+            <div class="card service-description" style="padding:1rem;max-width:360px;">
+              <h3>Contact</h3>
+              <ul>
+                <li><strong>Company:</strong> INGECART</li>
+                <li><strong>Website:</strong> https://www.ingecart.eu</li>
+                <li><strong>Email:</strong> hablemos@ingecart.eu</li>
+                <li><strong>Phone:</strong> +34 938 183 316</li>
+                <li><strong>Location:</strong> Pol.Ind Laverno Nave 9-10, Subirats. CP: 08739, Barcelona, Spain</li>
+              </ul>
+              <p style="margin-top:1rem;"><a class="button button-primary" href="#contact">Contact INGECART</a> <a class="text-link" href="/index.html#solutions">← Back to Solutions</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>© 2026 ING_DIGHUB · Digital Industrial Operating Ecosystem</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const heroCta = document.getElementById('hero-cta');
+      const heroImg = document.getElementById('product-hero');
+      const reportAnchor = document.getElementById('executive') || document.getElementById('reference');
+      function goToReport(){ if(reportAnchor) reportAnchor.scrollIntoView({behavior:'smooth'}); }
+      if(heroCta){ heroCta.addEventListener('click', goToReport); }
+      if(heroImg){ heroImg.style.cursor='pointer'; heroImg.addEventListener('click', goToReport); }
+    })();
+  </script>
+</body>
+</html>
