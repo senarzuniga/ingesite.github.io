@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Product — Admin</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div style="max-width:900px;margin:2rem auto;padding:1rem;">
+    <h1>Product</h1>
+    <form method="post" action="/admin/save" enctype="multipart/form-data">
+      <p><label>Title<br><input name="title" value="{{data.title or ''}}" style="width:100%"></label></p>
+      <p><label>Slug (leave empty to auto-generate)<br><input name="slug" value="{{slug}}" style="width:100%"></label></p>
+      <p><label>Eyebrow<br><input name="eyebrow" value="{{data.eyebrow or ''}}" style="width:100%"></label></p>
+      <p><label>Hero image URL (or upload below)<br><input name="hero_image" value="{{data.hero_image or ''}}" style="width:100%"></label></p>
+      <p><label>Upload hero image file<br><input type="file" name="hero_image_file"></label></p>
+      <p><label>Hero alt text<br><input name="hero_alt" value="{{data.hero_alt or ''}}" style="width:100%"></label></p>
+      <p><label>Hero video URL (YouTube/embed or page)<br><input name="hero_video" value="{{data.hero_video or ''}}" style="width:100%"></label></p>
+      <p><label>Hero CTA text<br><input name="hero_cta_text" value="{{data.hero_cta_text or 'Ver vídeo'}}" style="width:100%"></label></p>
+      <p><label>Description<br><textarea name="description" style="width:100%" rows="4">{{data.description or ''}}</textarea></label></p>
+      <p><label>Overview<br><textarea name="overview" style="width:100%" rows="4">{{data.overview or ''}}</textarea></label></p>
+      <p><label>Key functions (one per line)<br><textarea name="key_functions" style="width:100%" rows="6">{% if data.key_functions %}{{data.key_functions | join('\n')}}{% endif %}</textarea></label></p>
+      <p><label>Technical specifications (one per line, use "Parameter|Specification")<br><textarea name="technical_specifications" style="width:100%" rows="8">{% if data.technical_specifications %}{% for t in data.technical_specifications %}{{t.parameter}}|{{t.spec}}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea></label></p>
+      <p><label>How it works (one per line)<br><textarea name="how_it_works" style="width:100%" rows="6">{% if data.how_it_works %}{{data.how_it_works | join('\n')}}{% endif %}</textarea></label></p>
+      <p><label>Benefits (one per line)<br><textarea name="benefits" style="width:100%" rows="6">{% if data.benefits %}{{data.benefits | join('\n')}}{% endif %}</textarea></label></p>
+      <p><label>Investment summary (one per line, "Component|Estimate")<br><textarea name="investment_summary" style="width:100%" rows="6">{% if data.investment_summary %}{% for i in data.investment_summary %}{{i.component}}|{{i.estimate}}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea></label></p>
+      <p><label>Payback period<br><input name="payback_period" value="{{data.payback_period or ''}}" style="width:100%"></label></p>
+      <p><label>Short title (for small headings)<br><input name="short_title" value="{{data.short_title or ''}}" style="width:100%"></label></p>
+      <p><label>Case study title<br><input name="case_study_title" value="{{data.case_study_title or ''}}" style="width:100%"></label></p>
+      <p><label>Case study text<br><textarea name="case_study_text" style="width:100%" rows="4">{{data.case_study_text or ''}}</textarea></label></p>
+      <p><label>Contact (one per line, "Label|Value")<br><textarea name="contact" style="width:100%" rows="6">{% if data.contact %}{% for c in data.contact %}{{c.label}}|{{c.value}}{% if not loop.last %}\n{% endif %}{% endfor %}{% endif %}</textarea></label></p>
+      <p><button type="submit">Save</button> <a href="/admin">Cancel</a></p>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Products — Admin</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div style="max-width:900px;margin:2rem auto;padding:1rem;">
+    <h1>Products (Admin)</h1>
+    <p><a href="/admin/new">Create new product</a></p>
+    <ul>
+      {% for p in products %}
+      <li><strong>{{p.title}}</strong> — <a href="/admin/edit/{{p.slug}}">Edit</a> — Preview: <a href="/solutions/{{p.slug}}.generated.html">Open</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
