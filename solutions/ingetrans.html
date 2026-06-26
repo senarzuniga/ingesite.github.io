@@ -3,10 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>INGETRANS — Intralogistics Reel Feeding System | ING_DIGHUB</title>
-  <meta name="description" content="INGETRANS — fully automated intralogistics reel feeding system for corrugated plants. Automated transport, delivery and return of paper reels.">
+  <title>INGETRANS — Intralogistics Automated Reel Feeding System</title>
+  <meta name="description" content="Automated corrugator paper reel handling, transfer and return">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  <style>
+    .hero-wrapper{position:relative}
+    .hero-cta{position:absolute;right:12px;top:12px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 10px;border-radius:4px;font-weight:600;cursor:pointer}
+    .video-modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:1200}
+    .video-modal .frame{width:90%;max-width:1100px;height:60vh;background:#000;border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,0.6);}
+    .video-modal .close{position:absolute;right:18px;top:18px;color:#fff;font-size:20px;cursor:pointer}
+  </style>
 </head>
 <body>
   <div class="site-shell">
@@ -31,17 +38,20 @@
       <section class="panel" style="padding:2rem 1rem;max-width:1100px;margin:0 auto;">
         <div style="display:flex;flex-direction:column;gap:18px;">
           <div style="max-width:1100px;margin:0 auto 0.75rem;">
-            <a href="https://ingesitehub.netlify.app/public/videos/ingetrans-280_-automated-reel-transport-system-full-2nd-geration.html?ref=ING_TRANS" target="_blank" rel="noopener" style="display:block;position:relative;text-decoration:none;color:inherit;">
-              <img id="ingetrans-hero-img" src="/assets/images/ingetrans-click.png" alt="INGETRANS — Click to play video" style="width:100%;height:auto;border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,0.12);" onerror="this.onerror=null;this.src='/assets/images/ingecart-world.png'">
-              <div style="position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 10px;border-radius:4px;font-weight:600;">Ver vídeo</div>
-            </a>
+            <div class="hero-wrapper">
+              <img id="product-hero" src="/assets/images/ingetrans-click.png" alt="INGETRANS — Click to play video" style="width:100%;height:auto;border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,0.12);" onerror="this.onerror=null;this.src='/assets/images/ingecart-world.png'">
+              <!-- show hero CTA only if hero_video is provided -->
+              
+              <div id="hero-cta" class="hero-cta">Ver vídeo</div>
+              
+            </div>
           </div>
 
           <div style="display:flex;gap:18px;align-items:flex-start;">
             <div style="flex:1">
               <h1>INGETRANS — Intralogistics Automated Reel Feeding System</h1>
               <p class="eyebrow">Automated corrugator paper reel handling, transfer and return</p>
-              <p class="hero-text">INGETRANS is a turnkey, rail-guided intralogistics solution that automates the transport, delivery and return of paper reels between warehouse and multiple corrugator consumption points. It eliminates forklift dependency in the corrugator area, improves safety, optimises material flow and integrates with production planning and MES systems.</p>
+              <p class="hero-text">INGETRANS is a turnkey, rail-guided intralogistics solution that automates the transport, delivery and return of paper reels between warehouse and multiple corrugator consumption points.</p>
               <p>
                 <a class="button button-primary" href="#contact">Contact INGECART</a>
                 <a class="button" href="/PRODUCT-BROCHURE-MAY-2026.pdf">Download brochure</a>
@@ -50,18 +60,16 @@
 
           <div class="card service-description" style="padding:1rem;">
             <h2>Overview</h2>
-            <p>INGETRANS moves paper reels automatically from the warehouse exchange zone to the corrugator feed points and returns unused or partially used reels to their storage locations. The system supports simultaneous dual-reel handling, multiple roll-stand tracks and can be customised for client layouts. Typical installation includes floor-mounted rails, a transfer carriage and track conveyors to each roll stand.</p>
-
-            <p>With the available operational data, a clear conclusion emerges: the real bottleneck is not the travel speed of the forklift, but the availability, synchronization, and coordination of reel supply. INGETRANS delivers its value not by moving faster, but by transforming reel handling into a continuous, predictable, and automated process. This results in fewer supply interruptions, improved corrugator availability, higher OEE, enhanced operational safety, and a more stable and efficient logistics flow throughout the plant.</p>
+            <p>INGETRANS moves paper reels automatically from the warehouse exchange zone to the corrugator feed points and returns unused or partially used reels to their storage locations.</p>
 
             <h3>Key Functions</h3>
             <ul>
-              <li><strong>Automated Movement:</strong> Transport reels from exchange zone to corrugator without manual intervention.</li>
-              <li><strong>Automated Delivery:</strong> Precise delivery to multiple consumption points (single facers, roll stands) via dedicated tracks.</li>
-              <li><strong>Automated Return:</strong> Unused or partially used reels are returned automatically to assigned warehouse locations.</li>
-              <li><strong>Dual Reel Handling:</strong> Transfer carriage can carry up to two reels simultaneously.</li>
-              <li><strong>Process Integration:</strong> Works with production planning and MES for just‑in‑time delivery.</li>
-              <li><strong>Continuous Supply:</strong> Production‑synchronised delivery maximises real-line capacity and minimises downtime.</li>
+              <li>Automated Movement: Transport reels from exchange zone to corrugator without manual intervention.</li>
+<li>Automated Delivery: Precise delivery to multiple consumption points via dedicated tracks.</li>
+<li>Automated Return: Unused or partially used reels are returned automatically to assigned warehouse locations.</li>
+<li>Dual Reel Handling: Transfer carriage can carry up to two reels simultaneously.</li>
+<li>Process Integration: Works with production planning and MES for just‑in‑time delivery.</li>
+<li>Continuous Supply: Production‑synchronised delivery maximises real-line capacity and minimises downtime.</li>
             </ul>
 
             <h3>Technical Specifications</h3>
@@ -69,38 +77,38 @@
               <thead><tr><th>Parameter</th><th>Specification</th></tr></thead>
               <tbody>
                 <tr><td>System Type</td><td>Surface rail‑guided transfer carriage + floor tracks</td></tr>
-                <tr><td>Typical Track Length</td><td>12 m (transfer centre to roll‑stand centre)</td></tr>
-                <tr><td>Transfer Carriage Speed</td><td>80 m/min (≈262 ft/min)</td></tr>
-                <tr><td>Track Speed</td><td>59 m/min</td></tr>
-                <tr><td>Acceleration / Deceleration</td><td>4.5 s (0 → max speed)</td></tr>
-                <tr><td>Pick‑up / Drop‑off Cycle</td><td>6.0 s each</td></tr>
-                <tr><td>Max Reel Diameter</td><td>1,500 mm</td></tr>
-                <tr><td>Max Reel Length</td><td>up to 2,800 mm</td></tr>
-                <tr><td>Max Reel Weight</td><td>&lt; 3,500 kg</td></tr>
-                <tr><td>Typical Number of Tracks</td><td>Up to 10 (5 roll stands × 2 tracks)</td></tr>
-                <tr><td>Possible to work with mirrored Corrugators</td><td>by duplication of tracks for feeding the 2nd corrugator</td></tr>
-                <tr><td>Control Platform</td><td>Siemens S7 (optional)</td></tr>
+<tr><td>Typical Track Length</td><td>12 m (transfer centre to roll‑stand centre)</td></tr>
+<tr><td>Transfer Carriage Speed</td><td>80 m/min (≈262 ft/min)</td></tr>
+<tr><td>Track Speed</td><td>59 m/min</td></tr>
+<tr><td>Acceleration / Deceleration</td><td>4.5 s (0 → max speed)</td></tr>
+<tr><td>Pick‑up / Drop‑off Cycle</td><td>6.0 s each</td></tr>
+<tr><td>Max Reel Diameter</td><td>1,500 mm</td></tr>
+<tr><td>Max Reel Length</td><td>up to 2,800 mm</td></tr>
+<tr><td>Max Reel Weight</td><td>< 3,500 kg</td></tr>
+<tr><td>Typical Number of Tracks</td><td>Up to 10 (5 roll stands × 2 tracks)</td></tr>
+<tr><td>Possible to work with mirrored Corrugators</td><td>by duplication of tracks for feeding the 2nd corrugator</td></tr>
+<tr><td>Control Platform</td><td>Siemens S7 (optional)</td></tr>
               </tbody>
             </table>
 
             <h3>How It Works (Summary)</h3>
             <ol>
-              <li><strong>Warehouse exchange zone:</strong> Reels staged and positioned for transfer.</li>
-              <li><strong>Transfer carriage pick‑up:</strong> Elevates and secures one or two reels (≈6 s cycle).</li>
-              <li><strong>Transport:</strong> Accelerates (4.5 s ramp) to nominal speed and follows floor rails to delivery tracks.</li>
-              <li><strong>Delivery:</strong> Positions reel at track and discharges to track conveyor (≈6 s drop‑off).</li>
-              <li><strong>Simultaneous return (optional):</strong> Carriage can collect partially used reels on return trips.</li>
-              <li><strong>Automatic return to warehouse:</strong> Unused/semi‑used reels are returned to assigned storage locations.</li>
+              <li>Warehouse exchange zone: Reels staged and positioned for transfer.</li>
+<li>Transfer carriage pick‑up: Elevates and secures one or two reels (≈6 s cycle).</li>
+<li>Transport: Accelerates (4.5 s ramp) to nominal speed and follows floor rails to delivery tracks.</li>
+<li>Delivery: Positions reel at track and discharges to track conveyor (≈6 s drop‑off).</li>
+<li>Simultaneous return (optional): Carriage can collect partially used reels on return trips.</li>
+<li>Automatic return to warehouse: Unused/semi‑used reels are returned to assigned storage locations.</li>
             </ol>
 
             <h3>Key Benefits</h3>
             <ul>
               <li>Eliminates forklift traffic in corrugator areas to reduce the main source of accidents.</li>
-              <li>Lowers accident risk and protects personnel operating near machines.</li>
-              <li>Reduces labor for manual reel handling and frees operators for higher‑value tasks.</li>
-              <li>Minimises downtime with production‑synchronised reel delivery.</li>
-              <li>Fast ROI (typical payback &lt; 18 months) through efficiency gains and lower accident costs.</li>
-              <li>Increases OEE by maintaining continuous line capacity.</li>
+<li>Lowers accident risk and protects personnel operating near machines.</li>
+<li>Reduces labor for manual reel handling and frees operators for higher‑value tasks.</li>
+<li>Minimises downtime with production‑synchronised reel delivery.</li>
+<li>Fast ROI (typical payback < 18 months) through efficiency gains and lower accident costs.</li>
+<li>Increases OEE by maintaining continuous line capacity.</li>
             </ul>
 
             <h3>Investment Summary</h3>
@@ -108,13 +116,13 @@
               <thead><tr><th>Component</th><th>Estimate</th></tr></thead>
               <tbody>
                 <tr><td>INGETRANS System (rails, carriage, tracks, control, installation)</td><td>~ $1.32M USD</td></tr>
-                <tr><td>Engineering & Integration</td><td>Included</td></tr>
-                <tr><td>Training & Handover</td><td>Included</td></tr>
+<tr><td>Engineering & Integration</td><td>Included</td></tr>
+<tr><td>Training & Handover</td><td>Included</td></tr>
               </tbody>
             </table>
-            <p><strong>Typical payback period:</strong> &lt; 18 months</p>
+            <p><strong>Typical payback period:</strong> < 18 months</p>
 
-            <h3>Why Choose INGECART / INGETRANS?</h3>
+            <h3>Why Choose INGECART / INGETRANS</h3>
             <ul>
               <li><strong>Faster than OEMs:</strong> Agile engineering and rapid implementation.</li>
               <li><strong>More reliable:</strong> Robust solutions with decades of corrugated automation experience.</li>
@@ -123,17 +131,16 @@
             </ul>
 
             <h3>Case Study</h3>
-            <p><strong>McKinley Packaging — Texas, USA</strong></p>
-            <p>INGECART delivered integrated automation combining INGETRANS reel feeding with Retal 1400 scrap handling, demonstrating turnkey execution and cross‑system integration.</p>
-            <blockquote>"Successful installation of Retal 1400 alongside INGETRANS in McKinley Packaging (Texas) — seamless integrated workflow." — INGECART Blog</blockquote>
+            <p><strong><!-- CASE_STUDY_TITLE -->McKinley Packaging — Texas, USA</strong></p>
+            <p><!-- CASE_STUDY_TEXT -->INGECART delivered integrated automation combining INGETRANS reel feeding with Retal 1400 scrap handling, demonstrating turnkey execution and cross‑system integration.</p>
 
             <h3>Contact</h3>
             <ul>
               <li><strong>Company:</strong> INGECART</li>
-              <li><strong>Website:</strong> <a href="https://www.ingecart.eu">www.ingecart.eu</a></li>
-              <li><strong>Email:</strong> <a href="mailto:hablemos@ingecart.eu">hablemos@ingecart.eu</a></li>
-              <li><strong>Phone:</strong> +34 938 183 316</li>
-              <li><strong>Location:</strong> Pol.Ind Laverno Nave 9-10, Subirats. CP: 08739, Barcelona, Spain</li>
+<li><strong>Website:</strong> https://www.ingecart.eu</li>
+<li><strong>Email:</strong> hablemos@ingecart.eu</li>
+<li><strong>Phone:</strong> +34 938 183 316</li>
+<li><strong>Location:</strong> Pol.Ind Laverno Nave 9-10, Subirats. CP: 08739, Barcelona, Spain</li>
             </ul>
 
             <p style="margin-top:1rem;"><a class="button button-primary" href="#contact">Contact INGECART</a> <a class="text-link" href="/index.html#solutions">← Back to Solutions</a></p>
@@ -146,5 +153,42 @@
       </footer>
     </main>
   </div>
+
+  <!-- Video modal (hidden) -->
+  <div id="video-modal" class="video-modal" style="display:none;">
+    <div style="position:relative;">
+      <div class="close" id="modal-close">✕</div>
+      <iframe id="video-frame" class="frame" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const heroCta = document.getElementById('hero-cta');
+      const modal = document.getElementById('video-modal');
+      const frame = document.getElementById('video-frame');
+      const closeBtn = document.getElementById('modal-close');
+      const heroVideo = 'https://ingesitehub.netlify.app/public/videos/ingetrans-280_-automated-reel-transport-system-full-2nd-geration.html';
+      if(heroCta && heroVideo){
+        heroCta.addEventListener('click', ()=>{
+          frame.src = heroVideo;
+          modal.style.display = 'flex';
+        });
+      }
+      closeBtn.addEventListener('click', ()=>{
+        modal.style.display = 'none';
+        frame.src = '';
+      });
+      // allow clicking hero image to open video as well
+      const heroImg = document.getElementById('product-hero');
+      if(heroImg && heroVideo){
+        heroImg.style.cursor='pointer';
+        heroImg.addEventListener('click', ()=>{
+          frame.src = heroVideo;
+          modal.style.display = 'flex';
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
