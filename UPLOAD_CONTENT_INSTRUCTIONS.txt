@@ -1,0 +1,125 @@
+INSTRUCCIONES DE CARGA DE CONTENIDOS
+===================================
+
+Resumen
+-------
+Este documento explica el proceso recomendado para subir y publicar:
+- Documentos (PDF, DOCX)
+- Vídeos (páginas de vídeo / vídeo embebido)
+- Productos / landing pages (solutions/)
+- Imágenes y otros assets (assets/images/)
+
+Objetivo: mantener repositorio organizado, actualizar índices JSON y lanzar despliegue (Netlify) mediante "git push" a `main` o mediante un Pull Request.
+
+Requisitos previos
+------------------
+- Git configurado y acceso al repositorio.
+- Python 3.8+ (recomendado en virtualenv). Instalar dependencias si hace falta:
+  - En PowerShell (Windows):
+    powershell
+    python -m venv .venv
+    # activar
+    .venv\Scripts\Activate.ps1
+    pip install -r requirements.txt
+
+  - Nota para PowerShell cuando uses ejecutables directos: si necesitas invocar un Python fuera del venv usa el operador de llamada:
+    & "C:/ruta/a/python.exe" -m pip install -r requirements.txt
+
+- Herramientas incluidas (revisar `scripts/` y `tools/`): `scripts/sync_docs.py`, `scripts/upload_docs.py`, `scripts/sync_videos.py`, `scripts/upload_videos.py`, `scripts/generate_thumbnail.py`, `scripts/normalize_media.py`, `tools/product_pages.py`.
+
+Buenas prácticas de nombres y formatos
+------------------------------------
+- Nombres de archivo: usar minúsculas, guiones en lugar de espacios, sin caracteres especiales, por ejemplo `my-product-brochure-2026.pdf`.
+- Imágenes: preferir JPG/PNG; optimizar tamaño (web: 1200px ancho para hero, thumbnails 400–600px). Mantener la transparencia sólo si es necesario.
+- Rutas: colocar assets en `assets/` y páginas públicas en `public/` o `solutions/` según el caso.
+
+Flujos recomendados
+-------------------
+
+1) Documentos (PDF, docs)
+   - Copiar el archivo al repositorio en `assets/docs/`.
+     - PowerShell: `Copy-Item -Path "C:\MiCarpeta\fichero.pdf" -Destination .\assets\docs\`.
+   - (Opcional) Crear/actualizar miniatura en `assets/images/docs/` usando `scripts/generate_thumbnail.py`:
+     - `python scripts/generate_thumbnail.py assets/docs/fichero.pdf assets/images/docs/fichero.png`
+   - Actualizar índice público:
+     - Editar `public/docs/docs.json` (añadir entrada) o ejecutar el script de sincronización:
+       `python scripts/sync_docs.py` o `python scripts/upload_docs.py` (según el script existente en el repo).
+     - Ejemplo de objeto JSON para `public/docs/docs.json`:
+       {
+         "title": "Título del documento",
+         "slug": "titulo-del-documento",
+         "file": "/assets/docs/titulo-del-documento.pdf",
+         "thumb": "/assets/images/docs/titulo-del-documento.png",
+         "date": "2026-06-29",
+         "description": "Breve descripción"
+       }
+   - Commit & push:
+     - `git checkout -b fix/add-doc-titulo`
+     - `git add assets/docs/titulo-del-documento.pdf assets/images/docs/titulo-del-documento.png public/docs/docs.json`
+     - `git commit -m "Add doc: Título del documento"`
+     - `git push -u origin fix/add-doc-titulo` y abrir PR contra `main`.
+
+2) Vídeos (página / fichero / miniatura)
+   - Si el vídeo es un archivo grande y se aloja en el repo (no recomendado), colocarlo en `public/videos/uploads/` (tamaño y ancho de banda a considerar).
+   - Normalmente se publica una página HTML en `public/videos/` que embebe el vídeo (YouTube/Vimeo o reproductor propio). Copia la página `public/videos/plantilla.html` si existe y modifícala.
+   - Generar miniatura: `python scripts/generate_thumbnail.py public/videos/uploads/video.mp4 assets/images/videos/video-thumb.png` o usar `scripts/normalize_media.py` para estandarizar.
+   - Actualizar `public/videos/videos.json` (estructura similar a la de docs):
+       {
+         "title": "Título del vídeo",
+         "slug": "titulo-del-video",
+         "page": "/public/videos/titulo-del-video.html",
+         "thumb": "/assets/images/videos/titulo-del-video.png",
+         "duration": "05:34",
+         "date": "2026-06-29"
+       }
+   - Ejecutar `python scripts/sync_videos.py` o `python scripts/upload_videos.py` si el repo dispone de esos scripts.
+   - Commit & push como en Documentos.
+
+3) Productos / Solutions (landing pages)
+   - Crear la página HTML en `solutions/` por ejemplo `solutions/mi-producto.html`. Puedes copiar el estilo de `solutions/ingetrans.html`.
+   - Añadir una entrada de metadatos en `data/` si el site genera páginas desde JSON (por ejemplo `data/mi-producto.json`). Revisar `data/ingetrans.json` como ejemplo de estructura.
+   - Colocar imágenes hero y galería en `assets/images/products/mi-producto/` o `assets/images/` según convenga.
+   - Regenerar páginas (si existe herramienta): `python tools/product_pages.py`.
+   - Commit & push.
+
+4) Imágenes y otros assets
+   - Subir a `assets/images/` o subcarpetas como `assets/images/products/` o `assets/images/videos/`.
+   - Normalizar nombres (`slugify_and_update_refs.py` puede ayudar a subir y actualizar referencias internas).
+   - Optimizar y reducir peso (JPEG 70–85% calidad para web). Herramientas: `scripts/normalize_media.py`.
+
+5) QRs y recursos públicos
+   - QRs: poner en `public/qr/` o `public/qr/uploads/` según exista la convención.
+   - Archivos públicos para descargas: `public/` incluye páginas estáticas que se sirven directamente.
+
+6) Índices y JSONs (imprescindible)
+   - Cada área pública suele tener un JSON índice (`public/docs/docs.json`, `public/videos/videos.json`, `public/qrs/*.json`). Actualizar la entrada correspondiente con `title`, `slug`, `path/page`, `thumb`, `date`, `description`.
+   - Si el repo contiene scripts de sincronización, preferir ejecutarlos para evitar errores manuales.
+
+7) Flujo final: commit → PR → despliegue
+   - Trabaja en una rama con nombre claro: `fix/docs-xyz`, `feature/video-xyz`, etc.
+   - Push y abrir Pull Request contra `main`.
+   - Netlify está configurado para desplegar desde `main`. Tras merge, Netlify iniciará el build y deploy automático.
+   - Verifica URL pública y comprueba que las rutas de `thumb` y `file` apunten correctamente.
+
+Consejos y problemas comunes
+---------------------------
+- Evita comillas, espacios y tildes en nombres de archivos cuando vayan en URL.
+- Si el script de sincronización falla en Windows por BOM u otros, reescribe el archivo en UTF-8 sin BOM.
+- Para problemas con Python en PowerShell, ejecutar con el operador `&` como se muestra en Requisitos previos.
+- Si añades un HTML nuevo en `solutions/` y quieres que funcione sin `.html`, crea un `solutions/mi-pagina/index.html` con un redirect o agrega `solutions/mi-pagina.html` y una carpeta `solutions/mi-pagina/index.html` según convenga.
+
+Ejemplo rápido: añadir un PDF y publicarlo
+-----------------------------------------
+1. Copiar `brochure.pdf` a `assets/docs/`.
+2. Generar miniatura: `python scripts/generate_thumbnail.py assets/docs/brochure.pdf assets/images/docs/brochure.png`.
+3. Ejecutar `python scripts/sync_docs.py` para actualizar `public/docs`.
+4. Commit y push en rama nueva, abrir PR.
+
+Soporte
+-------
+Si quieres, puedo:
+- automatizar la creación de la entrada JSON para un documento o vídeo concreto,
+- generar miniaturas para una carpeta completa de vídeos,
+- o abrir la Pull Request por ti con los cambios preparados.
+
+Fin de instrucciones.
