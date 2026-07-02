@@ -1,11 +1,11 @@
 ---
-title: Migration from Fixed Transfer Car (BHS) to an AMR Fleet — Cascades
+title: Migration from Fixed Transfer Car to an AMR Fleet — Cascades
 author: INGECART Engineering
 date: 2026-07-02
 version: 0.1 (draft)
 ---
 
-# Migration from Fixed Transfer Car (BHS) to an AMR Fleet
+# Migration from Fixed Transfer Car to an AMR Fleet
 
 Prepared for: Cascades — Engineering & Operations
 
@@ -15,11 +15,11 @@ Date / Version: 2026-07-02 / v0.1 (draft)
 
 ## Executive summary
 
-This report evaluates the strategic migration from a fixed transfer-car based Bulk Handling System (BHS) to an autonomous mobile robot (AMR) fleet for reel handling in a corrugated packaging plant. The proposal preserves corrugator throughput while increasing floor-space efficiency, reducing single points of failure, and decoupling logistics flows from mechanical conveyors. The recommended solution combines AMR transport with local Trident handoff stations and a high-density WIP allocation strategy to deliver measurable gains in availability, flexibility and OPEX.
+This report evaluates the strategic migration from a fixed transfer-car based system to an autonomous mobile robot (AMR) fleet for reel handling in a corrugated packaging plant. The proposal preserves corrugator throughput while increasing floor-space efficiency, reducing single points of failure, and decoupling logistics flows from mechanical conveyors. The recommended solution combines AMR transport with local Trident handoff stations and a high-density WIP allocation strategy to deliver measurable gains in availability, flexibility and OPEX.
 
 ## Current vs Proposed (high-level)
 
-| Operational variable | Current system (BHS transfer / belts) | Proposed system (AMR + Trident stations) | Operational impact |
+| Operational variable | Current system (fixed transfer / belts) | Proposed system (AMR + Trident stations) | Operational impact |
 |---|---|---|---|
 | Space density | Fixed rails and conveyors consume continuous linear floor area | Flexible AMR lanes + concentrated WIP blocks reduce continuous footprint | Increase usable floor area; easier reconfiguration |
 | Flow flexibility | Deterministic but rigid routing; rework costly | Dynamic routing, multi-destination deliveries | Faster adaptation to changes in demand |
