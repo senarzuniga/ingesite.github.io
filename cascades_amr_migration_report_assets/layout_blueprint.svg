@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <defs>
+    <style type="text/css"><![CDATA[
+      .bg { fill:#0b1220; }
+      .area { fill:#0f1724; stroke:#0f1724; }
+      .label { fill:#fff; font-family:Segoe UI, Roboto, Arial; font-size:12px; }
+      .accent { fill:#ff8a00; }
+      .muted { fill:#94a3b8; }
+      .road { fill:#071024; stroke:#1b2330; }
+      .box { fill:#08121a; stroke:#16202a; }
+      .dashed { stroke:#334155; stroke-dasharray:6 4; fill:none; }
+      .arrow { fill:#ff8a00; }
+    ]]></style>
+  </defs>
+
+  <rect width="1200" height="520" class="bg"/>
+
+  <!-- Corrugator area -->
+  <rect x="40" y="40" width="220" height="120" rx="6" class="box"/>
+  <text x="150" y="75" text-anchor="middle" class="label">Corrugator</text>
+  <text x="150" y="95" text-anchor="middle" class="muted">Take‑off / Induction</text>
+
+  <!-- AMR dual-lane highway -->
+  <rect x="300" y="40" width="520" height="120" rx="6" class="road"/>
+  <text x="560" y="65" text-anchor="middle" class="label">AMR Dual‑Lane Highway</text>
+  <text x="560" y="85" text-anchor="middle" class="muted">Directional lanes — traffic orchestration</text>
+
+  <!-- Trident station (main) -->
+  <g>
+    <rect x="840" y="40" width="140" height="120" rx="6" class="box"/>
+    <text x="910" y="75" text-anchor="middle" class="label">Main Trident</text>
+    <text x="910" y="95" text-anchor="middle" class="muted">Handoff & evacuation</text>
+  </g>
+
+  <!-- Converting lines (left) -->
+  <g>
+    <rect x="40" y="190" width="220" height="280" rx="6" class="box"/>
+    <text x="150" y="210" text-anchor="middle" class="label">Converting lines</text>
+    <text x="150" y="230" text-anchor="middle" class="muted">6 lines (local Trident stations)</text>
+    <!-- lines representation -->
+    <g fill="none" stroke="#1f2937" stroke-width="8">
+      <line x1="90" y1="250" x2="190" y2="250" />
+      <line x1="90" y1="290" x2="190" y2="290" />
+      <line x1="90" y1="330" x2="190" y2="330" />
+      <line x1="90" y1="370" x2="190" y2="370" />
+      <line x1="90" y1="410" x2="190" y2="410" />
+      <line x1="90" y1="450" x2="190" y2="450" />
+    </g>
+  </g>
+
+  <!-- High-density WIP block (right) -->
+  <rect x="1000" y="190" width="160" height="200" rx="6" class="box"/>
+  <text x="1080" y="210" text-anchor="middle" class="label">High‑density WIP</text>
+  <text x="1080" y="230" text-anchor="middle" class="muted">Deep‑lane storage / staging</text>
+
+  <!-- Shipping area -->
+  <rect x="840" y="360" width="240" height="110" rx="6" class="box"/>
+  <text x="960" y="385" text-anchor="middle" class="label">Shipping / FG</text>
+  <text x="960" y="405" text-anchor="middle" class="muted">Outbound / Truck loading</text>
+
+  <!-- Flows: arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ff8a00" />
+    </marker>
+  </defs>
+
+  <path d="M260,100 L300,100" stroke="#ff8a00" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M820,100 L840,100" stroke="#ff8a00" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M460,160 L460,190" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+
+  <!-- Labels for components -->
+  <text x="300" y="170" class="muted">Corrugator -> AMR exchange</text>
+  <text x="600" y="170" class="muted" text-anchor="middle">High‑speed transfer corridor (AMR)</text>
+
+  <!-- Decorative legend -->
+  <rect x="40" y="500" width="1120" height="12" rx="6" fill="#071024"/>
+  <text x="60" y="495" class="muted">Legend: Corrugator, AMR highway, Trident, Converting lines, High‑density WIP, Shipping</text>
+
+  <!-- Footer brand -->
+  <text x="1080" y="510" class="muted" font-size="11">© INGECART</text>
+</svg>

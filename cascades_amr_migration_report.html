@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Migration from Fixed Transfer Car (BHS) to an AMR Fleet — Cascades</title>
+  <meta name="description" content="Concept validation and layout engineering proposal for migrating from a fixed transfer carriage to an AMR fleet.">
+  <style>
+    :root{
+      --bg:#071026; --surface:#0f1724; --card:#0b1220; --muted:#94a3b8; --text:#e6eef8; --accent:#ff8a00; --maxw:1100px;
+      --radius:10px; --gap:18px; font-family: Inter, -apple-system, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);}
+    .site-shell{max-width:1200px;margin:24px auto;padding:24px;box-sizing:border-box}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand-logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#0f1724,#0b1220);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:18px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .title-block{max-width:var(--maxw);}
+    h1{font-size:28px;margin:0 0 6px}
+    .subtitle{color:var(--muted);margin:0 0 12px}
+    .hero{background:linear-gradient(180deg, rgba(255,138,0,0.06), transparent);border:1px solid rgba(255,138,0,0.06);padding:18px;border-radius:12px;margin-bottom:18px}
+    .meta{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:14px}
+    .panel{background:var(--surface);padding:18px;border-radius:12px;margin-bottom:16px;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:var(--card);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.04);text-align:left}
+    th{background:linear-gradient(90deg, rgba(255,138,0,0.04), transparent);font-weight:700}
+    .accent{color:var(--accent)}
+    .cta{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#071026;text-decoration:none;font-weight:700}
+    .muted{color:var(--muted)}
+    .blueprint{background:linear-gradient(180deg, #071025, #071022);padding:14px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);overflow:auto}
+    .flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .flow-step{background:var(--card);padding:12px;border-radius:8px}
+    .footer{color:var(--muted);font-size:13px;text-align:center;margin-top:18px}
+    @media (max-width:900px){.two-col{grid-template-columns:1fr;}.flow-steps{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">ID</div>
+        <div>
+          <div style="font-weight:700">INGECART — Systems & Solutions</div>
+          <div class="muted" style="font-size:13px">Migration concept — Cascades</div>
+        </div>
+      </div>
+      <div class="meta">Prepared for Cascades · <span class="muted">2026-07-02</span></div>
+    </header>
+
+    <section class="hero panel">
+      <div class="title-block">
+        <h1>Migration from Fixed Transfer Car (BHS) to an AMR Fleet</h1>
+        <div class="subtitle">Key Integration Points and High‑Density WIP Layout Design for a Corrugated Packaging Plant</div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <a class="cta" href="#recommendation">Recommended next step</a>
+          <div class="muted">Prepared for: Cascades — Engineering & Operations</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="two-col">
+      <div>
+        <section id="executive" class="panel">
+          <h2 style="margin-top:0">Executive summary</h2>
+          <p class="muted">This document summarises a migration concept that replaces a fixed transfer carriage and long conveyors with a coordinated AMR fleet and Trident handoff stations. The proposed architecture is designed to increase space efficiency, remove single points of failure, and deliver stable, JIT feeding to corrugator and converting lines.</p>
+          <p>Key expected outcomes: improved floor utilisation, reduced production starvation, lower mechanical OPEX and a phased migration path that minimises business interruption.</p>
+        </section>
+
+        <section id="comparison" class="panel">
+          <h2>Current vs Proposed</h2>
+          <table>
+            <thead><tr><th>Operational Variable</th><th>Current (BHS)</th><th>Proposed (AMR + Trident)</th><th>Impact</th></tr></thead>
+            <tbody>
+              <tr><td>Space density</td><td>Continuous rails & conveyors</td><td>Dual‑lane AMR + staged WIP</td><td>+Usable floor area</td></tr>
+              <tr><td>Flow flexibility</td><td>Rigid, rail‑bound routing</td><td>Dynamic routing & rerouting</td><td>Higher adaptability</td></tr>
+              <tr><td>Maintenance</td><td>High conveyor uptime demand</td><td>Modular AMR maintenance</td><td>Lower OPEX</td></tr>
+              <tr><td>Bottlenecks</td><td>Single transfer carriage</td><td>Redundant AMR fleet</td><td>Reduced starvation</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="drivers" class="panel">
+          <h2>Key value drivers</h2>
+          <div class="cards">
+            <div class="card">
+              <h4>Maximised floor space</h4>
+              <p class="muted">Concentrated WIP blocks and flexible AMR lanes increase usable area and simplify reconfiguration.</p>
+            </div>
+            <div class="card">
+              <h4>Elimination of SPoF</h4>
+              <p class="muted">Redundant AMRs plus Trident stations provide graceful degradation under failure.</p>
+            </div>
+            <div class="card">
+              <h4>Decoupled flows</h4>
+              <p class="muted">Short local conveyors at Trident stations decouple transport from line insertion.</p>
+            </div>
+            <div class="card">
+              <h4>Reduced mechanical maintenance</h4>
+              <p class="muted">Less continuous mechanical conveyance reduces wear and spare‑part complexity.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="blueprint" class="panel">
+          <h2>Layout blueprint</h2>
+          <div class="blueprint">
+            <!-- Inline SVG blueprint for offline portability -->
+            <!-- (Also provided as a separate asset in cascades_amr_migration_report_assets/) -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="360" viewBox="0 0 1200 520">
+              <rect width="1200" height="520" fill="#071026"/>
+              <rect x="40" y="40" width="220" height="120" rx="6" fill="#08121a" stroke="#16202a"/>
+              <text x="150" y="75" text-anchor="middle" fill="#e6eef8" font-size="12">Corrugator</text>
+              <rect x="300" y="40" width="520" height="120" rx="6" fill="#071024" stroke="#1b2330"/>
+              <text x="560" y="65" text-anchor="middle" fill="#e6eef8" font-size="12">AMR Dual‑Lane Highway</text>
+              <rect x="840" y="40" width="140" height="120" rx="6" fill="#08121a" stroke="#16202a"/>
+              <text x="910" y="75" text-anchor="middle" fill="#e6eef8" font-size="12">Main Trident</text>
+              <rect x="40" y="190" width="220" height="280" rx="6" fill="#08121a" stroke="#16202a"/>
+              <text x="150" y="210" text-anchor="middle" fill="#e6eef8" font-size="12">Converting lines (6)</text>
+              <rect x="1000" y="190" width="160" height="200" rx="6" fill="#08121a" stroke="#16202a"/>
+              <text x="1080" y="210" text-anchor="middle" fill="#e6eef8" font-size="12">High‑density WIP</text>
+              <rect x="840" y="360" width="240" height="110" rx="6" fill="#08121a" stroke="#16202a"/>
+              <text x="960" y="385" text-anchor="middle" fill="#e6eef8" font-size="12">Shipping / FG</text>
+              <defs><marker id="a" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff8a00"/></marker></defs>
+              <path d="M260,100 L300,100" stroke="#ff8a00" stroke-width="4" marker-end="url(#a)" fill="none"/>
+              <path d="M820,100 L840,100" stroke="#ff8a00" stroke-width="4" marker-end="url(#a)" fill="none"/>
+            </svg>
+          </div>
+          <p class="muted" style="margin-top:8px">The blueprint is also available as a standalone SVG: <a href="cascades_amr_migration_report_assets/layout_blueprint.svg" style="color:var(--accent)">layout_blueprint.svg</a></p>
+        </section>
+
+        <section id="flow" class="panel">
+          <h2>Material flow dynamics</h2>
+          <div class="flow-steps">
+            <div class="flow-step"><strong>1. Induction</strong><p class="muted">Corrugator outputs are staged, identified and assigned for AMR pickup.</p></div>
+            <div class="flow-step"><strong>2. Deep‑lane WIP</strong><p class="muted">AMRs move reels to dense storage islands reducing linear footprint.</p></div>
+            <div class="flow-step"><strong>3. JIT feeding</strong><p class="muted">Trident stations deliver to lines when requested by MES/WCS.</p></div>
+            <div class="flow-step"><strong>4. Returns</strong><p class="muted">Partial reels are routed back to WIP or warehouse via AMRs.</p></div>
+          </div>
+        </section>
+
+        <section id="engineering" class="panel">
+          <h2>Engineering & integration considerations</h2>
+          <ul class="muted">
+            <li>WCS/Fleet Manager API for job dispatch, slot reservation and health monitoring.</li>
+            <li>Trident station IO handshake and safety interlocks.</li>
+            <li>Traffic orchestration for dual‑lane highway with lane discipline.</li>
+            <li>MES integration for job changes and preemptive refill logic.</li>
+            <li>Exception and fallback strategies for blocked stations and robot faults.</li>
+          </ul>
+        </section>
+
+        <section id="recommendation" class="panel">
+          <h2>Recommended next step: Concept Validation & Layout Engineering</h2>
+          <p class="muted">Propose a phased validation programme: site survey, throughput simulation, AMR sizing, Trident mechanical definition and a pilot cell. Deliverables: concept layout, simulation report, AMR fleet proposal and phased migration plan.</p>
+        </section>
+      </div>
+
+      <aside>
+        <section class="panel">
+          <h3>At a glance</h3>
+          <p class="muted"><strong>Benefits:</strong> improved floor utilisation, reduced SPoF, lower OPEX, phased CAPEX.</p>
+          <h4>Quick checklist</h4>
+          <ul class="muted">
+            <li>Site survey</li>
+            <li>Throughput model</li>
+            <li>Pilot cell</li>
+            <li>ROI analysis</li>
+          </ul>
+          <p style="margin-top:12px"><a class="cta" href="#blueprint">View blueprint</a></p>
+        </section>
+
+        <section class="panel">
+          <h3>Contact</h3>
+          <p class="muted">INGECART — Systems & Solutions<br>hablemos@ingecart.eu · +34 938 183 316</p>
+          <p class="muted">© 2026 INGECART</p>
+        </section>
+      </aside>
+    </div>
+
+    <div class="footer">This document is a concept proposal. For site‑specific engineering please request the concept validation work package.</div>
+  </div>
+</body>
+</html>
