@@ -10,11 +10,11 @@
     <div class="site-shell" style="padding:1rem">
         <h1>AMR PALLETIZING INTERLAYER MANAGEMENT</h1>
         <video controls preload="metadata" width="100%" style="max-height:70vh;">
-            <source src="/assets/videos/AMR%20PALLETIZING%20INTERLAYER%20MANAGEMENT.mp4" type="video/mp4">
+            <source src="../../assets/videos/AMR%20PALLETIZING%20INTERLAYER%20MANAGEMENT.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <p style="color:var(--text-muted);">266.6 MB · 2026-06-22T17:37:32.700189</p>
-        <p><a class="button button-primary" href="/assets/videos/AMR%20PALLETIZING%20INTERLAYER%20MANAGEMENT.mp4" download>Descargar</a> <a class="button" href="/public/videos/index.html">Volver al listado</a></p>
+        <p><a class="button button-primary" href="../../assets/videos/AMR%20PALLETIZING%20INTERLAYER%20MANAGEMENT.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
         <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
     </div>
 
@@ -22,8 +22,9 @@
         function copyText(t){ if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(t); } var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return Promise.resolve(); }
         document.getElementById('copy-share').addEventListener('click', function(){
             var label = prompt('Etiqueta para personalizar el enlace (opcional)');
-            var url = location.origin + '/public/videos/amr-palletizing-interlayer-management.html';
-            if(label){ url += (url.indexOf('?')>=0? '&':'?') + 'ref=' + encodeURIComponent(label); }
+            var target = new URL('amr-palletizing-interlayer-management.html', location.href);
+            if(label){ target.searchParams.set('ref', label); }
+            var url = target.toString();
             copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/AMR PALLETIZING INTERLAYER MANAGEMENT.mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
         });
         var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/AMR PALLETIZING INTERLAYER MANAGEMENT.mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
