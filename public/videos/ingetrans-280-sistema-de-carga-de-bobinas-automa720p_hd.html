@@ -24,10 +24,9 @@
             var label = prompt('Etiqueta para personalizar el enlace (opcional)');
             var url = location.origin + '/public/videos/ingetrans-280-sistema-de-carga-de-bobinas-automa720p_hd.html';
             if(label){ url += (url.indexOf('?')>=0? '&':'?') + 'ref=' + encodeURIComponent(label); }
-            copyText(url).then(function(){ alert('Enlace copiado:
-'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/INGETRANS 280 - Sistema de Carga de Bobinas automá(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/INGETRANS 280 - Sistema de Carga de Bobinas automá(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
         });
-        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file':'/assets/videos/INGETRANS 280 - Sistema de Carga de Bobinas automá(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/INGETRANS 280 - Sistema de Carga de Bobinas automá(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
     </script>
 </body>
 </html>

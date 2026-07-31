@@ -27,6 +27,64 @@ def ensure_dirs():
     PUBLIC_VIDEOS.mkdir(parents=True, exist_ok=True)
 
 
+def build_video_catalog():
+    videos = []
+    seen = set()
+
+    def slugify(value):
+        s = str(value)
+        s = unicodedata.normalize('NFKD', s)
+        s = s.encode('ascii', 'ignore').decode('ascii')
+        s = re.sub(r"[^\w\s-]", '', s).strip().lower()
+        s = re.sub(r"[-\s]+", '-', s)
+        return s[:120]
+
+    for p in sorted(ASSETS_VIDEOS.iterdir()):
+        if p.is_file() and p.suffix.lower() in ALLOWED_EXT:
+            stat = p.stat()
+            title = p.stem
+            base_slug = slugify(title) or slugify(p.name)
+            slug = base_slug
+            i = 1
+            while slug in seen:
+                slug = f"{base_slug}-{i}"
+                i += 1
+            seen.add(slug)
+            share_path = f'/public/videos/{slug}.html'
+            videos.append({
+                'filename': p.name,
+                'title': title,
+                'url': f'/assets/videos/{p.name}',
+                'share_url': share_path,
+                'slug': slug,
+                'size': stat.st_size,
+                'mtime': datetime.datetime.fromtimestamp(stat.st_mtime).isoformat(),
+            })
+
+    return videos
+
+
+def write_video_catalog(videos):
+    json_path = PUBLIC_VIDEOS / 'videos.json'
+    try:
+        with json_path.open('w', encoding='utf-8') as fh:
+            json.dump(videos, fh, indent=2, ensure_ascii=False)
+        print(f"Wrote {json_path}")
+    except Exception as e:
+        print(f"Failed to write videos.json: {e}")
+
+    index_html = PUBLIC_VIDEOS / 'index.html'
+    try:
+        with index_html.open('w', encoding='utf-8') as fh:
+            fh.write(generate_public_index(videos))
+        print(f"Wrote {index_html}")
+    except Exception as e:
+        print(f"Failed to write index.html: {e}")
+
+    for v in videos:
+        write_video_page(v)
+
+
 def list_source(src_dir: Path):
     if not src_dir.exists():
         return []
@@ -61,60 +119,8 @@ def sync_from_source(src_dir: Path):
                 except Exception as e:
                     print(f"Failed to remove {existing}: {e}")
 
-    # build metadata (with slug/share page)
-    def slugify(value):
-        s = str(value)
-        s = unicodedata.normalize('NFKD', s)
-        s = s.encode('ascii', 'ignore').decode('ascii')
-        s = re.sub(r"[^\w\s-]", '', s).strip().lower()
-        s = re.sub(r"[-\s]+", '-', s)
-        return s[:120]
-
-    videos = []
-    seen = set()
-    for p in sorted((ASSETS_VIDEOS).iterdir()):
-        if p.is_file() and p.suffix.lower() in ALLOWED_EXT:
-            stat = p.stat()
-            title = p.stem
-            base_slug = slugify(title) or slugify(p.name)
-            slug = base_slug
-            i = 1
-            while slug in seen:
-                slug = f"{base_slug}-{i}"
-                i += 1
-            seen.add(slug)
-            share_path = f'/public/videos/{slug}.html'
-            videos.append({
-                'filename': p.name,
-                'title': title,
-                'url': f'/assets/videos/{p.name}',
-                'share_url': share_path,
-                'slug': slug,
-                'size': stat.st_size,
-                'mtime': datetime.datetime.fromtimestamp(stat.st_mtime).isoformat(),
-            })
-
-    # write JSON
-    json_path = PUBLIC_VIDEOS / 'videos.json'
-    try:
-        with json_path.open('w', encoding='utf-8') as fh:
-            json.dump(videos, fh, indent=2, ensure_ascii=False)
-        print(f"Wrote {json_path}")
-    except Exception as e:
-        print(f"Failed to write videos.json: {e}")
-
-    # write a simple index.html to public/videos for backwards compatibility
-    index_html = PUBLIC_VIDEOS / 'index.html'
-    try:
-        with index_html.open('w', encoding='utf-8') as fh:
-            fh.write(generate_public_index(videos))
-        print(f"Wrote {index_html}")
-    except Exception as e:
-        print(f"Failed to write index.html: {e}")
-
-    # write per-video landing pages
-    for v in videos:
-        write_video_page(v)
+    videos = build_video_catalog()
+    write_video_catalog(videos)
 
     return videos
 
@@ -151,9 +157,9 @@ def write_video_page(video):
             var label = prompt('Etiqueta para personalizar el enlace (opcional)');
             var url = location.origin + '%%SHARE_URL%%';
             if(label){ url += (url.indexOf('?')>=0? '&':'?') + 'ref=' + encodeURIComponent(label); }
-            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'%%VIDEO_URL%%',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+            copyText(url).then(function(){ alert('Enlace copiado:\\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'%%VIDEO_URL%%',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
         });
-        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file':'%%VIDEO_URL%%',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'%%VIDEO_URL%%',timestamp:new Date().toISOString()})}); }catch(e){} }); }
     </script>
 </body>
 </html>
@@ -193,7 +199,7 @@ def generate_public_index(videos):
         </body>
         </html>
         """
-        return html
+    return html
 
 
 def human_size(n):
