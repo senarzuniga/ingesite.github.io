@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>INGETRANS — Digital Twin Technical Validation</title>
+  <meta name="description" content="Technical report and simulation validation for INGETRANS automated reel feeding system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* --- INGECART Dark Industrial Premium Style --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --black-industrial: #05070B;
+      --orange-ingecart: #FF6A00;
+      --white-tech: #F4F5F7;
+      --gray-metal: #7E848E;
+      --gray-dark: #1A1D24;
+      --font-heading: 'Montserrat', 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', 'Roboto', sans-serif;
+    }
+    body {
+      background: var(--black-industrial);
+      color: var(--white-tech);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .site-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      background: var(--black-industrial);
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      border-left: 1px solid rgba(255,106,0,0.15);
+      border-right: 1px solid rgba(255,106,0,0.15);
+    }
+    /* Header */
+    .site-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255,106,0,0.25);
+      margin-bottom: 1.5rem;
+    }
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--white-tech);
+    }
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--orange-ingecart);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--black-industrial);
+      font-weight: 800;
+      font-size: 1.4rem;
+      font-family: var(--font-heading);
+    }
+    .eyebrow {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-metal);
+      margin: 0;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white-tech);
+      font-family: var(--font-heading);
+    }
+    .brand-name span { color: var(--orange-ingecart); }
+    .site-nav {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .site-nav a {
+      color: var(--gray-metal);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--orange-ingecart); }
+    .button {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      border: 1px solid var(--orange-ingecart);
+      cursor: pointer;
+      background: transparent;
+      color: var(--white-tech);
+      transition: all 0.25s ease;
+      font-family: var(--font-body);
+    }
+    .button-primary {
+      background: var(--orange-ingecart);
+      color: var(--black-industrial);
+      border-color: var(--orange-ingecart);
+    }
+    .button-primary:hover {
+      background: transparent;
+      color: var(--orange-ingecart);
+    }
+    .nav-cta { margin-left: 0.5rem; }
+    /* Panel */
+    .panel { padding: 1rem 0 2rem; }
+    .report-hero {
+      width: 100%;
+      border-radius: 8px;
+      background: var(--gray-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      padding: 2.5rem;
+      text-align: center;
+      border: 1px solid rgba(255,106,0,0.1);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .report-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange-ingecart), transparent);
+    }
+    .hero-cta {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      background: var(--orange-ingecart);
+      color: var(--black-industrial);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--orange-ingecart);
+    }
+    .hero-cta:hover {
+      background: transparent;
+      color: var(--orange-ingecart);
+    }
+    .flex-row {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .main-content { flex: 2; min-width: 280px; }
+    .sidebar {
+      flex: 1;
+      min-width: 220px;
+      background: var(--gray-dark);
+      padding: 1.8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,106,0,0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      color: var(--white-tech);
+      text-transform: uppercase;
+    }
+    h1 .highlight { color: var(--orange-ingecart); }
+    h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-top: 2.2rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(255,106,0,0.25);
+      padding-bottom: 0.4rem;
+      color: var(--white-tech);
+    }
+    h2 .highlight { color: var(--orange-ingecart); }
+    h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--gray-metal);
+    }
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255,106,0,0.2);
+      margin: 2.2rem 0;
+    }
+    p { color: var(--white-tech); opacity: 0.9; }
+    ul, ol {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0 1rem;
+    }
+    ul li, ol li {
+      margin-bottom: 0.3rem;
+      color: var(--white-tech);
+      opacity: 0.9;
+    }
+    ul li strong, ol li strong { color: var(--orange-ingecart); }
+    .results {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0 1.5rem;
+      font-size: 0.92rem;
+      background: var(--gray-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .results th, .results td {
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 14px;
+      text-align: left;
+      color: var(--white-tech);
+    }
+    .results th {
+      background: rgba(255,106,0,0.12);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--orange-ingecart);
+    }
+    .results td { background: rgba(0,0,0,0.2); }
+    .results tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+    .highlight-cell { color: var(--orange-ingecart); font-weight: 600; }
+    .text-right { text-align: right; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+    .feature-card {
+      background: var(--gray-dark);
+      padding: 1.2rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--orange-ingecart);
+    }
+    .feature-card h4 { color: var(--orange-ingecart); margin-bottom: 0.3rem; font-family: var(--font-heading); }
+    .feature-card p { font-size: 0.9rem; opacity: 0.8; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar ul li { margin-bottom: 0.7rem; color: var(--gray-metal); font-size: 0.9rem; }
+    .sidebar ul li strong { color: var(--white-tech); font-weight: 500; }
+    .sidebar a { color: var(--orange-ingecart); text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .text-link {
+      color: var(--orange-ingecart);
+      text-decoration: none;
+      border-bottom: 1px solid var(--orange-ingecart);
+      font-weight: 500;
+    }
+    .tech-line {
+      width: 60px;
+      height: 3px;
+      background: var(--orange-ingecart);
+      margin: 0.5rem 0 1rem;
+    }
+    .site-footer {
+      border-top: 1px solid rgba(255,106,0,0.15);
+      padding: 1.5rem 0 1rem;
+      margin-top: 2rem;
+      text-align: center;
+      color: var(--gray-metal);
+      font-size: 0.85rem;
+    }
+    .site-footer span { color: var(--orange-ingecart); }
+    @media (max-width: 768px) {
+      .site-header { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+      .site-nav { justify-content: center; gap: 1rem; }
+      .nav-cta { align-self: center; margin-left: 0; }
+      .flex-row { flex-direction: column; }
+      .sidebar { width: 100%; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.3rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-header">
+    <a class="brand-lockup" href="#">
+      <span class="brand-logo">I</span>
+      <div>
+        <p class="eyebrow">Industrial Intelligence</p>
+        <span class="brand-name">INGE<span>CART</span></span>
+      </div>
+    </a>
+    <nav class="site-nav">
+      <a href="#overview">Overview</a>
+      <a href="#system">System</a>
+      <a href="#simulation">Simulation</a>
+      <a href="#results">Results</a>
+      <a href="#roi">ROI</a>
+    </nav>
+    <a class="button button-primary nav-cta" href="#contact">Contact</a>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <!-- Hero -->
+        <div class="report-hero" id="product-hero" style="cursor:default;">
+          <div>
+            <strong style="font-size:1.8rem;color:var(--white-tech);">INGETRANS</strong>
+            <h1 style="font-size:2rem;margin-top:0.25rem;">Digital Twin <span class="highlight">Validation</span></h1>
+            <p style="font-size:1.1rem;color:var(--gray-metal);max-width:700px;margin:0.5rem auto;">
+              Technical justification for automated reel logistics in corrugated plants.
+            </p>
+            <div style="margin-top:12px;display:flex;gap:30px;justify-content:center;font-size:0.8rem;color:var(--gray-metal);text-transform:uppercase;letter-spacing:0.05em;">
+              <span>⚙️ AGV Integration</span>
+              <span>📊 +6% OEE</span>
+              <span>🏭 Corrugator Benchmark</span>
+            </div>
+          </div>
+          <div id="hero-cta" class="hero-cta" style="cursor:pointer;">Jump to Results</div>
+        </div>
+
+        <div class="flex-row">
+          <div class="main-content">
+            <!-- 1. Overview -->
+            <h2 id="overview">Executive <span class="highlight">Summary</span></h2>
+            <div class="tech-line"></div>
+            <p>
+              INGECART developed a high-fidelity Discrete Event Digital Twin to quantify the operational and financial impact of automating paper reel logistics. This report presents a direct benchmark comparing conventional forklift-based handling against the <strong>INGETRANS</strong> automated rail-guided system, under identical production conditions.
+            </p>
+            <p>
+              The simulation proves that production gains are <strong>not</strong> driven by increasing corrugator speed—which remains constant in both scenarios—but by <strong>eliminating waiting times</strong> and ensuring continuous reel availability at every roll stand.
+            </p>
+            <hr>
+
+            <!-- 2. System Description -->
+            <h2 id="system">System <span class="highlight">Description</span></h2>
+            <p>
+              <strong>INGETRANS</strong> is a turnkey, rail-guided intralogistics solution that automates the transport, delivery, and return of paper reels between the warehouse and multiple corrugator consumption points. It eliminates forklift dependency in the corrugator area, improves safety, optimizes material flow, and integrates with production planning and MES systems.
+            </p>
+
+            <h3>Key Functions</h3>
+            <ul>
+              <li><strong>Automated Movement:</strong> Transport reels from the exchange zone to the corrugator without manual intervention.</li>
+              <li><strong>Automated Delivery:</strong> Precise delivery to multiple consumption points (single facers, roll stands) via dedicated tracks.</li>
+              <li><strong>Automated Return:</strong> Unused or partially used reels are returned automatically to assigned warehouse locations.</li>
+              <li><strong>Dual Reel Handling:</strong> The transfer carriage can carry up to two reels simultaneously.</li>
+              <li><strong>Process Integration:</strong> Works with production planning and MES for just-in-time delivery.</li>
+              <li><strong>Continuous Supply:</strong> Production-synchronized delivery maximizes real-line capacity and minimizes downtime.</li>
+            </ul>
+
+            <h3>How It Works (Simulated Logic)</h3>
+            <ol>
+              <li><strong>Warehouse exchange zone:</strong> Reels are staged and positioned for transfer.</li>
+              <li><strong>Transfer carriage pick up:</strong> Elevates and secures one or two reels (~6 s cycle).</li>
+              <li><strong>Transport:</strong> Accelerates (4.5 s ramp) to nominal speed and follows floor rails to delivery tracks.</li>
+              <li><strong>Delivery:</strong> Positions the reel at the track and discharges it to the track conveyor (~6 s drop-off).</li>
+              <li><strong>Simultaneous return (optional):</strong> The carriage can collect partially used reels on return trips.</li>
+              <li><strong>Automatic return to warehouse:</strong> Unused/semi-used reels are returned to assigned storage locations.</li>
+            </ol>
+
+            <h3>Key Benefits (Qualitative)</h3>
+            <div class="feature-grid">
+              <div class="feature-card"><h4>Safety First</h4><p>Eliminates forklift traffic in corrugator areas, reducing the main source of accidents.</p></div>
+              <div class="feature-card"><h4>Labor Optimization</h4><p>Reduces manual reel handling, freeing operators for higher-value tasks.</p></div>
+              <div class="feature-card"><h4>Process Stability</h4><p>Minimizes downtime with production-synchronized reel delivery.</p></div>
+              <div class="feature-card"><h4>Fast ROI</h4><p>Typical payback &lt; 18 months through efficiency gains and lower accident costs.</p></div>
+            </div>
+            <hr>
+
+            <!-- 3. Simulation Setup -->
+            <h2 id="simulation">Simulation <span class="highlight">Setup</span></h2>
+            <p><strong>Reference Plant:</strong> A typical European corrugated facility.</p>
+            <table class="results">
+              <thead><tr><th>Parameter</th><th class="text-right">Value</th></tr></thead>
+              <tbody>
+                <tr><td>Corrugators</td><td class="text-right">1</td></tr>
+                <tr><td>Roll Stands</td><td class="text-right">5</td></tr>
+                <tr><td>Supply Tracks</td><td class="text-right">10</td></tr>
+                <tr><td>Average Speed</td><td class="text-right">220 m/min</td></tr>
+                <tr><td>Working Pattern</td><td class="text-right">2 shifts/day</td></tr>
+                <tr><td>Operating Days</td><td class="text-right">330 days/year</td></tr>
+                <tr><td>Avg. Reel Consumption</td><td class="text-right">5.5 reels/hour</td></tr>
+                <tr><td>Avg. Reel Weight</td><td class="text-right">2,100 kg</td></tr>
+              </tbody>
+            </table>
+            <p><strong>Scenario A:</strong> Conventional forklift-based handling.<br>
+            <strong>Scenario B:</strong> INGETRANS automated rail-guided system.</p>
+            <p>The Digital Twin was executed over <strong>3, 6, and 12-month</strong> periods, incorporating real production orders, machine failures, maintenance events, and random disturbances.</p>
+            <hr>
+
+            <!-- 4. Results -->
+            <h2 id="results">Operational <span class="highlight">Performance</span></h2>
+            
+            <h3>Quarterly Results</h3>
+            <table class="results">
+              <thead><tr><th>KPI</th><th class="text-right">Forklift</th><th class="text-right">INGETRANS</th><th class="text-right">Improvement</th></tr></thead>
+              <tbody>
+                <tr><td>Production</td><td class="text-right">14.46 M m</td><td class="text-right">15.51 M m</td><td class="text-right highlight-cell">+7.3%</td></tr>
+                <tr><td>Orders Completed</td><td class="text-right">13,145</td><td class="text-right">14,100</td><td class="text-right highlight-cell">+955</td></tr>
+                <tr><td>Reel Deliveries</td><td class="text-right">7,260</td><td class="text-right">7,790</td><td class="text-right highlight-cell">+530</td></tr>
+                <tr><td>OEE</td><td class="text-right">83%</td><td class="text-right">89%</td><td class="text-right highlight-cell">+6 pts</td></tr>
+                <tr><td>Starvation Events</td><td class="text-right">264</td><td class="text-right">33</td><td class="text-right highlight-cell">-87%</td></tr>
+              </tbody>
+            </table>
+
+            <h3>Annual Results</h3>
+            <table class="results">
+              <thead><tr><th>KPI</th><th class="text-right">Forklift</th><th class="text-right">INGETRANS</th><th class="text-right">Improvement</th></tr></thead>
+              <tbody>
+                <tr><td>Production</td><td class="text-right">57.84 M m</td><td class="text-right">62.04 M m</td><td class="text-right highlight-cell">+4.20 M m</td></tr>
+                <tr><td>Orders Completed</td><td class="text-right">52,580</td><td class="text-right">56,400</td><td class="text-right highlight-cell">+3,820</td></tr>
+                <tr><td>Reel Deliveries</td><td class="text-right">29,040</td><td class="text-right">31,160</td><td class="text-right highlight-cell">+2,120</td></tr>
+                <tr><td>Reel Returns</td><td class="text-right">26,400</td><td class="text-right">28,300</td><td class="text-right highlight-cell">+1,900</td></tr>
+              </tbody>
+            </table>
+
+            <h3>OEE & Continuity</h3>
+            <table class="results">
+              <thead><tr><th>OEE Component</th><th class="text-right">Forklift</th><th class="text-right">INGETRANS</th></tr></thead>
+              <tbody>
+                <tr><td>Availability</td><td class="text-right">92%</td><td class="text-right">97%</td></tr>
+                <tr><td>Performance</td><td class="text-right">91%</td><td class="text-right">94%</td></tr>
+                <tr><td>Quality</td><td class="text-right">99.0%</td><td class="text-right">99.2%</td></tr>
+                <tr><td><strong>Overall OEE</strong></td><td class="text-right"><strong>83%</strong></td><td class="text-right"><strong style="color:var(--orange-ingecart);">89%</strong></td></tr>
+              </tbody>
+            </table>
+            <p>This represents a <strong style="color:var(--orange-ingecart);">+6-point OEE increase</strong>, equivalent to over <strong style="color:var(--orange-ingecart);">4 million additional production meters per year</strong>.</p>
+
+            <h3>Logistics & Interruptions</h3>
+            <table class="results">
+              <thead><tr><th>KPI</th><th class="text-right">Forklift</th><th class="text-right">INGETRANS</th></tr></thead>
+              <tbody>
+                <tr><td>Avg. Delivery Time</td><td class="text-right">115 s</td><td class="text-right highlight-cell">52 s</td></tr>
+                <tr><td>Avg. Response Time</td><td class="text-right">42 s</td><td class="text-right highlight-cell">15 s</td></tr>
+                <tr><td>Starvation Events (yearly)</td><td class="text-right">1,056</td><td class="text-right highlight-cell">132</td></tr>
+                <tr><td>Corrugator Downtime</td><td class="text-right">74 h/year</td><td class="text-right highlight-cell">18 h/year</td></tr>
+                <tr><td>Lost Production</td><td class="text-right">814,000 m</td><td class="text-right highlight-cell">198,000 m</td></tr>
+              </tbody>
+            </table>
+            <p>The simulation predicts an <strong style="color:var(--orange-ingecart);">87% reduction in starvation events</strong> and a <strong style="color:var(--orange-ingecart);">76% reduction in logistics-related downtime</strong>, dramatically improving production continuity.</p>
+            <hr>
+
+            <!-- 5. Financial Impact -->
+            <h2 id="roi">Financial Impact & <span class="highlight">ROI</span></h2>
+            <table class="results">
+              <thead><tr><th>KPI</th><th class="text-right">Annual Value</th></tr></thead>
+              <tbody>
+                <tr><td>Operating Cost Reduction</td><td class="text-right highlight-cell">€309,300</td></tr>
+                <tr><td>Additional Production Capacity</td><td class="text-right highlight-cell">4.20 million m/year</td></tr>
+                <tr><td>Downtime Reduction</td><td class="text-right highlight-cell">56 hours/year</td></tr>
+                <tr><td>Maintenance Cost Reduction</td><td class="text-right highlight-cell">67%</td></tr>
+                <tr><td>Wrong Reel Events</td><td class="text-right highlight-cell">Reduced ~80%</td></tr>
+              </tbody>
+            </table>
+            <p>
+              Based on the simulated savings of over <strong>€300,000 annually</strong> (excluding additional revenue from the +4.2M meters of production capacity), the typical investment in INGETRANS achieves a <strong style="color:var(--orange-ingecart);">payback period of less than 18 months</strong>. When factoring in the reduction in accident-related costs and maintenance, the ROI is significantly accelerated.
+            </p>
+            <hr>
+
+            <!-- 6. Conclusion -->
+            <h2>Conclusion</h2>
+            <p>The Digital Twin benchmark unequivocally demonstrates that <strong>INGETRANS</strong> delivers superior operational performance without requiring changes to the corrugator's base speed.</p>
+            <ul>
+              <li><strong style="color:var(--orange-ingecart);">+7.3%</strong> annual production output.</li>
+              <li><strong style="color:var(--orange-ingecart);">+6 OEE points</strong> through enhanced availability.</li>
+              <li><strong style="color:var(--orange-ingecart);">87%</strong> fewer starvation events.</li>
+              <li><strong style="color:var(--orange-ingecart);">76%</strong> less logistics-induced downtime.</li>
+              <li><strong style="color:var(--orange-ingecart);">>€300,000</strong> in annual operating savings.</li>
+            </ul>
+            <p style="margin-top:1rem;">
+              Actual project results depend on specific plant layouts and production mixes. INGECART calibrates every Digital Twin using client-specific data to provide a precise, bankable investment proposal.
+            </p>
+            <p style="margin-top:0.5rem;font-weight:600;color:var(--orange-ingecart);">Automation That Transforms. Engineering That Optimizes.</p>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="sidebar" id="contact">
+            <h3 style="margin-top:0;color:var(--white-tech);font-weight:700;font-size:1.1rem;border-bottom:1px solid rgba(255,106,0,0.2);padding-bottom:0.5rem;">Contact</h3>
+            <ul>
+              <li><strong>Company:</strong> INGECART</li>
+              <li><strong>Web:</strong> <a href="https://www.ingecart.eu" target="_blank">ingecart.eu</a></li>
+              <li><strong>Email:</strong> <a href="mailto:hablemos@ingecart.eu">hablemos@ingecart.eu</a></li>
+              <li><strong>Phone:</strong> +34 938 183 316</li>
+              <li><strong>Location:</strong> Pol.Ind Laverno Nave 9-10, Subirats. CP: 08739, Barcelona, Spain</li>
+            </ul>
+            <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+              <a class="button button-primary" href="mailto:hablemos@ingecart.eu">Contact Sales</a>
+            </div>
+            <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.05);">
+              <p style="font-size:0.75rem;color:var(--gray-metal);text-transform:uppercase;letter-spacing:0.04em;">Industrial Intelligence</p>
+              <p style="font-size:0.8rem;color:var(--white-tech);">Performance-Driven Engineering.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© 2026 <span>INGECART</span> · Solving Real Bottlenecks in Corrugated Plants.</p>
+    </footer>
+  </main>
+</div>
+<script>
+  (function(){
+    const cta = document.getElementById('hero-cta');
+    const target = document.getElementById('results') || document.getElementById('overview');
+    if(cta && target) {
+      cta.addEventListener('click', function() {
+        target.scrollIntoView({behavior:'smooth'});
+      });
+    }
+  })();
+</script>
+</body>
+</html>

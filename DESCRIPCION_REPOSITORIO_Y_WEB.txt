@@ -1,0 +1,56 @@
+REPOSITORIO: ingesite.github.io
+
+Este repositorio contiene la web pública de ING_DIGHUB / INGECART y su biblioteca de recursos digitales. La web combina una página principal corporativa con secciones de servicios, tecnología, soluciones, industrias y recursos, además de un sistema de documentos y vídeos accesibles desde la propia interfaz.
+
+CÓMO ESTÁ ORGANIZADO
+
+- `index.html`: página principal del sitio.
+- `css/`: estilos visuales globales.
+- `js/`: lógica del front-end, navegación, modales y carga dinámica de recursos.
+- `assets/`: recursos fuente del sitio, como imágenes, vídeos y documentos internos.
+- `public/`: contenido público que se sirve directamente en la web.
+- `public/videos/`: biblioteca de vídeos, con `index.html`, `videos.json` y páginas individuales por vídeo.
+- `public/docs/`: documentos públicos descargables o visualizables.
+- `docs/` y `documentation/`: material documental y páginas auxiliares.
+- `scripts/`: utilidades para sincronizar, publicar y regenerar contenidos.
+- `netlify/`: funciones serverless y configuración de despliegue si se publica en Netlify.
+
+CÓMO FUNCIONA LA WEB
+
+1. La página principal se carga desde `index.html`.
+2. El front-end usa `js/main.js` para activar menús, modales y secciones dinámicas.
+3. La sección de recursos/documentación abre un box modal que muestra documentos del repositorio.
+4. La biblioteca de vídeos se publica en `public/videos/` y se alimenta desde `public/videos/videos.json`.
+5. Cada vídeo tiene su página individual dentro de `public/videos/`, desde la que se puede reproducir, descargar y copiar un enlace compartible.
+6. El contenido de vídeos y documentos se sincroniza mediante scripts del directorio `scripts/`.
+
+FLUJO DE VÍDEOS
+
+- Los vídeos se guardan en `assets/videos/` y también se publican en `public/videos/`.
+- El índice de vídeos se regenera para crear la galería visible en la web.
+- Cada vídeo genera una página HTML propia para acceso directo.
+- La web principal también puede mostrar una vista previa de algunos vídeos recientes.
+- Para GitHub Pages de proyecto, las páginas generadas usan rutas relativas para que funcionen dentro de `/ingesite.github.io/`.
+
+FLUJO DE DOCUMENTOS
+
+- Los documentos públicos se exponen desde `public/docs/`.
+- La interfaz principal los presenta dentro del box de documentación.
+- Algunos recursos se abren en nueva pestaña y otros se descargan directamente.
+
+DESPLIEGUE
+
+- El repositorio está pensado para publicarse como sitio estático.
+- En este entorno, la web pública activa se sirve bajo la ruta de proyecto `https://senarzuniga.github.io/ingesite.github.io/`.
+- También existe configuración para Netlify, incluyendo funciones serverless para eventos de vídeo.
+
+UTILIDADES PRINCIPALES
+
+- `scripts/sync_videos.py`: sincroniza vídeos y regenera catálogo y páginas.
+- `scripts/upload_videos.py`: copia vídeos y reconstruye el índice público.
+- `scripts/sync_docs.py`: sincroniza documentación pública.
+- `scripts/regenerate_docs_json.py`: rehace índices de documentación cuando cambia el contenido.
+
+RESUMEN
+
+Este repositorio no es solo una web informativa. Es un ecosistema operativo donde la parte pública muestra servicios y soluciones, mientras que la parte documental y multimedia organiza vídeos, PDFs y material técnico para acceso rápido y mantenimiento centralizado.
