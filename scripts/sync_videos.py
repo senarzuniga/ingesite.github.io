@@ -116,6 +116,13 @@ def sync_from_source(src_dir: Path):
                 try:
                     existing.unlink()
                     print(f"Removed {existing}")
+                except PermissionError as e:
+                    print(f"Skipped removal of {existing}: {e}")
+                except OSError as e:
+                    if getattr(e, 'winerror', None) == 32:
+                        print(f"Skipped removal of {existing}: file is in use")
+                    else:
+                        print(f"Failed to remove {existing}: {e}")
                 except Exception as e:
                     print(f"Failed to remove {existing}: {e}")
 

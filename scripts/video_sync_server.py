@@ -6,7 +6,9 @@ http://localhost:8600/sync to update videos.
 """
 import os
 import json
+import shutil
 import subprocess
+import sys
 from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
@@ -26,6 +28,28 @@ CORS(app)
 # watcher instance (started/stopped via endpoints)
 WATCHER = None
 
+
+def _resolve_python_executable():
+    candidates = []
+    env_py = os.environ.get('PYTHON')
+    if env_py:
+        candidates.append(env_py)
+    current = getattr(sys, 'executable', None)
+    if current:
+        candidates.append(current)
+    repo_venv = ROOT / '.venv' / 'Scripts' / ('python.exe' if os.name == 'nt' else 'python')
+    if repo_venv.exists():
+        candidates.append(str(repo_venv))
+    candidates.extend(['python', 'py'])
+    for candidate in candidates:
+        if not candidate:
+            continue
+        if os.path.isfile(candidate):
+            return candidate
+        if shutil.which(candidate):
+            return candidate
+    return env_py or 'python'
+
 @app.route('/list', methods=['GET'])
 def list_videos():
     j = PUBLIC_VIDEOS / 'videos.json'
@@ -37,7 +61,7 @@ def list_videos():
 def sync():
     # Run the sync script
     try:
-        py = os.environ.get('PYTHON', 'python')
+        py = _resolve_python_executable()
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
         # optional source path can be provided as JSON { "source": "C:\\path\\to\\videos" }
@@ -55,7 +79,7 @@ def sync():
 @app.route('/sync_docs', methods=['POST','GET'])
 def sync_docs():
     try:
-        py = os.environ.get('PYTHON', 'python')
+        py = _resolve_python_executable()
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
         data = request.get_json(silent=True) or {}
@@ -171,7 +195,7 @@ class _DirWatcher:
             self._thread.join(timeout=2)
 
     def _run(self):
-        py = os.environ.get('PYTHON', 'python')
+        py = _resolve_python_executable()
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
         while not self._stop.is_set():
