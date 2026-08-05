@@ -1,0 +1,175 @@
+En el respositorio ingesite: "C:\Users\Inaki Senar\Documents\GitHub\ingesite.github.io",  se creo la estructura necesaria para el contenido de la siguiente landing page:
+
+https://ingesitehub.netlify.app/solutions/ingetrans
+
+
+Se construyó como una landing page corporativa estática, con un enfoque muy claro en “producto + valor técnico + contacto”.
+
+Cómo se creó
+
+Estructura HTML
+La página está escrita en un único archivo estático:
+ingetrans.html
+Tiene esta estructura:
+
+Estructura  HTML INGECART 
+
+Header:
+logo
+menú de navegación
+botón de contacto
+Main:
+imagen destacada principal
+bloque de título y descripción
+bloque de contenido técnico y beneficios
+sección de contacto
+Footer:
+pie de marca
+Contenido del cuerpo
+El contenido se escribió a mano en el HTML, no se generó desde JSON ni desde un CMS. Está compuesto por:
+título principal
+subtítulo
+párrafo de introducción
+lista de funciones clave
+tabla de especificaciones técnicas
+lista de beneficios
+resumen de inversión
+caso de estudio
+datos de contacto
+Estilo visual
+El estilo no está embebido en el HTML, sino que viene de la hoja global:
+styles.css
+Eso aporta:
+
+fondo oscuro tipo tech
+degradados azul/naranja
+tipografía Poppins para títulos e Inter para texto
+botones con estilo corporativo
+tarjetas con borde, sombra y fondo translúcido
+Imágenes usadas
+La landing usa estas imágenes:
+Imagen principal:
+
+ingetrans-click.png
+Imagen de respaldo si falla la anterior:
+
+ingecart-world.png
+Logo de marca:
+
+simple-in.png
+La imagen principal se inserta así en el HTML:
+
+se pone dentro de un enlace clicable
+tiene un overlay “Ver vídeo”
+si no carga, se reemplaza por una imagen alternativa
+Cómo se alimenta el contenido
+El contenido de la landing se alimenta directamente desde:
+el propio archivo HTML
+los recursos estáticos de la web
+la hoja de estilos global
+No depende de una base de datos ni de un componente dinámico.
+
+Qué hace que se vea como una landing page
+La estructura está pensada para:
+captar atención con una imagen grande arriba
+explicar rápido qué es el producto
+mostrar datos técnicos y beneficios
+terminar con un CTA de contacto
+Resumen corto
+
+La landing se creó como una página estática HTML con:
+
+contenido redactado manualmente,
+diseño definido en styles.css,
+imágenes almacenadas en images,
+y un enfoque de marketing industrial / B2B.
+Si quieres, puedo prepararte ahora una versión mucho más útil para reutilizarla en otra app:
+
+como plantilla en JSON,
+como componente React,
+o como esquema de contenido listo para copiar en otro proyecto.
+
+
+Ahora quiero hacer tantas nuevas paginas estáticas igual que la de ingetrnas, pero con los contenidos apropiados y que he definido para cad bloque de producto, productos #2 a 6.
+
+Como usar la informacion de cada prodcuto: 
+
+Esta parte de inicio queda igual para todos los productos:
+
+"Header:
+logo
+menú de navegación
+botón de contacto",
+
+
+Cuerpo de pagina:
+
+Main:
+"imagen destacada principal": cada producto tiene la ruta a su imagen particular en la ruta que sigue al nombre "Picture"
+"bloque de título y descripción":  debe generarse  por los agentes coordinados por el mission manager y el asistente en base al contenido especifico de cada producto en  la ruta a su contenido particular en la ruta que sigue al nombre "content"
+"bloque de contenido técnico y beneficios":debe generarse  por los agentes coordinados por el mission manager y el asistente en base al contenido especifico de cada producto en  la ruta a su contenido particular en la ruta que sigue al nombre "content", y aprovecahndo todas las capacidades IS Backoffice para generacion de contenidos.
+
+"sección de contacto
+Footer:
+pie de marca": queda igual para todos los productos.
+
+Contenido del cuerpo
+El contenido se escribió a mano en el HTML, no se generó desde JSON ni desde un CMS. Está compuesto por:
+
+"título principal" : texto que sigue a "Title" para cada prodcuto
+"subtítulo" : para estos productos no usaremos subtitulo
+"párrafo de introducción": debe generarse  por los agentes coordinados por el mission manager y el asistente en base al contenido especifico de cada producto en  la ruta a su contenido particular en la ruta que sigue al nombre "content", y aprovecahndo todas las capacidades IS Backoffice para generacion de contenidos.
+
+"lista de funciones clave":debe generarse  por los agentes coordinados por el mission manager y el asistente en base al contenido especifico de cada producto en  la ruta a su contenido particular en la ruta que sigue al nombre "content", y aprovecahndo todas las capacidades IS Backoffice para generacion de contenidos.
+
+"tabla de especificaciones técnicas":debe generarse  por los agentes coordinados por el mission manager y el asistente en base al contenido especifico de cada producto en  la ruta a su contenido particular en la ruta que sigue al nombre "content", y aprovecahndo todas las capacidades IS Backoffice para generacion de contenidos.
+
+"lista de beneficios": debe generarse  por los agentes coordinados por el mission manager y el asistente en base al contenido especifico de cada producto en  la ruta a su contenido particular en la ruta que sigue al nombre "content", y aprovecahndo todas las capacidades IS Backoffice para generacion de contenidos.
+
+"resumen de inversión": no aplica a estos productos
+"caso de estudio": no aplica a estos productos
+"datos de contacto": no aplica a estos productos
+
+Aqui los productos sobre los que crear nuevas paginas est´ticas:
+
+PRODUCT #2
+
+Title: "AMR-Driven Intralogistics"
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\AMR INTRALOGISTICS\TECHNICAL REPORT AMR INTR.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\INTRALOGISTICS AMR.png"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/amr-palletizing-interlayer-management-v1_editado.html?ref=a"
+
+
+PRODUCT #3
+
+Title: "SR-1400: unified solution for collecting and transporting all waste"
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\SISTEMA RETAL\Engineered Waste Logistics System.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\Ingecart SR-1400 Waste System.png"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/sr1400-la-solucion-para-recoger-y-transportar-to720p_hd.html?ref=s"
+
+
+
+PRODUCT #4
+
+Title: "Plug&Play Easypack+Palletizer "
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\PALETIZADOR\Paletizador Plug and Play\Resumen ejecutivo.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\Plug and Play Palletizer.png"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/plugplay-palletizer-short_editado.html?ref=w"
+
+
+PRODUCT #5
+
+Title: "Heavy Duty PAlletizer + Squaring System"
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\PALETIZADOR\Heavy Duty Palletizer\Content.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\Paletizador\HEAVY DUTY PALLETIZER.jpg"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/paletizador-ffg-robot-paletizador-el-mas-rapido720p_hd.html?ref=q"
+
+PRODUCT #6
+
+Title: "AUTOMATIC TRUCK LOADING"
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\SISTEMA CARGA AUTO CAMIONES\Automatic Truck Loading Systems.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\sistema carga camiones automatica\TRUCK AUTOLOADING INCART.jpg"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/truck-auto-loading.html?ref=z"
+
+Estas paginas deberan ser colgadas en "https://ingesitehub.netlify.app/solutions/", como la que ya existe de Ingetrans. Toda la documentacion y archivos que generes guardalos en : "C:\Users\Inaki Senar\Documents\GitHub\IS-BACKOFFICE\informes\ingecart-marketing-kit\ingecart-marketing-kit\content-kit", y en C:\Users\Inaki Senar\Documents\GitHub\ingesite.github.io\solutions, guarda los HTMLs para las paginas est´ticas.
+

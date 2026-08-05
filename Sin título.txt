@@ -1,0 +1,46 @@
+
+PRODUCT #1
+
+https://ingesitehub.netlify.app/solutions/ingetrans
+
+PRODUCT #2
+
+AMR-Driven Intralogistics.
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\AMR INTRALOGISTICS\TECHNICAL REPORT AMR INTR.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\INTRALOGISTICS AMR.png"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/amr-palletizing-interlayer-management-v1_editado.html?ref=a"
+
+
+PRODUCT #3
+
+SR-1400: unified solution for collecting and transporting all waste .
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\SISTEMA RETAL\Engineered Waste Logistics System.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\Ingecart SR-1400 Waste System.png"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/sr1400-la-solucion-para-recoger-y-transportar-to720p_hd.html?ref=s"
+
+
+
+PRODUCT #4
+
+Plug&Play Easypack+Palletizer 
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\PALETIZADOR\Paletizador Plug and Play\Resumen ejecutivo.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\Plug and Play Palletizer.png"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/plugplay-palletizer-short_editado.html?ref=w"
+
+
+PRODUCT #5
+
+Heavy Duty PAlletizer + Squaring System.
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\PALETIZADOR\Heavy Duty Palletizer\Content.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\Paletizador\HEAVY DUTY PALLETIZER.jpg"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/paletizador-ffg-robot-paletizador-el-mas-rapido720p_hd.html?ref=q"
+
+PRODUCT #6
+
+AUTOMATIC TRUCK LOADING
+content:"C:\Users\Inaki Senar\Documents\INGECART\PRODUCTO\SISTEMA CARGA AUTO CAMIONES\Automatic Truck Loading Systems.txt"
+Picture:"C:\Users\Inaki Senar\Documents\INGECART\MARKETING\ARTWORK\sistema carga camiones automatica\TRUCK AUTOLOADING INCART.jpg"
+Link into "play" orange hexagon icon:"https://ingesitehub.netlify.app/public/videos/truck-auto-loading.html?ref=z"
+
+
+
