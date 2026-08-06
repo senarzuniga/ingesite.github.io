@@ -1,101 +1,81 @@
-NOTA: Este repositorio ya está configurado para usar Git LFS para archivos de vídeo (.mp4, .mov, .mkv, .webm, .avi). He habilitado el tracking para futuros uploads, pero NO reescribí el historial del repositorio automáticamente (evita force-push inesperado). Si quieres que migre el historial a LFS, dímelo y lo haré tras tu confirmación.
+INSTRUCCIONES CORRECTAS DE CARGA DE VIDEOS Y DOCUMENTOS (REPO ACTUAL)
 
-INSTRUCCIONES PARA SUBIR NUEVOS VIDEOS Y DOCUMENTOS
+Estado validado en este repo:
+- La libreria publica de videos esta en public/videos.
+- El listado visible se renderiza desde public/videos/index.html.
+- Cada video puede tener pagina propia en public/videos/<slug>.html.
+- En este momento existen dos almacenes de video: assets/videos y public/videos.
+- Para evitar problemas de rutas en modo local (file:///), usa como referencia principal los archivos dentro de public/videos cuando el reproductor este dentro de public/videos.
 
-Resumen rápido:
-- Carpeta pública (para servir en la web): `public/videos` y `public/docs`.
-- Carpeta de trabajo / originales: `assets/videos` y `assets/docs` (guarda aquí los orígenes).
-- Los archivos visibles deben estar en `public/...` con nombres "slugificados" (minúsculas, sin espacios, sin caracteres acentuados, separados por guiones).
+RECOMENDACION OPERATIVA
+- Mantener una copia original en assets/videos (archivo maestro).
+- Mantener la copia publica en public/videos (archivo servido en la libreria de videos).
+- En las paginas dentro de public/videos, usar rutas locales del mismo directorio cuando sea posible:
+  - Ejemplo correcto: TRUCKLOADING%20SYSTEM.mp4
+  - Evita depender de ../../assets/videos/... si no es necesario.
 
-Flujo recomendado (Windows PowerShell / Git):
+1) PREPARAR NOMBRE DE ARCHIVO
+- Usa nombre web-friendly: minusculas, ASCII, guiones, sin acentos ni espacios.
+- Si llega con espacios o mayusculas, puede funcionar, pero no es lo ideal para mantenimiento.
 
-1) Preparar archivo localmente
-- Renombra el archivo para que sea web-friendly:
-  - Usa letras ASCII, minúsculas, guiones en vez de espacios.
-  - Ejemplo: "FOLDER GLUER _ Easy Pack - ESPAÑOL(720P_HD).mp4" -> "folder-gluer-easy-pack-espanol-720p-hd.mp4"
+2) COPIAR ARCHIVOS
+Ejemplo PowerShell:
 
-2) Si el archivo es grande (>50 MB)
-- Usar Git LFS (recomendado para MP4 grandes):
-  - Instala: `git lfs install`
-  - Rastrear MP4: `git lfs track "*.mp4"`
-  - Asegúrate de commitear `.gitattributes` antes de añadir grandes binarios.
+Copy-Item -Path "C:\ruta\mi-video.mp4" -Destination "assets/videos/mi-video.mp4"
+Copy-Item -Path "C:\ruta\mi-video.mp4" -Destination "public/videos/mi-video.mp4"
 
-3) Copiar el archivo al repositorio
-- Copiar el original a `assets/videos` y la copia pública a `public/videos` (nombre slugificado):
+3) ANADIR / ACTUALIZAR TARJETA EN public/videos/index.html
+- Duplica una tarjeta <article class="card"> y cambia:
+  - Titulo
+  - source src
+  - enlace de descarga
+- Si la tarjeta esta dentro de public/videos/index.html y el mp4 tambien esta en public/videos, usa:
+  - src="mi-video.mp4"
+  - href="mi-video.mp4"
 
-PowerShell ejemplo:
+4) PAGINA INDIVIDUAL DEL VIDEO (OPCIONAL PERO RECOMENDADA)
+- Crear/editar public/videos/mi-video.html con:
+  - <source src="mi-video.mp4" type="video/mp4">
+  - boton descarga href="mi-video.mp4"
+- Para estilos en local y en web, usa:
+  - ../../css/styles.css
+  - y fallback https://ingesitehub.netlify.app/css/styles.css
 
-```powershell
-# desde la carpeta del repo
-Copy-Item -Path "C:\ruta\a\mi-video.mp4" -Destination "assets/videos\mi-video.mp4"
-Copy-Item -Path "assets/videos\mi-video.mp4" -Destination "public/videos\mi-video.mp4"
-```
+5) ENLAZAR DESDE SOLUCIONES
+- Si una pagina de producto abre el video, usa enlace relativo robusto:
+  - ../public/videos/mi-video.html
+- Evita enlaces absolutos al dominio cuando quieras compatibilidad local.
 
-4) Añadir una entrada en la landing `public/videos/index.html`
-- Abre `public/videos/index.html` y copia uno de los bloques `.card` existentes.
-- Actualiza:
-  - El `src` del `<source>` con el nuevo nombre (p. ej. `mi-video.mp4`).
-  - El texto `card-title`, `card-desc` y el `href` del botón de descarga (si quieres ofrecer descarga).
-- Guarda el archivo.
+6) GIT LFS (SI EL VIDEO ES GRANDE)
+- Recomendado para >50 MB.
 
-Consejo: si tienes scripts incluidos (`scripts/slugify_and_update_refs.py` o `scripts/consolidate_media.*`), puedes usarlos para automatizar renombrado y actualización de referencias.
-
-5) Commit & push
-```bash
-git add assets/videos/mi-video.mp4 public/videos/mi-video.mp4 public/videos/index.html
-git commit -m "feat(videos): add mi-video.mp4 — título descriptivo"
-git push origin main
-```
-
-6) Verificar en el sitio
-- Espera 1-2 minutos a que GitHub Pages actualice la CDN.
-- Prueba la URL pública:
-  - Landing: `https://<usuario>.github.io/<repo>/public/videos/`
-  - Archivo directo: `https://<usuario>.github.io/<repo>/public/videos/mi-video.mp4`
-- Verifica cabeceras (opcional):
-```bash
-curl -I "https://<usuario>.github.io/<repo>/public/videos/mi-video.mp4"
-# Debe mostrar Content-Type: video/mp4 y Content-Length > 1 y Accept-Ranges: bytes
-```
-
-7) Compatibilidad de reproducción
-- Para reproducción en navegador, el MP4 debería usar H.264 (AVC) + AAC audio para máxima compatibilidad.
-- Si el video no se reproduce en línea pero sí se descarga, verifica:
-  - `Content-Type` en la respuesta (debe ser `video/mp4`).
-  - `Content-Length` mayor a 1 y `Accept-Ranges: bytes` (soporte para seeking/streaming).
-  - Si ves `Content-Length: 1`, fuerza una reconstrucción de Pages con un commit vacío: `git commit --allow-empty -m "chore(pages): trigger rebuild" && git push`.
-
-8) Subir documentos PDF / DOCX
-- Para PDFs públicos, copia a `public/docs` y enlaza desde tu página.
-- Si quieres que se muestren inline, `Content-Disposition` debe ser `inline` (la configuración de `netlify.toml` en este repo ya lo hace para Netlify). En GitHub Pages suele mostrarse inline por defecto.
-
-9) Buenas prácticas
-- Mantén los originales en `assets/` y las copias públicas que sirves en `public/`.
-- Si trabajas con muchos archivos grandes, usa Git LFS o un servicio de hosting de vídeo (YouTube/Vimeo/Cloud CDN) y embebe/pon enlaces.
-- Mantén backups locales y no borres `backups/` hasta que confirmes que todo está OK en producción.
-
-10) Ejemplo completo (PowerShell):
-```powershell
-# instalar LFS si es necesario (una sola vez)
 git lfs install
 git lfs track "*.mp4"
 git add .gitattributes
 git commit -m "chore: track mp4 with git-lfs"
 
-# añadir archivo
-Copy-Item -Path "C:\Descargas\mi-video.mp4" -Destination "assets/videos\mi-video.mp4"
-Copy-Item -Path "assets/videos\mi-video.mp4" -Destination "public/videos\mi-video.mp4"
+7) COMMIT Y PUSH
 
-# editar public/videos/index.html para añadir tarjeta
-# luego:
-git add assets/videos/mi-video.mp4 public/videos/mi-video.mp4 public/videos/index.html
+git add assets/videos/mi-video.mp4 public/videos/mi-video.mp4 public/videos/index.html public/videos/mi-video.html
 git commit -m "feat(videos): add mi-video"
 git push origin main
-```
 
-Si quieres, puedo:
-- Añadir automáticamente la tarjeta HTML al final de `public/videos/index.html` (proveer título y descripción),
-- O integrar `git lfs track` y migrar mp4 grandes al LFS en este repo.
+8) VERIFICACION FINAL
+- Probar en local:
+  - public/videos/index.html
+  - public/videos/mi-video.html
+- Probar en web:
+  - https://<usuario>.github.io/<repo>/public/videos/
+  - https://<usuario>.github.io/<repo>/public/videos/mi-video.html
 
----
-Fecha: 2026-06-10
+CASO YA APLICADO: TRUCKLOADING SYSTEM
+- Archivo cargado y servido en:
+  - public/videos/TRUCKLOADING SYSTEM.mp4
+- Tarjeta actualizada en:
+  - public/videos/index.html
+- Pagina individual actualizada en:
+  - public/videos/truckloading-system.html
+- Pagina de solucion enlazada al video correcto en:
+  - solutions/automatic-truck-loading.html
+
+Fecha de revision: 2026-08-06

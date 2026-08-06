@@ -1,21 +1,22 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SR1400 - La solución para recoger y transportar to(720P_HD)</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>SR1400 - La soluciÃ³n para recoger y transportar to(720P_HD)</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="https://ingesitehub.netlify.app/css/styles.css">
 </head>
 <body>
     <div class="site-shell" style="padding:1rem">
-        <h1>SR1400 - La solución para recoger y transportar to(720P_HD)</h1>
+        <h1>SR1400 - La soluciÃ³n para recoger y transportar to(720P_HD)</h1>
         <video controls preload="metadata" width="100%" style="max-height:70vh;">
             <source src="../../assets/videos/SR1400%20-%20La%20soluci%C3%B3n%20para%20recoger%20y%20transportar%20to%28720P_HD%29.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <p style="color:var(--text-muted);">15.4 MB · 2026-05-25T12:30:40</p>
+        <p style="color:var(--text-muted);">15.4 MB Â· 2026-05-25T12:30:40</p>
         <p><a class="button button-primary" href="../../assets/videos/SR1400%20-%20La%20soluci%C3%B3n%20para%20recoger%20y%20transportar%20to%28720P_HD%29.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
-        <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
+        <p><button id="copy-share" class="button">ðŸ”— Copiar enlace compartible</button></p>
     </div>
 
     <script>
@@ -25,9 +26,11 @@
             var target = new URL('sr1400-la-solucion-para-recoger-y-transportar-to720p_hd.html', location.href);
             if(label){ target.searchParams.set('ref', label); }
             var url = target.toString();
-            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/SR1400 - La solución para recoger y transportar to(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/SR1400 - La soluciÃ³n para recoger y transportar to(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
         });
-        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/SR1400 - La solución para recoger y transportar to(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/SR1400 - La soluciÃ³n para recoger y transportar to(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
     </script>
 </body>
 </html>
+
+
