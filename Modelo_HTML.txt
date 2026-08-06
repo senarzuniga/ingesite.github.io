@@ -1,53 +1,311 @@
-:root {
-  --bg-primary: #0D0F13;
-  --bg-surface: #161920;
-  --bg-card: #1C1F28;
-  --bg-sidebar: #111318;
-  --bg-header: #0D0F13;
-  --bg-elevated: #20232C;
-  --bg-input: #1C1F28;
-  --bg-table-row: #191C23;
-  --bg-hover: #23273200;
-  --border-subtle: #1E2128;
-  --border-default: #2A2D38;
-  --border-strong: #40455A;
-  --border-focus: #FF6A00;
-  --text-primary: #F2F3F5;
-  --text-secondary: #8D929F;
-  --text-disabled: #4A4E58;
-  --text-inverse: #0D0F13;
-  --accent: #FF6A00;
-  --accent-hover: #FF8330;
-  --accent-dark: #CC5500;
-  --accent-muted: rgba(255,106,0,0.12);
-  --success: #22C55E;
-  --success-muted: rgba(34,197,94,0.12);
-  --warning: #F59E0B;
-  --warning-muted: rgba(245,158,11,0.12);
-  --error: #EF4444;
-  --error-muted: rgba(239,68,68,0.12);
-  --info: #60A5FA;
-  --info-muted: rgba(96,165,250,0.12);
-  --link: #FF8330;
-  --shadow: rgba(0,0,0,0.6);
-  --chart-grid: #262A33;
-  --chart-axis: #4A4E58;
-  --metric-value: #FF6A00;
-  --btn-primary-bg: #FF6A00;
-  --btn-primary-text: #0D0F13;
-  --btn-secondary-bg: #1C1F28;
-  --btn-secondary-text: #F2F3F5;
-  --badge-bg: rgba(255,106,0,0.15);
-  --badge-text: #FF8330;
-}
+MODELO MAESTRO - HTML CORPORATIVO INGECART / ING_DIGHUB
+=======================================================
 
-body { margin: 0; background: var(--bg-primary); color: var(--text-primary); font-family: Segoe UI, Arial, sans-serif; }
-.dipc-shell { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
-.dipc-sidebar { background: var(--bg-sidebar); color: var(--text-primary); padding: 18px; border-right: 1px solid var(--border-default); }
-.dipc-main { padding: 18px 24px; background: var(--bg-primary); }
-.dipc-hero, .dipc-section, .dipc-component { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
-.dipc-lang-switch { position: sticky; top: 0; z-index: 12; display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--border-default); background: var(--bg-elevated); }
-.dipc-lang-switch button { background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 1px solid var(--border-default); border-radius: 999px; padding: 4px 10px; }
-@media (max-width: 1024px) { .dipc-shell { grid-template-columns: 1fr; } }
-@media print { body { background: #fff; color: #111; } }
-@media (prefers-color-scheme: dark) { body { background: var(--bg-primary); color: var(--text-primary); } }
+OBJETIVO
+--------
+Crear, actualizar o ampliar paginas HTML corporativas de INGECART / ING_DIGHUB dentro de este repositorio, reutilizando el sistema visual existente y respetando la compatibilidad dual:
+- web publicada
+- apertura directa en file:///
+
+Este archivo debe servir como guia operativa unica para generar:
+- paginas de producto
+- informes ejecutivos
+- presentaciones continuas
+- paginas de servicios
+- viewers o landings de video/documentacion cuando aplique
+
+ESTADO REAL DEL REPO A FECHA ACTUAL
+----------------------------------
+Paginas principales activas:
+- index.html
+- services/index.html
+- documentation/index.html
+- public/videos/index.html
+- solutions/ingecart-plant-automation-presentation.html
+
+Portfolio actual de soluciones:
+- solutions/ingetrans.html
+- solutions/rfid-reel-management-system.html
+- solutions/amr-intralogistics.html
+- solutions/sr1400.html
+- solutions/plug-play-palletizer.html
+- solutions/heavy-duty-palletizer.html
+- solutions/automatic-truck-loading.html
+- solutions/ingecart-plant-automation-presentation.html
+
+Otros documentos de referencia utiles:
+- solutions/ingetrans_DigitalTwin.html
+- solutions/ds-smith-cognac-ingetrans-capacity-validation.html
+
+ENTRADAS MINIMAS PARA CREAR O ACTUALIZAR UN HTML
+------------------------------------------------
+1) Titulo principal.
+2) Subtitulo o posicionamiento comercial.
+3) Objetivo de la pagina:
+   - producto
+   - informe
+   - presentacion
+   - servicio
+4) Contenido fuente:
+   - TXT
+   - notas del usuario
+   - contenido existente del site
+   - tablas / KPIs / claims
+5) Imagen principal y assets complementarios.
+6) Ruta final deseada.
+7) Idioma o estrategia de idioma:
+   - EN
+   - ES
+   - conmutador EN/ES si el usuario lo pide
+
+REGLAS OBLIGATORIAS DE IMPLEMENTACION
+-------------------------------------
+1) Crear HTML semantico, limpio y mantenible.
+2) Reutilizar css/styles.css siempre que sea posible.
+3) No introducir un sistema visual nuevo si la pagina pertenece al ecosistema actual.
+4) Mantener compatibilidad con web y file:///.
+5) Evitar rutas absolutas de raiz en paginas que deban abrirse fuera del site.
+6) Usar rutas relativas correctas segun la carpeta del archivo.
+7) Anadir fallback remoto solo cuando ayude realmente a la apertura local.
+8) Mantener responsive completo.
+9) Mantener alt descriptivo, jerarquia H1/H2/H3 y anclas funcionales.
+10) No romper el comportamiento del site principal ni del Media Hub.
+
+SISTEMA VISUAL CORPORATIVO VIGENTE
+----------------------------------
+Direccion visual:
+- dark industrial tech
+- corporativo
+- moderno
+- orientado a automatizacion, ingenieria y operacion industrial
+
+Tipografia:
+- Titulos: Poppins
+- Texto UI/body: Inter
+
+Colores base recomendados:
+- Fondo principal: #080f14
+- Fondo secundario: #0c141d
+- Fondo terciario: #1a212b
+- Texto principal: #edeff2
+- Texto secundario: #9aa8b7
+- Acento principal: #ff6a00
+- Acento secundario: #0b3bff
+- Acento apoyo: #3ac7ff
+- Verde estado: #22c55e
+- Bordes suaves: rgba(255, 255, 255, 0.08)
+
+Piezas visuales tipicas:
+- header sticky
+- hero con imagen y copy
+- card / glass panel
+- botones primarios y secundarios
+- tablas tecnicas
+- bloques de beneficios
+- CTA de contacto
+- footer corporativo
+
+ESTRUCTURA RECOMENDADA SEGUN TIPO DE PAGINA
+-------------------------------------------
+A) Pagina de producto
+- Header
+- Hero con imagen o video link
+- Overview
+- Product Description
+- Key Features
+- Technical Specifications
+- Benefits:
+  - Industrial
+  - Operational
+  - Productivity
+  - Automation
+  - Safety
+  - Maintenance
+- Contact
+- Footer
+
+B) Informe ejecutivo
+- Header
+- Hero / portada
+- Executive Summary
+- KPI cards
+- Analysis blocks
+- Tables / findings
+- Conclusion
+- Contact
+- Footer
+
+C) Presentacion continua
+- Sidebar sticky con indice real
+- Seccion general de marca
+- Arquitectura general
+- Bloques de portfolio
+- Bloques de servicios / consultoria si aplica
+- Contact final
+- Footer
+
+D) Pagina de servicios
+- Header
+- Hero
+- Lista estructurada de capacidades
+- Respuesta / cobertura / soporte / ingenieria
+- CTA
+- Footer
+
+RUTAS: REGLA CRITICA DE COMPATIBILIDAD
+-------------------------------------
+Regla general:
+- Si la pagina debe abrir en file:///, evitar href o src que empiecen por / salvo que el archivo solo exista para produccion web.
+
+Convenciones correctas por carpeta:
+- En raiz (index.html):
+  - css/styles.css
+  - assets/images/...
+  - soluciones enlazadas con /solutions/... solo si son parte del site servido
+- En /solutions:
+  - ../css/styles.css
+  - ../assets/images/...
+  - ../public/videos/... si se enlaza a paginas o archivos publicos
+- En /services:
+  - ../css/styles.css
+  - ../assets/images/...
+  - ../documentation/index.html
+- En /documentation:
+  - ../css/styles.css
+  - ../assets/images/...
+- En /public/videos:
+  - ../../css/styles.css
+  - usar mp4 del mismo directorio cuando el archivo publico ya existe ahi
+
+Fallbacks aprobados cuando hacen falta:
+- CSS remoto: https://ingesitehub.netlify.app/css/styles.css
+- Imagenes remotas: https://ingesitehub.netlify.app/assets/images/...
+
+REGLAS ESPECIFICAS PARA VIDEOS
+------------------------------
+El Media Hub del home carga videos desde:
+- public/videos/videos.json
+
+Cada entrada debe incluir de forma consistente:
+- filename
+- title
+- url
+- share_url
+- slug
+- size
+- mtime
+
+Si un video debe ser visible desde el panel de videos del site:
+1) El archivo debe existir en public/videos o la URL del JSON debe apuntar a una ruta servida realmente.
+2) videos.json debe referenciar la URL correcta.
+3) Si existe pagina individual, usar public/videos/<slug>.html
+4) La pagina de producto debe enlazar a la pagina individual del video con ruta relativa robusta.
+
+Regla practica:
+- Si el mp4 esta en public/videos y la pagina individual tambien, usar src="NOMBRE.mp4" y href="NOMBRE.mp4" dentro de esa pagina.
+
+REGLAS ESPECIFICAS PARA EL BLOQUE PRODUCT SOLUTIONS DEL HOME
+------------------------------------------------------------
+El bloque de referencia esta en index.html bajo:
+- section id="solutions"
+- titulo: Product Solutions
+
+Cuando se crea una nueva pagina de producto relevante para el site, normalmente hay que hacer tres cosas:
+1) Crear o actualizar el HTML en /solutions.
+2) Anadir la tarjeta correspondiente al bloque Product Solutions del home.
+3) Si hay video asociado, asegurar presencia en public/videos/videos.json y coherencia con la landing de videos.
+
+Cada tarjeta de Product Solutions debe incluir:
+- enlace a /solutions/archivo.html
+- thumbnail
+- titulo claro
+- subtitulo corto orientado a valor industrial
+
+PRESENTACION MAESTRA: REGLAS ACTUALES
+-------------------------------------
+Archivo maestro actual:
+- solutions/ingecart-plant-automation-presentation.html
+
+Patrones actuales que deben respetarse cuando se edite:
+- sidebar sticky con nombres reales, no Product 1..N
+- switch EN/ES cuando el usuario lo pida
+- bloque general de marca
+- imagen general antes de General Architecture
+- bloques de portfolio enlazados a paginas dedicadas
+- bloques de Services y Direction & Audit cuando el alcance lo requiera
+
+ASSETS DE REFERENCIA DEL REPO
+-----------------------------
+Marca y base:
+- assets/images/simple-in.png
+- assets/images/ingecart-world.png
+- assets/images/ingetrans-click.png
+- assets/images/industrial-network.svg
+
+Assets nuevos ya integrados en portfolio:
+- assets/images/INTRALOGISTICS AMR.png
+- assets/images/Ingecart SR-1400 Waste System.png
+- assets/images/Plug and Play Palletizer.png
+- assets/images/HEAVY DUTY PALLETIZER.jpg
+- assets/images/TRUCK AUTOLOADING INCART.jpg
+- assets/images/Industrial RFID Roll Tracking Infographic.png
+- assets/images/weight control system.jpg
+- assets/images/Corrugated Plant Automation Solutions v2 IMAGEN GENERAL.jpg
+- assets/images/PANEL GENERAL BLACO INGECART.png
+- assets/images/Ingecart Agil by Desing.png
+- assets/images/DIRECTION & AUDIT.png
+
+COMPORTAMIENTO CON CONTENIDO VARIABLE
+-------------------------------------
+1) Si faltan numeros concretos:
+- mantener estructura
+- no inventar datos
+- usar texto cualitativo o TBD solo si es necesario
+
+2) Si hay mucho contenido fuente:
+- agrupar en Overview / Features / Specs / Benefits / CTA
+- priorizar claridad comercial y legibilidad
+
+3) Si el usuario aporta TXT largos:
+- extraer propuesta de valor
+- convertir texto plano en bloques orientados a decision industrial
+- evitar pegar contenido bruto sin estructura
+
+4) Si hay multiples imagenes:
+- usar primero la hero principal
+- el resto como apoyo en bloques o consecutivas si el usuario lo pide expresamente
+
+CHECKLIST FINAL ANTES DE DAR POR BUENO UN HTML
+----------------------------------------------
+1) Abre bien en web.
+2) Abre bien en file:/// si el usuario lo necesita.
+3) Sin errores de sintaxis.
+4) Rutas relativas correctas.
+5) CTA y contacto presentes si corresponde.
+6) Imagenes con alt y fallback cuando aplique.
+7) Coherencia con el sistema visual actual.
+8) Si es producto nuevo, revisar si debe entrar tambien en:
+   - Product Solutions del home
+   - presentacion maestra
+   - videos.json / Media Hub
+
+SALIDA ESPERADA DE UN AGENTE AL TERMINAR
+----------------------------------------
+1) HTML creado o actualizado.
+2) Resumen breve de cambios.
+3) Confirmacion de rutas corregidas para local/web si aplica.
+4) Validacion sin errores.
+5) Si corresponde, confirmacion de commit/push solo cuando el usuario lo pida.
+
+PROMPT CORTO REUTILIZABLE
+-------------------------
+"Crea o actualiza un HTML corporativo INGECART/ING_DIGHUB reutilizando css/styles.css y el lenguaje visual actual del repo. Debe ser compatible con web y file:/// usando rutas relativas correctas y fallback remoto solo cuando aporte valor. Si es una nueva solucion, anadela tambien al bloque Product Solutions del home y sincroniza videos si hay media asociada. Valida que no haya errores."
+
+ANEXO
+-----
+Este archivo ya no es una guia abstracta. Debe mantenerse sincronizado con el estado real del repositorio y actualizarse cuando cambien:
+- portfolio de soluciones
+- reglas de rutas
+- comportamiento del Media Hub
+- presentacion maestra
+- convenciones de assets o compatibilidad local/web

@@ -4,22 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Documentación — INGECART</title>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://ingesitehub.netlify.app/css/styles.css">
 </head>
 <body>
   <div class="site-shell">
     <header class="site-header">
-      <a class="brand-lockup" href="/index.html" aria-label="Go to home">
-        <img class="brand-logo" src="/assets/images/simple-in.png" alt="ING_DIGHUB logo">
+      <a class="brand-lockup" href="../index.html" aria-label="Go to home">
+        <img class="brand-logo" src="../assets/images/simple-in.png" alt="ING_DIGHUB logo" onerror="this.onerror=null;this.src='https://ingesitehub.netlify.app/assets/images/simple-in.png';">
         <div>
           <p class="eyebrow">Documentación</p>
           <span class="brand-name">INGECART</span>
         </div>
       </a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="/index.html#ecosystem">Ecosystem</a>
-        <a href="/index.html#services">Services</a>
-        <a href="/index.html#contact">Contact</a>
+        <a href="../index.html#ecosystem">Ecosystem</a>
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
       <a class="button button-primary nav-cta" href="mailto:cgo@ingecart.es">Contact Us</a>
     </header>
@@ -59,11 +60,26 @@
   </div>
 
   <script>
+    const IS_FILE_MODE = location.protocol === 'file:';
+
+    function resolveDocsJsonUrl() {
+      return IS_FILE_MODE ? '../public/docs/docs.json' : '/public/docs/docs.json';
+    }
+
+    function resolveDocUrl(url) {
+      if (!url) return '#';
+      if (!IS_FILE_MODE) return url;
+      if (url.startsWith('/public/docs/')) {
+        return '../public/docs/' + url.split('/').pop();
+      }
+      return url;
+    }
+
     async function fetchDocs() {
       const container = document.getElementById('docs-list');
       container.innerHTML = '<p style="color:var(--text-muted);">Cargando documentos...</p>';
       try {
-        const res = await fetch('/public/docs/docs.json');
+        const res = await fetch(resolveDocsJsonUrl());
         if (!res.ok) throw new Error('No docs.json');
         const docs = await res.json();
         if (!Array.isArray(docs) || docs.length === 0) {
@@ -79,7 +95,7 @@
           const info = document.createElement('div'); info.style.color='var(--text-muted)'; info.style.fontSize='0.95rem'; info.textContent = (d.size? (Math.round(d.size/1024)+' KB') : '') + (d.mtime? (' · '+new Date(d.mtime).toLocaleString()): '');
           meta.appendChild(title); meta.appendChild(info);
           const actions = document.createElement('div'); actions.style.display='flex'; actions.style.gap='8px';
-          const download = document.createElement('a'); download.className='button'; download.textContent='Descarga'; download.href = d.url; download.setAttribute('download','');
+          const download = document.createElement('a'); download.className='button'; download.textContent='Descarga'; download.href = resolveDocUrl(d.url); download.setAttribute('download','');
           const view = document.createElement('button'); view.className='button button-secondary'; view.textContent='Ver en línea'; view.addEventListener('click', ()=> openDoc(d));
           actions.appendChild(download); actions.appendChild(view);
           li.appendChild(meta); li.appendChild(actions); list.appendChild(li);
@@ -97,8 +113,9 @@
       const title = document.getElementById('doc-modal-title');
       const dl = document.getElementById('doc-modal-download');
       title.textContent = d.title || d.filename;
-      dl.href = d.url;
-      try { frame.src = d.url; } catch(e) { frame.src = d.url; }
+      const docUrl = resolveDocUrl(d.url);
+      dl.href = docUrl;
+      try { frame.src = docUrl; } catch(e) { frame.src = docUrl; }
       modal.style.display = 'block'; modal.setAttribute('aria-hidden','false');
     }
 

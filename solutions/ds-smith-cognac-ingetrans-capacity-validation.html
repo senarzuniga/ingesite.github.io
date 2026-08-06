@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DS Smith Cognac - INGETRANS Capacity Validation | ING_DIGHUB</title>
+  <meta name="description" content="Executive Digital Twin Simulation Report for DS Smith Cognac. Capacity validation of INGETRANS automated reel logistics for high-speed corrugated production.">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://ingesitehub.netlify.app/css/styles.css">
+  <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+</head>
+<body>
+  <div class="site-shell report-page">
+    <header class="report-header">
+      <a class="brand-lockup" href="../index.html" aria-label="Go to home">
+        <img class="brand-logo" src="../assets/images/simple-in.png" alt="ING_DIGHUB logo" onerror="this.onerror=null;this.src='https://ingesitehub.netlify.app/assets/images/simple-in.png';">
+        <div>
+          <p class="eyebrow">Executive Validation Report</p>
+          <span class="brand-name">ING_DIGHUB</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Report sections">
+        <a href="#executive-summary">Executive Summary</a>
+        <a href="#plant-data">Plant Data</a>
+        <a href="#capacity-validation">Capacity Validation</a>
+        <a href="#operational-performance">Operational Performance</a>
+        <a href="#financial-impact">Financial Impact</a>
+        <a href="#conclusions">Conclusions</a>
+      </nav>
+      <a class="button button-primary nav-cta" href="#contact">Contact</a>
+    </header>
+
+    <main>
+      <section class="report-hero">
+        <div class="card report-hero-copy">
+          <p class="eyebrow">Executive Digital Twin Simulation Report</p>
+          <h1>DS SMITH COGNAC</h1>
+          <h2>INGETRANS Capacity Validation</h2>
+          <h3>Executive Digital Twin Simulation Report</h3>
+          <p class="report-hero-subtitle">Digital Twin Validation of INGETRANS Automated Reel Logistics for High-Speed Corrugated Production.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#executive-summary">View Report</a>
+            <a class="button button-secondary" href="#contact">Request Engineering Review</a>
+          </div>
+        </div>
+        <div class="card report-hero-image">
+          <img src="../assets/images/ingetrans-click.png" alt="INGETRANS logistics simulation visual" onerror="this.onerror=null;this.src='https://ingesitehub.netlify.app/assets/images/ingetrans-click.png';">
+        </div>
+      </section>
+
+      <section class="report-section" id="executive-summary">
+        <div class="section-heading">
+          <p class="eyebrow">Executive Summary</p>
+          <h2>Validated Logistics Capacity with Strong Operating Headroom</h2>
+          <p class="report-text">The Digital Twin confirms that the proposed INGETRANS configuration sustains current production demand, protects corrugator continuity, and preserves reserve capacity for future volume growth under realistic operating disturbances.</p>
+        </div>
+        <div class="report-grid">
+          <article class="card report-card">
+            <p class="report-stat-value">104,000 t/y</p>
+            <p class="report-kpi-label">Production</p>
+            <p class="report-kpi-sub">Annual board output validated by simulation calendar.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">124%</p>
+            <p class="report-kpi-label">Capacity Margin</p>
+            <p class="report-kpi-sub">Validated logistics throughput over current demand envelope.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">+3.1 pts</p>
+            <p class="report-kpi-label">OEE Improvement</p>
+            <p class="report-kpi-sub">From fewer reel delays and lower unplanned waiting events.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">50%</p>
+            <p class="report-kpi-label">Forklift Reduction</p>
+            <p class="report-kpi-sub">Resource downsizing from 6 to 3 forklifts in logistics loop.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">0</p>
+            <p class="report-kpi-label">Starvation Risk</p>
+            <p class="report-kpi-sub">No corrugator starvation observed in validated scenarios.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">+30%</p>
+            <p class="report-kpi-label">Future Capacity</p>
+            <p class="report-kpi-sub">Headroom retained before saturation thresholds are approached.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="plant-data">
+        <div class="section-heading">
+          <p class="eyebrow">1 Plant Characteristics</p>
+          <h2>Baseline Production and Logistics Boundary Conditions</h2>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table" aria-label="Plant characteristics">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Plant</td>
+                <td>DS Smith Cognac</td>
+                <td>High-speed corrugated production site.</td>
+              </tr>
+              <tr>
+                <td>Corrugator</td>
+                <td>BHS line</td>
+                <td>Continuous feed with high reel turnover.</td>
+              </tr>
+              <tr>
+                <td>Nominal Speed</td>
+                <td>365 m/min</td>
+                <td>Modelled with dynamic speed profile and real downtime distribution.</td>
+              </tr>
+              <tr>
+                <td>Annual Production</td>
+                <td>104,000 t/year</td>
+                <td>Calendarized simulation with shift and maintenance constraints.</td>
+              </tr>
+              <tr>
+                <td>Working Pattern</td>
+                <td>24/6</td>
+                <td>Three-shift operation, planned preventive maintenance windows.</td>
+              </tr>
+              <tr>
+                <td>Paper Consumption</td>
+                <td>297 t/day</td>
+                <td>Equivalent to approximately 48,300 reels per year.</td>
+              </tr>
+              <tr>
+                <td>Peak Demand Envelope</td>
+                <td>+20% transient</td>
+                <td>Included to validate resilience under demand spikes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section" id="operational-performance">
+        <div class="section-heading">
+          <p class="eyebrow">2 Digital Twin Configuration</p>
+          <h2>Discrete Event Model Built on Real Production Behavior</h2>
+        </div>
+        <div class="card report-card">
+          <p class="report-text">The model reproduces reel flows from warehouse release to corrugator consumption and return. Simulation logic combines deterministic constraints and stochastic behavior to represent realistic intralogistics variability.</p>
+          <ul class="report-list">
+            <li>Discrete Event Simulation architecture with event-driven queue orchestration.</li>
+            <li>Random failures for transport assets and exchange stations.</li>
+            <li>Peak demand periods tied to production mix and speed ramps.</li>
+            <li>Warehouse preparation delays and release variability.</li>
+            <li>Double reel change events with synchronized delivery contention.</li>
+            <li>Dynamic queue priorities for starvation prevention.</li>
+            <li>Real production calendar including planned downtime windows.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="report-section" id="capacity-validation">
+        <div class="section-heading">
+          <p class="eyebrow">3 Capacity Validation</p>
+          <h2>Result: Logistics Capacity is Sufficient</h2>
+        </div>
+        <div class="card report-card">
+          <p class="report-yes">YES - INGETRANS has sufficient capacity to supply the corrugator under modelled operating scenarios.</p>
+          <p class="report-text">Average utilization remains below stress limits while preserving throughput continuity in peak conditions, ensuring robust delivery pacing and low risk of starvation events.</p>
+        </div>
+        <div class="report-grid">
+          <article class="card report-card">
+            <p class="report-stat-value">124%</p>
+            <p class="report-kpi-label">Capacity Margin</p>
+            <p class="report-kpi-sub">Validated transport capacity versus required reel flow.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">43%</p>
+            <p class="report-kpi-label">Average Utilization</p>
+            <p class="report-kpi-sub">System stays in stable load zone for most operating time.</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">18.4</p>
+            <p class="report-kpi-label">Reels / Hour</p>
+            <p class="report-kpi-sub">Mean validated logistics delivery cadence.</p>
+          </article>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table" aria-label="Capacity validation detail">
+            <thead>
+              <tr>
+                <th>Indicator</th>
+                <th>Validated Value</th>
+                <th>Target / Limit</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Required reels/hour</td>
+                <td>14.8</td>
+                <td>18.4 available</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Average queue delay</td>
+                <td>2.4 s</td>
+                <td>&lt; 10 s</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Delivery misses</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Resource utilization</td>
+                <td>43%</td>
+                <td>&lt; 75%</td>
+                <td>Pass</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section" id="saturation-analysis">
+        <div class="section-heading">
+          <p class="eyebrow">4 Saturation Analysis</p>
+          <h2>Critical Assets Stay Below Saturation Risk Zone</h2>
+        </div>
+        <div class="report-grid">
+          <article class="card report-gauge">
+            <p class="report-gauge-title">Shuttle</p>
+            <p class="report-gauge-value">61%</p>
+            <div class="report-bar report-fill-61"><span></span></div>
+          </article>
+          <article class="card report-gauge">
+            <p class="report-gauge-title">Exchange</p>
+            <p class="report-gauge-value">58%</p>
+            <div class="report-bar report-fill-58"><span></span></div>
+          </article>
+          <article class="card report-gauge">
+            <p class="report-gauge-title">Transfer</p>
+            <p class="report-gauge-value">52%</p>
+            <div class="report-bar report-fill-52"><span></span></div>
+          </article>
+          <article class="card report-gauge">
+            <p class="report-gauge-title">Buffer</p>
+            <p class="report-gauge-value">47%</p>
+            <div class="report-bar report-fill-47"><span></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="dynamic-performance">
+        <div class="section-heading">
+          <p class="eyebrow">5 Dynamic Performance</p>
+          <h2>Fast Response and Stable Delivery Timing</h2>
+        </div>
+        <div class="report-grid">
+          <article class="card report-card">
+            <p class="report-stat-value">47 s</p>
+            <p class="report-kpi-label">Average Delivery Cycle</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">72 s</p>
+            <p class="report-kpi-label">95th Percentile Cycle</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">39 s</p>
+            <p class="report-kpi-label">Median Cycle</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">2.4 s</p>
+            <p class="report-kpi-label">Average Queue Delay</p>
+          </article>
+          <article class="card report-card">
+            <p class="report-stat-value">0</p>
+            <p class="report-kpi-label">Missed Deliveries</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="reel-flow">
+        <div class="section-heading">
+          <p class="eyebrow">6 Reel Flow</p>
+          <h2>Annual and Daily Material Flow Benchmark</h2>
+        </div>
+        <div class="report-flow-grid">
+          <article class="card report-flow-card">
+            <p class="report-flow-number">48,300</p>
+            <p class="report-flow-label">Reels / year</p>
+          </article>
+          <article class="card report-flow-card">
+            <p class="report-flow-number">297 t/day</p>
+            <p class="report-flow-label">Average paper flow</p>
+          </article>
+          <article class="card report-flow-card">
+            <p class="report-flow-number">104,000 t/year</p>
+            <p class="report-flow-label">Annual production baseline</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="forklift-comparison">
+        <div class="section-heading">
+          <p class="eyebrow">7 Forklift Comparison</p>
+          <h2>Transition from Manual to Automated Logistics</h2>
+        </div>
+        <div class="report-compare">
+          <article class="card report-compare-card">
+            <p class="report-compare-title">Current</p>
+            <p class="report-compare-value">6 forklifts</p>
+            <p class="report-compare-note">High dependency on manual dispatch and lane congestion.</p>
+          </article>
+          <article class="card report-compare-card">
+            <p class="report-compare-title">INGETRANS</p>
+            <p class="report-compare-value">3 forklifts</p>
+            <p class="report-compare-note">50% reduction with safer and more stable reel feeding operations.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="production-security">
+        <div class="section-heading">
+          <p class="eyebrow">8 Production Security</p>
+          <h2>Protected Against High-Impact Operational Risks</h2>
+        </div>
+        <div class="report-grid">
+          <article class="card report-score-card">
+            <p class="report-score-number">Low</p>
+            <p class="report-score-label">Starvation risk</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">Low</p>
+            <p class="report-score-label">Wrong reel risk</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">Low</p>
+            <p class="report-score-label">Human dependency</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">Low</p>
+            <p class="report-score-label">Congestion risk</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="financial-impact">
+        <div class="section-heading">
+          <p class="eyebrow">9 Performance Impact</p>
+          <h2>Operational Gains Translated into Measurable Business Value</h2>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table" aria-label="Performance impact">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Current</th>
+                <th>INGETRANS</th>
+                <th>Improvement</th>
+                <th>Visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>OEE</td>
+                <td>88.0%</td>
+                <td>91.1%</td>
+                <td>+3.1 pts</td>
+                <td><div class="report-bar report-fill-43"><span></span></div></td>
+              </tr>
+              <tr>
+                <td>Availability</td>
+                <td>92.3%</td>
+                <td>95.2%</td>
+                <td>+2.9 pts</td>
+                <td><div class="report-bar report-fill-41"><span></span></div></td>
+              </tr>
+              <tr>
+                <td>Logistics stops / month</td>
+                <td>22</td>
+                <td>11</td>
+                <td>-50%</td>
+                <td><div class="report-bar report-fill-50"><span></span></div></td>
+              </tr>
+              <tr>
+                <td>Waiting events / shift</td>
+                <td>12</td>
+                <td>5</td>
+                <td>-58%</td>
+                <td><div class="report-bar report-fill-58"><span></span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section" id="robustness-validation">
+        <div class="section-heading">
+          <p class="eyebrow">10 Robustness Validation</p>
+          <h2>Stress Scenarios Executed Without Starvation</h2>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table" aria-label="Robustness scenarios">
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Condition</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Peak production</td>
+                <td>Demand increase up to +20%</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Double reel change</td>
+                <td>Simultaneous high-frequency changes</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Warehouse delay</td>
+                <td>Preparation lag and dispatch variance</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Unavailable shuttle</td>
+                <td>Temporary transport unit outage</td>
+                <td>Pass</td>
+              </tr>
+              <tr>
+                <td>Congestion event</td>
+                <td>Short-term queue build-up</td>
+                <td>Pass</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card report-callout">
+          <p class="report-yes">PASS - No production starvation in all simulated robustness scenarios.</p>
+        </div>
+      </section>
+
+      <section class="report-section" id="future-expansion">
+        <div class="section-heading">
+          <p class="eyebrow">11 Future Expansion</p>
+          <h2>Scalable Headroom for Growth Scenarios</h2>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table" aria-label="Future expansion capacity">
+            <thead>
+              <tr>
+                <th>Production Growth</th>
+                <th>Expected Utilization</th>
+                <th>Capacity Status</th>
+                <th>Visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>+10%</td>
+                <td>47%</td>
+                <td>Stable</td>
+                <td><div class="report-bar report-fill-47"><span></span></div></td>
+              </tr>
+              <tr>
+                <td>+20%</td>
+                <td>52%</td>
+                <td>Stable</td>
+                <td><div class="report-bar report-fill-52"><span></span></div></td>
+              </tr>
+              <tr>
+                <td>+30%</td>
+                <td>58%</td>
+                <td>Controlled</td>
+                <td><div class="report-bar report-fill-58"><span></span></div></td>
+              </tr>
+              <tr>
+                <td>+40%</td>
+                <td>68%</td>
+                <td>Watch Zone</td>
+                <td><div class="report-bar report-fill-68"><span></span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section" id="executive-assessment">
+        <div class="section-heading">
+          <p class="eyebrow">12 Executive Assessment</p>
+          <h2>Final Decision Matrix</h2>
+        </div>
+        <div class="report-score-grid">
+          <article class="card report-score-card">
+            <p class="report-score-number">Approved</p>
+            <p class="report-score-label">Executive Decision</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">Low Risk</p>
+            <p class="report-score-label">Operational Risk</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">124%</p>
+            <p class="report-score-label">Capacity Margin</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">43%</p>
+            <p class="report-score-label">Average Utilization</p>
+          </article>
+          <article class="card report-score-card">
+            <p class="report-score-number">35%</p>
+            <p class="report-score-label">Reserve Capacity</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section" id="conclusions">
+        <div class="section-heading">
+          <p class="eyebrow">Executive Conclusion</p>
+          <h2>Executive Statement</h2>
+        </div>
+        <div class="card report-callout">
+          <p class="report-text">The Digital Twin demonstrates that the proposed INGETRANS configuration provides sufficient logistics capacity to sustain current production while maintaining significant reserve capacity for future expansion. The simulation predicts substantial improvements in equipment availability, logistics reliability and operational efficiency, with a 50% reduction in forklift resources and virtually eliminating reel starvation under the analysed production scenarios.</p>
+        </div>
+      </section>
+
+      <section class="report-section" id="technical-appendix">
+        <div class="section-heading">
+          <p class="eyebrow">Technical Appendix</p>
+          <h2>Simulation Assumptions and Benchmark Inputs</h2>
+        </div>
+        <div class="card report-card">
+          <ul class="report-list">
+            <li>Cycle times calibrated from INGETRANS reference installations and measured handling phases.</li>
+            <li>Failure distributions represented through stochastic event generation at asset and node level.</li>
+            <li>Warehouse release behavior modelled with delay probability and queue discipline constraints.</li>
+            <li>Production benchmark based on observed operating calendar and shift-level demand variance.</li>
+            <li>Validation focused on starvation resilience, queue saturation and transport service continuity.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="report-section" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>INGECART</h2>
+        </div>
+        <div class="card report-card">
+          <ul class="report-list">
+            <li>Location: Barcelona, Spain</li>
+            <li>Website: <a class="text-link" href="https://www.ingecart.eu" target="_blank" rel="noopener">www.ingecart.eu</a></li>
+            <li>Email: <a class="text-link" href="mailto:hablemos@ingecart.eu">hablemos@ingecart.eu</a></li>
+            <li>Phone: +34 938 183 316</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:hablemos@ingecart.eu">Contact Engineering Team</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="report-footer">
+        <p><strong>INGECART / ING_DIGHUB</strong> - Digital Industrial Operating Ecosystem</p>
+        <p>Executive Digital Twin Report - DS Smith Cognac - INGETRANS Capacity Validation</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

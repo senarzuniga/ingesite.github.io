@@ -1,0 +1,404 @@
+En el respositorio ingesite: "C:\Users\Inaki Senar\Documents\GitHub\ingesite.github.io",  se creo la estructura necesaria para el contenido de la siguiente landing page:
+
+https://ingesitehub.netlify.app/solutions/ingetrans
+
+
+Se construyó como una landing page corporativa estática, con un enfoque muy claro en “producto + valor técnico + contacto”.
+
+Cómo se creó
+
+Estructura HTML
+La página está escrita en un único archivo estático:
+ingetrans.html
+Tiene esta estructura:
+
+Estructura  HTML INGECART 
+
+Header:
+logo
+menú de navegación
+botón de contacto
+Main:
+imagen destacada principal
+bloque de título y descripción
+bloque de contenido técnico y beneficios
+sección de contacto
+Footer:
+pie de marca
+Contenido del cuerpo
+El contenido se escribió a mano en el HTML, no se generó desde JSON ni desde un CMS. Está compuesto por:
+título principal
+subtítulo
+párrafo de introducción
+lista de funciones clave
+tabla de especificaciones técnicas
+lista de beneficios
+resumen de inversión
+caso de estudio
+datos de contacto
+Estilo visual
+El estilo no está embebido en el HTML, sino que viene de la hoja global:
+styles.css
+Eso aporta:
+
+fondo oscuro tipo tech
+degradados azul/naranja
+tipografía Poppins para títulos e Inter para texto
+botones con estilo corporativo
+tarjetas con borde, sombra y fondo translúcido
+Imágenes usadas
+La landing usa estas imágenes:
+Imagen principal:
+
+ingetrans-click.png
+
+------------------------------
+
+Aquí el contenido para el nuevo informe HTML que necesito que creemos:
+
+Sí, este informe encaja perfectamente con el formato que hemos desarrollado para los informes de **INGECART / ING_DIGHUB** (Pacific Southwest, RFID, AMR, ROI, etc.). Sin embargo, el HTML completo tendría unas **1.800–2.500 líneas de código**, lo que supera ampliamente el límite que puedo devolver en un único mensaje.
+
+La mejor estructura sería la siguiente:
+
+## Estructura del HTML
+
+**Header**
+
+* Logo INGECART
+* Menú:
+
+  * Executive Summary
+  * Plant Data
+  * Capacity Validation
+  * Operational Performance
+  * Financial Impact
+  * Conclusions
+* Botón **Contact**
+
+---
+
+## Hero
+
+Imagen:
+
+```
+assets/images/ingetrans-click.png
+```
+
+Título
+
+# DS SMITH COGNAC
+
+## INGETRANS CAPACITY VALIDATION
+
+### Executive Digital Twin Simulation Report
+
+Subtítulo
+
+Digital Twin Validation of INGETRANS Automated Reel Logistics for High-Speed Corrugated Production.
+
+---
+
+## Executive Summary
+
+Resumen ejecutivo con tarjetas KPI:
+
+* Production
+* Capacity Margin
+* OEE Improvement
+* Forklift Reduction
+* Starvation Risk
+* Future Capacity
+
+---
+
+## 1 Plant Characteristics
+
+Tabla elegante
+
+Production
+
+Corrugator
+
+Speed
+
+Annual Production
+
+Working Pattern
+
+Paper Consumption
+
+etc.
+
+---
+
+## 2 Digital Twin Configuration
+
+Explicación
+
+Discrete Event Simulation
+
+Random failures
+
+Peak demand
+
+Warehouse delays
+
+Double reel change
+
+Dynamic queues
+
+Real production calendar
+
+---
+
+## 3 Capacity Validation
+
+Gran bloque con:
+
+### YES
+
+INGETRANS has sufficient capacity...
+
+Tarjetas KPI
+
+124%
+
+Capacity Margin
+
+43%
+
+Average Utilization
+
+18.4
+
+Reels/hour
+
+---
+
+Tabla completa.
+
+---
+
+## 4 Saturation Analysis
+
+Gauge cards
+
+Shuttle
+
+Exchange
+
+Transfer
+
+Buffer
+
+con barras horizontales.
+
+---
+
+## 5 Dynamic Performance
+
+Cards
+
+47 s
+
+72 s
+
+39 s
+
+2.4 s
+
+0 Missed Deliveries
+
+---
+
+## 6 Reel Flow
+
+Infografía
+
+48,300 reels/year
+
+297 t/day
+
+104,000 t/year
+
+---
+
+## 7 Forklift Comparison
+
+Dos columnas
+
+Current
+
+INGETRANS
+
+Con iconos de forklifts
+
+6
+
+↓
+
+3
+
+50%
+
+Reduction
+
+---
+
+## 8 Production Security
+
+Tarjetas
+
+Starvation
+
+Wrong Reel
+
+Human Dependency
+
+Congestion
+
+Con iconos verdes.
+
+---
+
+## 9 Performance Impact
+
+Tabla moderna
+
+OEE
+
+Availability
+
+Stops
+
+Waiting events
+
+con barras de mejora.
+
+---
+
+## 10 Robustness Validation
+
+Escenarios simulados
+
+Peak production
+
+Double reel change
+
+Warehouse delay
+
+Unavailable shuttle
+
+Congestion
+
+Resultado
+
+PASS
+
+No production starvation
+
+---
+
+## 11 Future Expansion
+
+Tabla
+
++10%
+
++20%
+
++30%
+
++40%
+
+Añadir gráfico de capacidad.
+
+---
+
+## 12 Executive Assessment
+
+Tabla verde
+
+Approved
+
+LOW Risk
+
+124%
+
+43%
+
+35%
+
+etc.
+
+---
+
+## Executive Conclusion
+
+Bloque destacado.
+
+Con una tarjeta tipo Executive Statement:
+
+The Digital Twin demonstrates that the proposed INGETRANS configuration provides sufficient logistics capacity to sustain current production while maintaining significant reserve capacity for future expansion. The simulation predicts substantial improvements in equipment availability, logistics reliability and operational efficiency, with a 50% reduction in forklift resources and virtually eliminating reel starvation under the analysed production scenarios.
+
+---
+
+## Technical Appendix
+
+Supuestos de simulación.
+
+Benchmarks utilizados.
+
+Hipótesis.
+
+---
+
+## Contact
+
+INGECART
+
+Barcelona
+
+[www.ingecart.eu](http://www.ingecart.eu)
+
+---
+
+## Footer
+
+Corporate footer igual que todos los informes.
+
+---
+
+# Diseño
+
+Mantendría exactamente el mismo estilo visual que ya hemos utilizado para:
+
+* Pacific Southwest Executive Business Case
+* RFID Report
+* AMR Report
+* INGETRANS Digital Twin
+
+es decir:
+
+* fondo oscuro (#05070B)
+* degradados naranja/gris
+* tarjetas glassmorphism
+* tablas premium
+* iconografía industrial
+* tipografía **Poppins** + **Inter**
+* totalmente responsive
+* preparado para impresión A4 en PDF
+* sin estilos embebidos, utilizando exclusivamente **styles.css**
+* imagen principal:
+
+```
+assets/images/ingetrans-click.png
+```
+
+---
+
+## Mi recomendación
+
+Este informe merece convertirse en un **producto estándar de ING_DIGHUB**. En lugar de un HTML estático, diseñaría una plantilla donde únicamente cambien los parámetros de entrada (producción, velocidad, consumo de bobinas, peso, layout, etc.) y el sistema recalcule automáticamente todos los KPIs, gráficos y conclusiones. Así obtendrías un informe corporativo consistente para cualquier cliente (DS Smith, Smurfit WestRock, International Paper, Saica, VPK, etc.) simplemente introduciendo los datos de la planta.
+

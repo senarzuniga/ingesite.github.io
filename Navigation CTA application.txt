@@ -1,0 +1,216 @@
+Navigation CTA:
+
+Overview:
+The Adaptive Commercial System recognizes that the future of industrial sales is not purely technological and not purely human — it is a combination of both.
+Artificial intelligence supports:
+	• information processing
+	• opportunity identification
+	• forecasting and decision support
+	• operational efficiency
+Human professionals remain essential for:
+	• building trust
+	• negotiating complex solutions
+	• understanding customer strategy
+	• developing long-term partnerships
+Organizations that successfully integrate AI-enabled processes with strong human commercial capabilities
+The Future Industrial Sales Model
+AI handles:
+	• information
+	• analysis
+	• preparation
+	• prioritization
+Humans handle:
+	• trust
+	• negotiation
+	• creativity
+	• relationships
+	• strategic decisions
+
+
+Saved Companies
+Dashboard
+Data Upload
+Company Info
+Company 360º Analysis
+	360º Analysis
+	• 5 years detailed results
+		○ Patterns
+		○ Patterns vs Strategy
+	• Portfolio risk assessment
+	• Key Account mapping
+	• Product portfolio analysis vs customer needs
+	• Product portfolio analysis vs sector
+		○ Commodity
+		○ Innovation
+		○ Decline
+	• Product portfolio analysis vs competitors
+	• Product portfolio analysis vs Strategy 
+	• Company branding/image vs Strategy
+
+
+Portfolio Analysis
+	Sales History
+	Offers
+Sales Architecture
+	Design a scalable sales structure:
+	• market segmentation
+	• geographic sales model
+	• channel strategy
+	• pricing architecture
+	• opportunity management
+	• sales resource allocation
+
+Customer management
+-	Leads
+-	Customers
+-	Key Account Management
+	modern KAM structures:
+	• strategic account mapping
+	• opportunity prioritization
+	• stakeholder mapping and analysis
+	• value creation plans
+	• long-term partnerships
+		○ Multiyear account development strategy
+		○ Internal coordination around key customers; how to create "super loyal customers"
+AI helps with:
+	• account intelligence
+	• market signals
+	• opportunity detection
+
+Budget Command Center
+	Measurement of the gap between
+-	Forecast and budget and objetives
+-	Current status and budget and objetives
+-	The curente behaviour which outcome will produce¿? gap vs budget and objetives
+-	Critical issues
+-	Mitigation plan
+Business Intelligence: check arket and competirtorsand hglobal economy
+
+CRM: present
+- Lead Management: present
+- Customer Management: present
+- Key Account Management: present
+- Sales Pipeline: present
+- Forecast: present
+- Offer Engine: present
+- Pricing Engine: present
+- Cost Engine: present
+- Project Management: present
+- Planning: present
+- Gantt: present
+- After Sales: present
+- Installed Base: present
+- Maintenance: present
+- Marketing: present
+- Business Intelligence: present
+- Monitoring: present
+- AI: present
+- Knowledge Hub: present
+- Document Generation: present
+- Administration: present
+- Workspace Management: present
+- Multitenancy: present
+
+- Lead-to-qualification flow exists, but qualification criteria are spread across pages and agents.
+- Offer generation is present, but negotiation and order handoff are not fully standardized.
+- After-sales and installed-base logic exists in Supabase functions, but it is not yet unified with core sales workflows.
+- Project and maintenance flows are partially represented, with limited end-to-end automation.
+- Renewal and loyalty loops need stronger customer lifecycle automation.
+
+
+After-Sales Engine management full aplication with the best known practices...
+	Many industrial companies earn most profits from service.
+You help them develop:
+	• service contracts
+	• predictive maintenance
+	• spare parts strategies
+	• lifecycle revenue models
+	• Customer support systems
+AI can support:
+	• predictive maintenance signals
+	• service opportunity identification
+
+
+SALES SUPPORT
+
+AI-Augmented Sales
+
+	Pull of acctions for ensuring goal achivement and customer satisfaction and loyaltee, including After sales and projetc management actions.
+	ery modern and differentiated.
+AI supports sales teams in:
+	• customer research
+	• proposal preparation
+	• opportunity qualification
+	• forecasting
+	• activity prioritization
+AI role:
+decision support + productivity multiplier
+Human role:
+	• trust building
+	• negotiation
+	• complex problem solving
+Exactly what you described.
+AI-supported sales processes with a structured approach to account development, enabling teams to identify and capture growth opportunities within their installed base.
+Key elements include:
+	• installed base analysis
+	• cross-selling and up-selling opportunities
+	• lifecycle opportunity identification
+	• customer usage data analysis
+	• opportunity prioritization
+	• commercial forecasting
+AI tools support sales teams by:
+	• analyzing customer data and equipment history
+	• identifying the most valuable opportunities
+	• supporting proposal preparation
+	• improving forecasting accuracy
+	• prioritizing sales activities
+In this model, AI ensures process discipline and better decision support
+
+Behavioral Transformatio
+
+	Support anew way of working, less tasks more actions
+	proactive mode:
+	• opportunity hunting
+	• strategic account planning
+	• value selling
+	• systematic pipeline management
+This requires:
+	• leadership coaching
+	• training
+	• incentive redesign
+	• cultural change
+
+Product Strategy
+	To deploy an strategy for ebevry product based on Market intelligence
+	Key questions include:
+	• Is the product an innovative solution or becoming a commodity?
+	• Is the company selling equipment, services, or integrated solutions?
+	• Is the technology growing, mature, or approaching obsolescence?
+	• Is the company competing on price, performance, or long-term value?
+This pillar analyzes the product and service portfolio within its market lifecycle, helping companies determine how their commercial strategy should evolve.
+Possible scenarios include:
+	• innovative solutions requiring consultative selling
+	• mature products requiring efficiency and market coverage
+	• service models focused on lifecycle value
+	• declining products requiring repositioning or portfolio transformation
+
+Monitoring
+	All, customers, employees, market..kpis
+
+Weekly Planner
+	Action priorization and calendar
+
+Offer & Pricing
+	AI support for cration, validation and tracking and cost and margin management
+
+Commercial Actions Repository
+	All actions listed by category, score....
+
+BACKOFFICE
+
+Team Directory
+Email Cobot
+Marketing Content
+Social Media
+Project Management
+Cost & Rates

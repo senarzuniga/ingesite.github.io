@@ -1,0 +1,168 @@
+GUIA MAESTRA - AGENTE DE PROGRAMACION HTML (INGECART / ING_DIGHUB)
+====================================================================
+
+OBJETIVO
+--------
+Crear paginas HTML corporativas (landings e informes ejecutivos) con el estilo INGECART / ING_DIGHUB,
+reutilizando el formato ya implantado en este repositorio y adaptando contenidos e imagenes por cliente/proyecto.
+
+ENTRADAS MINIMAS DEL AGENTE
+---------------------------
+1) Titulo principal del documento.
+2) Subtitulo y claim tecnico/comercial.
+3) Secciones requeridas (orden y prioridad).
+4) KPIs, tablas y datos operativos/financieros.
+5) Imagen principal (hero) y assets adicionales (si existen).
+6) Bloque de contacto final.
+7) Idioma de salida (es/en).
+
+REGLAS DE IMPLEMENTACION (OBLIGATORIAS)
+---------------------------------------
+1) Generar un unico HTML semantico y limpio por documento.
+2) NO embeber CSS de diseno si existe hoja global; reutilizar estilos corporativos existentes.
+3) Mantener estructura visual corporativa:
+   - Header sticky
+   - Hero
+   - Tarjetas KPI
+   - Tablas premium
+   - Bloques callout y conclusion ejecutiva
+   - Footer corporativo
+4) Mantener compatibilidad dual:
+   - Modo web (servido)
+   - Modo local file:/// (Edge u otro navegador externo)
+5) Evitar rutas absolutas de raiz que rompen en file:/// (por ejemplo /css/... o /assets/...) si se abre aislado.
+6) Usar rutas relativas y fallbacks para assets criticos (logo, imagen hero, CSS) cuando aplique.
+7) Responsive completo (desktop/tablet/mobile).
+8) Print-friendly (A4) para exportacion PDF.
+9) Accesibilidad minima:
+   - alt en imagenes
+   - jerarquia correcta de H1/H2/H3
+   - navegacion por anclas funcional
+10) No romper estilos globales ni paginas existentes no relacionadas.
+
+PALETA Y SISTEMA VISUAL CORPORATIVO
+-----------------------------------
+Base de colores (usar estos tokens/valores):
+- Fondo principal: #080f14
+- Fondo secundario: #1a212b
+- Fondo profundo: #0c141d
+- Texto principal: #edeff2
+- Texto secundario: #9aa8b7
+- Acento azul: #0b3bff
+- Acento naranja: #ff6a00
+- Acento cian: #3ac7ff
+- Estado OK: #22c55e
+- Borde suave: rgba(255,255,255,0.08)
+
+Tipografias:
+- Titulos: Poppins
+- Texto/UI: Inter
+- Fallback: sans-serif
+
+Look & feel:
+- Tema industrial oscuro
+- Tarjetas glassmorphism
+- Sombras profundas, bordes sutiles
+- Botones corporativos con acento naranja/azul
+
+ORIGEN DE ESTILOS, PLANTILLAS Y ASSETS (REPO)
+----------------------------------------------
+Hoja de estilos global principal:
+- css/styles.css
+
+Paginas de referencia (estructura/estilo):
+- solutions/ingetrans.html
+- solutions/ingetrans_DigitalTwin.html
+- solutions/ds-smith-cognac-ingetrans-capacity-validation.html
+- documentation/index.html
+- public/docs/index.html
+
+Assets visuales principales:
+- assets/images/simple-in.png
+- assets/images/ingetrans-click.png
+- assets/images/ingetrans-digital-twin.png
+- assets/images/ingecart-world.png
+
+Fallback web (si el documento se abre sin contexto local completo):
+- CSS: https://ingesitehub.netlify.app/css/styles.css
+- Imagenes: https://ingesitehub.netlify.app/assets/images/...
+
+ESTRUCTURA MINIMA OBLIGATORIA DEL HTML
+--------------------------------------
+1) Header
+   - logo
+   - menu interno por anclas
+   - boton Contact
+2) Hero
+   - imagen principal
+   - titulo, subtitulo, descriptor
+3) Executive Summary
+   - texto de contexto
+   - grid de KPIs
+4) Bloques tecnicos (segun contenido)
+   - tablas
+   - listas
+   - tarjetas metricas
+5) Conclusion ejecutiva
+   - bloque destacado (Executive Statement)
+6) Contact
+7) Footer corporativo
+
+REGLA DE RUTAS (CRITICA)
+------------------------
+- Para documentos dentro de /solutions, usar rutas relativas tipo ../css/... y ../assets/...
+- Para documentos dentro de /documentation, usar ../css/... y ../assets/...
+- Para documentos dentro de /public/docs, usar ../../css/... y links relativos a archivos del mismo directorio.
+- Si se usa JS para cargar docs/assets, detectar mode file:// y resolver URL local alterna.
+
+EJEMPLO DE LOGICA FILE MODE EN JS
+---------------------------------
+- Detectar: location.protocol === 'file:'
+- Si file mode:
+  - docs.json -> ruta relativa local
+  - enlaces /public/docs/... -> convertir a ../public/docs/... o ruta local equivalente
+- Si web mode:
+  - mantener URLs publicas del sitio
+
+COMPORTAMIENTO CON IMAGENES
+---------------------------
+1) Si imagen principal existe, usarla como hero.
+2) Si no existe, usar fallback corporativo.
+3) No eliminar secciones por falta de imagen.
+
+COMPORTAMIENTO CON CONTENIDO VARIABLE
+-------------------------------------
+1) Si faltan datos numericos: mantener estructura y marcar TBD.
+2) Si sobran secciones: agrupar en
+   - Executive
+   - Operacion
+   - Impacto
+   - Conclusion
+3) Si tablas son largas: priorizar columnas clave y legibilidad.
+
+CHECKLIST FINAL DEL AGENTE (OBLIGATORIO)
+-----------------------------------------
+1) El HTML abre bien en modo web.
+2) El HTML abre bien en modo file:///.
+3) No hay errores de sintaxis HTML/CSS/JS.
+4) Menu de anclas funcional.
+5) Assets criticos con fallback operativo.
+6) Contact y footer presentes.
+7) Estilo corporativo consistente.
+
+SALIDA ESPERADA DEL AGENTE
+--------------------------
+1) Archivo HTML creado/actualizado.
+2) Resumen breve de cambios.
+3) Lista de rutas ajustadas por compatibilidad local/web.
+4) Confirmacion de validacion sin errores.
+
+PROMPT CORTO REUTILIZABLE (COPIAR/PEGAR)
+-----------------------------------------
+"Crea un HTML corporativo INGECART/ING_DIGHUB reutilizando css/styles.css y el formato de solutions/ingetrans.html.
+Debes mantener estilo oscuro industrial, KPIs, tablas premium, conclusion ejecutiva y contact/footer.
+Hazlo compatible con web y file:/// usando rutas relativas + fallbacks.
+Adapta contenidos e imagenes segun los datos de entrada y valida que no haya errores."
+
+FIN
+---
