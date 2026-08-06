@@ -41,8 +41,8 @@
       </a>
 
       <div style="display:flex;gap:8px;margin-top:12px;">
-        <button class="button" type="button" id="lang-en" aria-pressed="true">EN</button>
-        <button class="button" type="button" id="lang-es" aria-pressed="false">ES</button>
+        <a class="button button-secondary" href="ingecart-plant-automation-presentation.html" aria-current="page">EN</a>
+        <a class="button" href="ingecart-plant-automation-presentation-es.html">ES</a>
       </div>
 
       <nav aria-label="Presentation index" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
@@ -213,24 +213,5 @@
     </main>
   </div>
 
-  <script>
-    (function () {
-      var enBtn = document.getElementById('lang-en');
-      var esBtn = document.getElementById('lang-es');
-
-      function setLang(lang) {
-        var nodes = document.querySelectorAll('[data-en][data-es]');
-        for (var i = 0; i < nodes.length; i += 1) {
-          nodes[i].textContent = lang === 'es' ? nodes[i].getAttribute('data-es') : nodes[i].getAttribute('data-en');
-        }
-        enBtn.setAttribute('aria-pressed', String(lang === 'en'));
-        esBtn.setAttribute('aria-pressed', String(lang === 'es'));
-      }
-
-      enBtn.addEventListener('click', function () { setLang('en'); });
-      esBtn.addEventListener('click', function () { setLang('es'); });
-      setLang('en');
-    })();
-  </script>
 </body>
 </html>
