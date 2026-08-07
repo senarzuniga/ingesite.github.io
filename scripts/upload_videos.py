@@ -142,6 +142,16 @@ def main():
         print(f"Source folder does not exist: {source_dir}")
         sys.exit(2)
 
+    default_target = (repo_root / 'public' / 'videos').resolve()
+    if target_dir.resolve() == default_target:
+        try:
+            from sync_videos import sync_from_source
+            print(f"Syncing videos from {source_dir} using the full site catalog flow")
+            sync_from_source(source_dir)
+            return
+        except Exception as e:
+            print(f"Full sync flow unavailable, falling back to local copy mode: {e}")
+
     print(f"Copying videos from {source_dir} -> {target_dir} (force={args.force})")
     copied = copy_videos(source_dir, target_dir, force=args.force)
     if copied:
