@@ -1,22 +1,21 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÃ“N(720P_HD)</title>
-    <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="https://ingesitehub.netlify.app/css/styles.css">
+    <title>INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÓN(720P_HD)</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="site-shell" style="padding:1rem">
-        <h1>INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÃ“N(720P_HD)</h1>
+        <h1>INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÓN(720P_HD)</h1>
         <video controls preload="metadata" width="100%" style="max-height:70vh;">
             <source src="../../assets/videos/INGECART%20SOLUCIONES%20AVANZADAS%20EN%20AUTOMATIZACI%C3%93N%28720P_HD%29.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <p style="color:var(--text-muted);">24.9 MB Â· 2026-05-25T12:30:31</p>
+        <p style="color:var(--text-muted);">24.9 MB · 2026-05-25T12:30:31</p>
         <p><a class="button button-primary" href="../../assets/videos/INGECART%20SOLUCIONES%20AVANZADAS%20EN%20AUTOMATIZACI%C3%93N%28720P_HD%29.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
-        <p><button id="copy-share" class="button">ðŸ”— Copiar enlace compartible</button></p>
+        <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
     </div>
 
     <script>
@@ -26,11 +25,9 @@
             var target = new URL('ingecart-soluciones-avanzadas-en-automatizacion720p_hd.html', location.href);
             if(label){ target.searchParams.set('ref', label); }
             var url = target.toString();
-            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÃ“N(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÓN(720P_HD).mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
         });
-        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÃ“N(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/INGECART SOLUCIONES AVANZADAS EN AUTOMATIZACIÓN(720P_HD).mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
     </script>
 </body>
 </html>
-
-
