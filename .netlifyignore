@@ -5,3 +5,14 @@
 # HTML/CSS/JS layer only.
 videos/
 assets/videos/
+public/videos/*.mp4
+public/videos/*.webm
+public/videos/*.ogg
+public/videos/*.mov
+public/videos/*.mkv
+
+# Keep the public document library, but omit its redundant source copies.
+assets/docs/*.pdf
+assets/docs/*.pptx
+docs/*.pdf
+docs/*.pptx

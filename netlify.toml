@@ -3,6 +3,12 @@
   command = ""
   functions = "netlify/functions"
 
+[[redirects]]
+  from = "/assets/videos/*"
+  to = "https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/:splat"
+  status = 302
+  force = true
+
 [[headers]]
   for = "/*.pdf"
   [headers.values]

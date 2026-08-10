@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Truck Loading System</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
     <div class="site-shell" style="padding:1rem">
         <h1>Truck Loading System</h1>
         <video controls preload="metadata" width="100%" style="max-height:70vh;">
-            <source src="../../assets/videos/Truck%20Loading%20System.mp4" type="video/mp4">
+            <source src="https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/Truck%20Loading%20System.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <p style="color:var(--text-muted);">17.0 MB · 2026-06-24T15:16:01.452598</p>
-        <p><a class="button button-primary" href="../../assets/videos/Truck%20Loading%20System.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
+        <p style="color:var(--text-muted);">17.0 MB · 2026-06-24T07:16:01.452598</p>
+        <p><a class="button button-primary" href="https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/Truck%20Loading%20System.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
         <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
     </div>
 
@@ -25,9 +25,9 @@
             var target = new URL('truck-loading-system.html', location.href);
             if(label){ target.searchParams.set('ref', label); }
             var url = target.toString();
-            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'/assets/videos/Truck Loading System.mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/Truck%20Loading%20System.mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
         });
-        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'/assets/videos/Truck Loading System.mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/Truck%20Loading%20System.mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
     </script>
 </body>
 </html>

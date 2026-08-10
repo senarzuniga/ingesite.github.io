@@ -20,6 +20,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 ASSETS_VIDEOS = REPO_ROOT / 'assets' / 'videos'
 PUBLIC_VIDEOS = REPO_ROOT / 'public' / 'videos'
 ALLOWED_EXT = {'.mp4', '.webm', '.ogg', '.mov', '.mkv'}
+MEDIA_BASE_URL = 'https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos'
+SITE_BASE_URL = 'https://senarzuniga.github.io/ingesite.github.io'
 
 
 def ensure_dirs():
@@ -50,11 +52,12 @@ def build_video_catalog():
                 slug = f"{base_slug}-{i}"
                 i += 1
             seen.add(slug)
-            share_path = f'/public/videos/{slug}.html'
+            share_path = f'{SITE_BASE_URL}/public/videos/{slug}.html'
+            media_url = f'{MEDIA_BASE_URL}/{urllib.parse.quote(p.name)}'
             videos.append({
                 'filename': p.name,
                 'title': title,
-                'url': f'/assets/videos/{p.name}',
+                'url': media_url,
                 'share_url': share_path,
                 'slug': slug,
                 'size': stat.st_size,
@@ -136,17 +139,15 @@ def write_video_page(video):
     # write an individual landing page for a single video (using placeholder template to avoid f-string brace conflicts)
     try:
         title_escaped = html.escape(video.get('title', video.get('filename', '')))
-        safe_url = urllib.parse.quote(video['url'], safe='/')
-        safe_url = f"../../{safe_url.lstrip('/')}"
-        share_url = video.get('share_url', f"/public/videos/{video.get('slug','')}.html")
-        share_basename = Path(share_url).name if share_url else f"{video.get('slug','video')}.html"
+        safe_url = html.escape(video['url'], quote=True)
+        share_basename = f"{video.get('slug', 'video')}.html"
         tpl = '''<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>%%TITLE%%</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
     <div class="site-shell" style="padding:1rem">
@@ -187,20 +188,19 @@ def generate_public_index(videos):
     # build items with percent-encoded URLs to avoid spaces/non-ASCII issues
     items = []
     for v in videos:
-        safe_url = urllib.parse.quote(v['url'], safe='/')
-        safe_url = f"../../{safe_url.lstrip('/')}"
+        safe_url = html.escape(v['url'], quote=True)
         item_html = f"""
         <article class=\"card\">\n          <h2 class=\"card-title\">{v['title']}</h2>\n          <video controls preload=\"metadata\" width=\"100%\" poster=\"\">\n            <source src=\"{safe_url}\" type=\"video/mp4\">\n            Your browser does not support the video tag.\n          </video>\n          <p style=\"color:var(--text-muted);\">{human_size(v['size'])} · {v['mtime']}</p>\n          <a class=\"button button-primary\" href=\"{safe_url}\" download>Descargar</a>\n        </article>\n        """
         items.append(item_html)
 
-        html = f"""
+        index_html = f"""
         <!doctype html>
         <html>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width,initial-scale=1">
             <title>Video library</title>
-            <link rel="stylesheet" href="/css/styles.css">
+            <link rel="stylesheet" href="../../css/styles.css">
         </head>
         <body>
             <div class="site-shell">
@@ -210,7 +210,7 @@ def generate_public_index(videos):
         </body>
         </html>
         """
-    return html
+    return index_html
 
 
 def human_size(n):

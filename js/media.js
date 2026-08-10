@@ -2,7 +2,7 @@
 (function(){
   const TAB_SELECTOR = '.media-tab';
   const VIDEO_JSON_PATHS = [
-    '/public/videos/videos.json',
+    new URL('public/videos/videos.json', document.baseURI).toString(),
     '/videos/videos.json',
     '/public/videos/videos.json'
   ];
@@ -87,7 +87,7 @@
       if (item.poster) {
         const img = document.createElement('img'); img.src = item.poster; img.alt = title.textContent; img.style.width = '100%'; img.style.height = '100%'; img.style.objectFit = 'cover'; preview.appendChild(img);
       } else {
-        const vid = document.createElement('video'); vid.src = encodeURI(item.url); vid.preload = 'metadata'; vid.muted = true; vid.style.width = '100%'; vid.style.height = '100%'; vid.style.objectFit = 'cover'; preview.appendChild(vid);
+        const vid = document.createElement('video'); vid.src = item.url; vid.preload = 'metadata'; vid.muted = true; vid.style.width = '100%'; vid.style.height = '100%'; vid.style.objectFit = 'cover'; preview.appendChild(vid);
       }
 
       const actions = document.createElement('div');
@@ -98,7 +98,7 @@
       const play = document.createElement('button'); play.className = 'button button-secondary'; play.textContent = '▶ Reproducir';
       play.addEventListener('click', () => openPlayer(item));
 
-      const dl = document.createElement('a'); dl.className = 'button button-primary'; dl.textContent = '⬇ Descargar'; dl.href = encodeURI(item.url); dl.setAttribute('download', '');
+      const dl = document.createElement('a'); dl.className = 'button button-primary'; dl.textContent = '⬇ Descargar'; dl.href = item.url; dl.setAttribute('download', '');
       dl.addEventListener('click', (ev) => { sendEvent('download', item); });
 
       const share = document.createElement('button'); share.className = 'button'; share.textContent = '🔗 Compartir';
@@ -107,7 +107,7 @@
           const ref = prompt('Etiqueta para personalizar el enlace (opcional)');
           let url = item.share_url || item.url || ('/public/videos/' + (item.slug || item.filename));
           if (ref) url += (url.indexOf('?') >= 0 ? '&' : '?') + 'ref=' + encodeURIComponent(ref);
-          const full = location.origin + url;
+          const full = new URL(url, document.baseURI).toString();
           await copyToClipboard(full);
           alert('Enlace copiado al portapapeles');
           sendEvent('share', Object.assign({}, item, { share_link: full }));
@@ -137,7 +137,7 @@
     modal.style.position = 'fixed'; modal.style.inset = 0; modal.style.background = 'rgba(0,0,0,0.6)'; modal.style.display='flex'; modal.style.alignItems='center'; modal.style.justifyContent='center'; modal.style.zIndex = 9999;
     const panel = document.createElement('div'); panel.style.width='min(960px,95%)'; panel.style.maxHeight='90%'; panel.style.background='#071018'; panel.style.padding='12px'; panel.style.borderRadius='10px'; panel.style.boxShadow='0 12px 45px rgba(0,0,0,0.6)';
     const title = document.createElement('h3'); title.textContent = item.title || item.filename || item.name; title.style.margin='0 0 8px 0';
-    const video = document.createElement('video'); video.src = encodeURI(item.url); video.controls = true; video.autoplay = true; video.style.width = '100%'; video.style.maxHeight='70vh';
+    const video = document.createElement('video'); video.src = item.url; video.controls = true; video.autoplay = true; video.style.width = '100%'; video.style.maxHeight='70vh';
     const close = document.createElement('button'); close.className = 'button button-secondary'; close.textContent = 'Cerrar'; close.style.marginTop='8px';
     close.addEventListener('click', () => { document.body.removeChild(modal); });
     panel.appendChild(title); panel.appendChild(video); panel.appendChild(close);
