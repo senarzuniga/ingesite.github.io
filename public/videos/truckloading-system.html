@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TRUCKLOADING SYSTEM</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <div class="site-shell" style="padding:1rem">
+        <h1>TRUCKLOADING SYSTEM</h1>
+        <video controls preload="metadata" width="100%" style="max-height:70vh;">
+            <source src="https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/TRUCKLOADING%20SYSTEM.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p style="color:var(--text-muted);">9.1 MB · 2026-07-30T08:51:00.896940</p>
+        <p><a class="button button-primary" href="https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/TRUCKLOADING%20SYSTEM.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
+        <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
+    </div>
+
+    <script>
+        function copyText(t){ if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(t); } var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return Promise.resolve(); }
+        document.getElementById('copy-share').addEventListener('click', function(){
+            var label = prompt('Etiqueta para personalizar el enlace (opcional)');
+            var target = new URL('truckloading-system.html', location.href);
+            if(label){ target.searchParams.set('ref', label); }
+            var url = target.toString();
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'share',file:'https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/TRUCKLOADING%20SYSTEM.mp4',timestamp:new Date().toISOString(),ref:label||''})}); }catch(e){} });
+        });
+        var vid = document.querySelector('video'); if(vid){ vid.addEventListener('play', function(){ try{ fetch('/.netlify/functions/notify_event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'play',file:'https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/TRUCKLOADING%20SYSTEM.mp4',timestamp:new Date().toISOString()})}); }catch(e){} }); }
+    </script>
+</body>
+</html>
