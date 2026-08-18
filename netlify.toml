@@ -1,6 +1,7 @@
 [build]
   publish = "."
-  command = ""
+  # Static site: explicit no-op so it overrides any build command set in the Netlify UI.
+  command = "echo 'Static site - no build step'"
   functions = "netlify/functions"
 
 [[redirects]]
