@@ -9,6 +9,13 @@
   status = 302
   force = true
 
+# Netlify does not resolve Git LFS pointers, so serve video binaries from GitHub media.
+[[redirects]]
+  from = "/public/videos/*.mp4"
+  to = "https://media.githubusercontent.com/media/senarzuniga/ingesite.github.io/main/assets/videos/:splat.mp4"
+  status = 302
+  force = true
+
 [[headers]]
   for = "/*.pdf"
   [headers.values]
