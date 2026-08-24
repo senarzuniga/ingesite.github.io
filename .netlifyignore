@@ -11,6 +11,11 @@ public/videos/*.ogg
 public/videos/*.mov
 public/videos/*.mkv
 
+# Never publish unresolved Git LFS pointers when Netlify skips LFS downloads.
+/*.pdf
+public/docs/*.pptx
+backups/placeholders-public-videos/
+
 # Keep the public document library, but omit its redundant source copies.
 assets/docs/*.pdf
 assets/docs/*.pptx
