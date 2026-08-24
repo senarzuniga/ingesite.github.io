@@ -13,6 +13,8 @@ public/videos/*.mkv
 
 # Never publish unresolved Git LFS pointers when Netlify skips LFS downloads.
 /*.pdf
+assets/qr/*.pdf
+public/docs/*.pdf
 public/docs/*.pptx
 backups/placeholders-public-videos/
 
