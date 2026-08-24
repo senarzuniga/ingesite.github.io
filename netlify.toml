@@ -17,6 +17,31 @@
   status = 302
   force = true
 
+# Keep Netlify as a live mirror of the canonical GitHub Pages deployment.
+# The forced proxy prevents independent deploy contents from drifting while
+# preserving the ingesitehub.netlify.app URL for visitors.
+[[redirects]]
+  from = "/"
+  to = "https://senarzuniga.github.io/ingesite.github.io/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "https://senarzuniga.github.io/ingesite.github.io/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+
 [[headers]]
   for = "/*.pdf"
   [headers.values]
