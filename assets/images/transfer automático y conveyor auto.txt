@@ -1,0 +1,47 @@
+transfer automático y conveyor automáticos :
+
+ transfer car (carro transferidor o lanzadera) 
+------------------------------
+## 📊 Ficha Técnica y Datos Típicos
+
+* Capacidad de carga máxima: 3,000 kg a 5,000 kg (suficiente para pilas completas de cartón pesado o palés maestros).
+* Velocidad de traslación lateral: 1.5 m/s a 2.5 m/s (con rampas de aceleración/desaceleración controladas por variador de frecuencia).
+* Velocidad de la cama de rodillos superior: 0.3 m/s a 0.5 m/s (sincronizada exactamente con la velocidad de los conveyors fijos de la planta).
+* Ancho útil de la cama de rodillos: 1,800 mm a 2,800 mm (depende del ancho máximo de la corrugadora).
+* Longitud útil de la cama de rodillos: 3,000 mm a 5,500 mm (para albergar láminas en tándem o formatos jumbo).
+* Altura de transporte: 300 mm a 450 mm (medida estándar desde el suelo hasta la superficie superior del rodillo).
+* Precisión de posicionamiento en parada: ± 2 mm a ± 5 mm (lograda mediante encoders láser o sistemas de código de barras BPS en el riel).
+
+------------------------------
+## 📥 Entradas Típicas (Inputs al PLC del Transfer)
+Son las señales que el carro recibe de sus propios sensores y de las líneas fijas para saber qué hacer y garantizar la seguridad:
+
+[Sensores del Carro] ──> ( INPUTS ) ──> [PLC del Transfer]
+
+
+* Sensores de posición de carga: Fotocélulas en la cama de rodillos que indican "Carga Centrada", "Carga en Extremo Delantero" o "Carga en Extremo Trasero".
+* Láser de seguridad / Escáner de área: Señal de "Zona de Advertencia Interrumpida" (frena el carro) y "Zona de Paro de Emergencia Interrumpida" (bloquea los frenos en seco).
+* Encoder / Telémetro Láser de vía: Señal continua que indica la posición exacta en milímetros del carro a lo largo del pasillo.
+* Petición de descarga (Línea Fija): Señal inalámbrica o por infrarrojos desde el conveyor de destino que dice: "Estoy vacío, puedes descargar tu cartón aquí".
+* Petición de carga (Línea Fija): Señal desde el conveyor emisor que dice: "Tengo un bloque listo, ven a buscarlo".
+* Finales de carrera físicos: Interruptores mecánicos en los extremos de la vía para evitar que el carro se estrelle si falla el software.
+
+------------------------------
+## 📤 Salidas Típicas (Outputs desde el PLC del Transfer)
+Son las órdenes que el cerebro del carro envía a sus propios motores y las confirmaciones que transmite a los conveyors de la planta:
+
+[PLC del Transfer] ──> ( OUTPUTS ) ──> [Motores / Torres de Luz / Conveyors Fijos]
+
+
+* Dirección y Velocidad de Marcha: Salida analógica o por bus de campo (Profinet/EtherCAT) al variador de frecuencia del motor de traslación (Adelante / Atrás / Velocidad).
+* Giro de Rodillos Superiores: Orden al motor de la cama de rodillos para girar en sentido horario (Cargar) o antihorario (Descargar).
+* Freno Electromecánico: Activación/desactivación del freno físico del motor de traslación al detenerse.
+* Torreta de Señalización y Alarma: Activación de la luz estroboscópica y la bocina intermitente de advertencia mientras el carro esté en movimiento.
+* Permiso de transferencia (Interlock hacia Línea Fija): Señal que el carro envía al conveyor fijo diciendo: "Ya estoy perfectamente alineado contigo, enciende tus rodillos que yo encenderé los míos".
+* Estado del Carro al Sistema Central (MES/WMS): Señales de "Disponible", "Ocupado con Carga", "En Falla" o "Batería Baja" (si es un sistema inalámbrico AGV).
+
+
+
+*  Aporta la independencia de los operarios en el proceso por completo .
+* Ahorro de 1 operario x turno = 4 operarios . 80.000 x 4 = 320000 $.
+* Aumento de capacidad gestión productiva .

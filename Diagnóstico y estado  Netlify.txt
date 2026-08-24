@@ -1,0 +1,27 @@
+Diagnóstico y estado  Netlify
+
+Ahora está claro: Netlify sí despliega desde GitHub, pero la build falla porque la configuración de la UI (npm run build → dist) no corresponde a este sitio, que es estático puro (no hay package.json ni dist). El command = "" vacío de netlify.toml no anula ese ajuste.
+
+
+
+Confirmado: esa configuración es incorrecta para este proyecto.
+
+No existe package.json, así que npm run build falla → exactamente el exit code: 2 que ves en todos los deploys desde el 26 de junio.
+No existe carpeta dist; el sitio se publica desde la raíz del repo.
+Corregido en el repo (commit 6359f10):
+
+netlify.toml: command pasa de cadena vacía (que Netlify ignora y por eso caía al npm run build de la UI) a un no-op explícito, manteniendo publish = ".".
+Eliminado .github/workflows/deploy-netlify.yml: era un segundo camino de despliegue redundante y fallaba por token inválido. Netlify ya despliega desde GitHub, que es el mecanismo correcto.
+Valores correctos que deben quedar en Netlify (Site configuration → Build & deploy → Build settings):
+
+Campo	Valor
+Base directory	(vacío)
+Build command	(vacío)
+Publish directory	.
+Functions directory	functions
+Branch to deploy	main
+He comprobado tras el push y el sitio sigue sirviendo el deploy antiguo (404 en index-es.html, direction-audit.html, sr1400.html). Si el nuevo deploy vuelve a fallar, limpia esos dos campos en la UI (Build command vacío y Publish directory .), lanza Trigger deploy → Clear cache and deploy site, y si aún falla pégame el log del deploy para diagnosticarlo.
+
+Nota adicional: los .mp4 están en Git LFS y Netlify no resuelve punteros LFS; ya está cubierto con los redirects de netlify.toml hacia media.githubusercontent.com, así que los vídeos se reproducirán igualmente.
+
+Dime qué muestra el próximo deploy y seguimos.

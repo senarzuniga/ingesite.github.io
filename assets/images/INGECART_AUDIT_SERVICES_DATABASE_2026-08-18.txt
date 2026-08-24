@@ -1,0 +1,182 @@
+INGECART AUDIT SERVICES DATABASE
+================================
+Version: 2026-08-18
+Scope: Technical audit, flow audit, maintenance audit, OEE and productivity assessment, WIP/logistics audit, automation readiness review.
+
+1. OBJECTIVE
+------------
+INGECART audits are technical and industrial diagnostics designed to convert operational observations into system-level decisions. The objective is not only to detect defects, but to identify lost capacity, unstable flow, poor maintenance discipline, misalignment between machine and logistics, and the real root cause behind low OEE, blocking, starvation, waste and low productivity.
+
+2. AUDIT ARCHETYPE
+------------------
+The audit approach is based on three reference models:
+- Model A: operational audit of equipment conditions and process reaction (United / Sullana / Agnati example).
+- Model B: technical audit of alignment, preventive maintenance, system setup and process quality (Asitrade wet-end example).
+- Model C: flow and logistics audit for automatic transfer, WIP management, tridents, AMR and final outfeed (President Container / Calgary logic).
+
+3. KEY ANALYSIS LAYERS
+----------------------
+3.1 Mechanical and physical condition
+- Alignment and parallelism
+- Roller condition and compensation
+- Clearances and wear
+- Transmission and supports
+- Condition of clichés, plates, inks, corrugation equipment, gluing and pre-heaters
+
+3.2 Process and stability
+- Real sustainable speed
+- Setup time and reaction time
+- Micro-stops and blocked time
+- Starvation and outfeed pressure
+- Frequent rework and repeated manual corrections
+
+3.3 Flow and WIP management
+- Buffer pressure and queue time
+- Blocking in output or input positions
+- WIP saturation and empty-position starvation
+- Routing and destination reservation logic
+- Need for AMR, tridents or transfer systems
+
+3.4 Control and automation maturity
+- PLC, VFD, encoder, scanners and safety condition
+- Interlocks and sequence logic
+- Manual vs automated decisions
+- Integration with MES/WMS/ERP and OT/IT layers
+
+3.5 Maintenance discipline
+- Preventive vs corrective ratio
+- MTBF / MTTR
+- Spare parts availability
+- Task completion rate and backlog
+- Preventive ownership and follow-up
+
+3.6 Human factor and operating competence
+- Operator skill level
+- Ability to adjust and maintain speed without destabilizing flow
+- Training level, preventive supervision and standard work
+- Dependency on key operator or supervisor
+
+4. HOW IT IS MEASURED
+---------------------
+4.1 Capacity and flow indicators
+- Good boxes / hour
+- Bundles / hour
+- Pallets / hour
+- Tons / month
+- m² / hour or ft² / hour
+- blocked minutes per shift
+- starvation minutes per shift
+- rehandling events
+- clearance time and ready-to-release time
+
+4.2 Quality and loss indicators
+- defects per m²
+- waste and scrap by section
+- rejected material by cause
+- setup time and scrap during recipe change
+- recurring quality issues: plate curvature, clichet condition, ink quality, alignment drift
+
+4.3 Maintenance indicators
+- MTBF / MTTR by asset
+- preventive task completion rate
+- repeat failure rate
+- lead time for critical spare parts
+- cost of reactive maintenance vs preventive maintenance
+
+4.4 OEE framework
+OEE = Availability × Performance × Quality
+
+Recommended audit logic:
+- OEE by machine
+- OEE by line / process zone
+- OEE by product family / SKU mix
+- OEE by shift and by section
+- OEE of the flow zone (including logistics and WIP)
+
+5. EXPECTED IMPROVEMENT RANGE
+-----------------------------
+The following ranges are typical of mature correction and flow discipline projects:
+- Alignment and parallelism improvement: 10% to 25%
+- WIP management improvement: 15% to 35%
+- Reduction of starvation: 60% to 87%
+- OEE gain in the transit/flow area: +3 to +6 points
+- Production increase: +4.2 million meters/year in benchmark scenarios
+- Annual operating savings: ~€309k/year (reference range)
+- Rehandling reduction: 30% to 60%
+- Availability improvement: +8% to +15%
+- Manual workload reduction: 25% to 60% depending on automation and logistics scope
+
+6. PRINCIPAL DELIVERABLES
+-------------------------
+- Audit technical report
+- Flow map and bottleneck map
+- Loss tree and root-cause matrix
+- Criticality matrix by asset and process
+- KPI base and benchmark for OEE and throughput
+- Maintenance and training roadmap
+- Quick-win plan
+- Investment / automation roadmap
+- Validation plan and follow-up KPIs
+
+7. SOLUTION AREAS OF INGECART
+-----------------------------
+INGECART audit work is especially relevant when the project includes:
+- automatic transfer or shuttle systems
+- conveyors and flow management software
+- tridents for AGV/AMR interface
+- WIP and reallocation solutions
+- AMR intralogistics and fleet orchestration
+- compact palletizing / Plug & Play systems
+- Ingetrans and traceability solutions
+- RFID and reel tracking
+- automatic truck loading systems
+
+Public product references:
+- Automatic transfer solution: https://senarzuniga.github.io/ingesite.github.io/solutions/intralogistics-automatic-transfer.html
+- AMR intralogistics: https://senarzuniga.github.io/ingesite.github.io/solutions/amr-intralogistics.html
+- Plug & Play palletizer: https://senarzuniga.github.io/ingesite.github.io/solutions/plug-play-palletizer.html
+- Heavy duty palletizer: https://senarzuniga.github.io/ingesite.github.io/solutions/heavy-duty-palletizer.html
+- RFID reel management: https://senarzuniga.github.io/ingesite.github.io/solutions/rfid-reel-management-system.html
+- Ingetrans: https://senarzuniga.github.io/ingesite.github.io/solutions/ingetrans.html
+
+8. EXAMPLES OF AUDIT FINDINGS
+----------------------------
+Example 1: United/Sullana/Agnati
+- Detected misalignment across equipment
+- Issues with paper-path rollers and drying table skates
+- Non-operational Copar system
+- Lack of preventive maintenance and spare parts
+- Need to divide intervention into immediate repairs and planned shutdown
+- Training and remote support required
+- OEE and production losses driven by technical drift and maintenance backlog
+
+Example 2: Asitrade wet-end audit
+- Parallelism deviations on fluting and liner sections
+- Loose handling and poor contact behavior in the pre-heater area
+- Poor calibration of rollers and bearings
+- Risk of frequent breakage and unstable process
+- Need for realignment, mechanical repair, verification with centerline and sensor calibration
+
+9. IMPLEMENTATION MODEL
+-----------------------
+Implementation should follow a structured audit sequence:
+- Step 1: Gemba walk and initial risk map
+- Step 2: time study and operational data capture
+- Step 3: mechanical verification and control review
+- Step 4: root-cause analysis and prioritization
+- Step 5: quick-win action plan
+- Step 6: automated / flow improvement design
+- Step 7: validation and KPI monitoring
+
+10. BEST PRACTICE RULES
+----------------------
+- A machine must be evaluated as part of a flow, not as an isolated asset.
+- Every finding must be evidence-based.
+- Every recommendation must include expected KPI impact.
+- Every manual workaround must be treated as a symptom of a structural problem.
+- Every investment decision must be reconciled against OEE, throughput and maintenance cost.
+- Every audit must end with a practical implementation plan, not just a technical narrative.
+
+11. CONCLUSION
+--------------
+The INGECART audit is an industrial decision tool. It converts operational realities into structured evidence, then turns that evidence into an executable improvement roadmap. The underlying principle is simple: recover capacity before installing more automation. Reduce material loss, improve flow, stabilize WIP, train people and protect OEE. That is the value of an audit built to support industrial decisions.
