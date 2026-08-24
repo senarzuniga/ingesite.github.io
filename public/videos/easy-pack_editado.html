@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>EASY PACK_editado</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <div class="site-shell" style="padding:1rem">
+        <h1>EASY PACK_editado</h1>
+        <video controls preload="metadata" width="100%" style="max-height:70vh;">
+            <source src="https://senarzuniga.github.io/ingesite.github.io/public/videos/EASY%20PACK_editado.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p style="color:var(--text-muted);">Video disponible en el sitio</p>
+        <p><a class="button button-primary" href="https://senarzuniga.github.io/ingesite.github.io/public/videos/EASY%20PACK_editado.mp4" download>Descargar</a> <a class="button" href="index.html">Volver al listado</a></p>
+        <p><button id="copy-share" class="button">🔗 Copiar enlace compartible</button></p>
+    </div>
+
+    <script>
+        function copyText(t){ if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(t); } var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return Promise.resolve(); }
+        document.getElementById('copy-share').addEventListener('click', function(){
+            var label = prompt('Etiqueta para personalizar el enlace (opcional)');
+            var target = new URL('easy-pack_editado.html', location.href);
+            if(label){ target.searchParams.set('ref', label); }
+            var url = target.toString();
+            copyText(url).then(function(){ alert('Enlace copiado:\n'+url); });
+        });
+    </script>
+</body>
+</html>
